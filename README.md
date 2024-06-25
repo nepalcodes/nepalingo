@@ -1,12 +1,15 @@
 # nepalingo
+
 A website to learn the indigenous language of Nepal.
 
 # Contributors
+
 The contributors of this project are participants of Incubate Nepal.
 
 # Mentors
 
 ## Christina Kayastha
+
 <table>
     <tr>
         <td width=150>
@@ -19,6 +22,7 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 ## Binam Kayastha
+
 <table>
     <tr>
         <td width=150>
@@ -31,3 +35,16 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 # Mentees
+
+## Aanchal Nancy Jha
+
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/Nancy.png" alt="Image of Aanchal Nancy Jha"/>
+        </td>
+        <td>
+            Aanchal Nancy Jha is a high school graduate and a passionate coding enthusiast. She enjoys learning new programming languages, frameworks, and technologies. Her hobbies include creating mini-games and side projects, making coding tutorials on YouTube, reading tech blogs, and competing in hackathons. Nancy is always eager to learn and take on new challenges.
+        </td>
+    </tr>
+</table>
