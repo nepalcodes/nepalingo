@@ -31,3 +31,15 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 # Mentees
+
+## Saphal Upreti
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/saphalupreti.jpg" alt="Image of Saphal Upreti"/>
+        </td>
+        <td>
+            Saphal Upreti is a recent high school graduate from Nepal. His hobbies includes watching movies, gaming, occasionally listening and producing music and participating in hackathons. He has his interests in computer science and business. In his free time, he likes to work on different side projects and spend time with his friends and family. 
+        </td>
+    </tr>
+</table>
