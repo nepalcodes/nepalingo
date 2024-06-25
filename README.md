@@ -30,4 +30,17 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
+# Peer Mentor
+## Hemanta Bhandari
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/hemsbhandari.jpg" alt="Image of Hemanta Bhandari"/>
+        </td>
+        <td>
+            Hemanta (Hems) is a Budhanilkantha School alumnus with a passion for both mathematics and computer science, seamlessly blending theory with practical applications. He has a keen interest in applied mathematics and building full-stack web applications. In his free time, he enjoys playing chess and basketball, as well as expressing his creativity through sketching.
+        </td>
+    </tr>
+</table>
+
 # Mentees
