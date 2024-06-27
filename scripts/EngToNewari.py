@@ -1,5 +1,6 @@
 import requests
 
+
 def get_word_meaning(word):
     url = f'https://subhash.net.np/dict/en/search/{word}'
     headers = {
@@ -18,33 +19,35 @@ def get_word_meaning(word):
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
     }
 
+
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
         data = response.json()
-        return data
+        
+        if 'meanings' in data and data['meanings']:
+            return data
+        else:
+            raise Exception("No meanings found for the word")
+        
     else:
-        return None
+        raise Exception(f"Error {response.status_code}: {response.text}")
 
-loop=True
-while loop:
+
+while True:
     word = input('Enter an English word to get its Newari translation: ')
-    result = get_word_meaning(word)
-
-    if result:
-        print(f"\nWord: {result['word']}")
-        for meaning in result['meanings']:
-            print(f"Meaning in English: {meaning['meaning_en']}")
-            print(f"Meaning in Newari: {meaning['meaning_nb']}")
-            print(f"Transliteration (Latin): {meaning['transliterations']['latn']}\n")
-    else:
-        print("Error fetching data")
     
-    again=input('Go again?: (y/n) ')
-    if again=='n':
-        loop=False
-
-
+    try:
+        result = get_word_meaning(word)
+        if result:
+            print(f"\nWord: {result['word']}")
+            for meaning in result['meanings']:
+                print(f"Meaning in English: {meaning['meaning_en']}")
+                print(f"Meaning in Newari: {meaning['meaning_nb']}")
+                print(f"Transliteration (Latin): {meaning['transliterations']['latn']}\n")
+    except Exception as e:
+        print(f"Error fetching data: {e}")
     
-
-
+    again = input('Go again?: (y/n) ')
+    if again.lower() != 'y':
+        break
