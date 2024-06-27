@@ -74,3 +74,16 @@ The contributors of this project are participants of Incubate Nepal.
         </td>
     </tr>
 </table>
+
+## Puja Tajpuriya
+
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/Puja.webp" alt="Image of Puja Tajpuriya"/>
+        </td>
+        <td>
+            Puja Tajpuriya, a high school graduate with a deep passion for creativity and technology, is embarking on an exciting journey into programming. Alongside her hobbies of crafting poetry, singing melodies, and exploring zenart, she is passionately diving into the dynamic world of coding. she is committed to mastering programming fundamentals and leveraging her diverse interests to inspire unique projects. With a keen eye for detail and a natural flair for expression.
+        </td>
+    </tr>
+</table>
