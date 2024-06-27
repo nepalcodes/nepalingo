@@ -86,3 +86,19 @@ The contributors of this project are participants of Incubate Nepal.
         </td>
     </tr>
 </table>
+
+
+## Aditya Bikram Thakur    
+
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/aditya.jpeg" alt="Image of Aditya Bikram Thakur"/>
+        </td>
+        <td>
+            Aditya Bikram Thakur is a senior A-levels student at Budhanilkantha School. He is interested in various aspects of computer science such as Data structures and algorithms, web developement and Deep learning. His hobbies include listening audiobooks, going on a morning stroll, learning Japanese and watching movies. 
+        </td>
+    </tr>
+</table>
+
+</table>
