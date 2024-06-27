@@ -1,12 +1,15 @@
 # nepalingo
+
 A website to learn the indigenous language of Nepal.
 
 # Contributors
+
 The contributors of this project are participants of Incubate Nepal.
 
 # Mentors
 
 ## Christina Kayastha
+
 <table>
     <tr>
         <td width=150>
@@ -19,6 +22,7 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 ## Binam Kayastha
+
 <table>
     <tr>
         <td width=150>
@@ -26,6 +30,19 @@ The contributors of this project are participants of Incubate Nepal.
         </td>
         <td>
             Binam Kayastha is a Senior Software engineer with six years of industry experience. Originally from Nepal, he is currently working in Boston, USA as a Platform Engineer at Cirkul. Binam is a true full-stack developer with experience spanning DevOps, data engineering, back-end, and front-end. In his free time, he loves tinkering with new technologies, developing his own productivity apps, building games, and competing in hackathons.
+        </td>
+    </tr>
+</table>
+
+# Peer Mentor
+## Hemanta Bhandari
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/hemsbhandari.jpg" alt="Image of Hemanta Bhandari"/>
+        </td>
+        <td>
+            Hemanta (Hems) is a Budhanilkantha School alumnus with a passion for both mathematics and computer science, seamlessly blending theory with practical applications. He has a keen interest in applied mathematics and building full-stack web applications. In his free time, he enjoys playing chess and basketball, as well as expressing his creativity through sketching.
         </td>
     </tr>
 </table>
@@ -40,6 +57,32 @@ The contributors of this project are participants of Incubate Nepal.
         </td>
         <td>
             Saphal Upreti is a recent high school graduate from Nepal. His hobbies includes watching movies, gaming, occasionally listening and producing music and participating in hackathons. He has his interests in computer science and business. In his free time, he likes to work on different side projects and spend time with his friends and family. 
+        </td>
+    </tr>
+</table>
+
+## Sanskar Lamsal
+
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/sanskar.jpg" alt="Image of Sanskar Lamsal"/>
+        </td>
+        <td>
+            Sanskar Lamsal is a high school graduate. His hobbies include watching movies and TV series, participating in hackathons, and listening to music and podcasts. He has a keen interest in design and programming and enjoys creating things that matter. In his free time, he mostly hangs out with friends and family, works on side projects, or explores new interests.
+        </td>
+    </tr>
+</table>
+
+## Aanchal Nancy Jha
+
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/Nancy.png" alt="Image of Aanchal Nancy Jha"/>
+        </td>
+        <td>
+            Aanchal Nancy Jha is a high school graduate and a passionate coding enthusiast. She enjoys learning new programming languages, frameworks, and technologies. Her hobbies include creating mini-games and side projects, making coding tutorials on YouTube, reading tech blogs, and competing in hackathons. Nancy is always eager to learn and take on new challenges.
         </td>
     </tr>
 </table>
