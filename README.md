@@ -49,6 +49,19 @@ The contributors of this project are participants of Incubate Nepal.
 
 # Mentees
 
+## Sanskar Lamsal
+
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/sanskar.jpg" alt="Image of Sanskar Lamsal"/>
+        </td>
+        <td>
+            Sanskar Lamsal is a high school graduate. His hobbies include watching movies and TV series, participating in hackathons, and listening to music and podcasts. He has a keen interest in design and programming and enjoys creating things that matter. In his free time, he mostly hangs out with friends and family, works on side projects, or explores new interests.
+        </td>
+    </tr>
+</table>
+
 ## Aanchal Nancy Jha
 
 <table>
