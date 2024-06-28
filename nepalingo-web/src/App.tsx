@@ -1,14 +1,11 @@
-import './App.css'
+import HelloWorld from "./components/HelloWorld";
 
 function App() {
-
   return (
     <>
-      <div>
-        <h1>Welcome to Nepalingo!</h1>
-      </div>
+      <HelloWorld />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
