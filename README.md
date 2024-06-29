@@ -49,6 +49,18 @@ The contributors of this project are participants of Incubate Nepal.
 
 # Mentees
 
+## Saphal Upreti
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/saphalupreti.jpg" alt="Image of Saphal Upreti"/>
+        </td>
+        <td>
+            Saphal Upreti is a recent high school graduate from Nepal. His hobbies includes watching movies, gaming, occasionally listening and producing music and participating in hackathons. He has his interests in computer science and business. In his free time, he likes to work on different side projects and spend time with his friends and family. 
+        </td>
+    </tr>
+</table>
+
 ## Sanskar Lamsal
 
 <table>
@@ -76,7 +88,6 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 ## Puja Tajpuriya
-
 <table>
     <tr>
         <td width=150>
@@ -87,3 +98,17 @@ The contributors of this project are participants of Incubate Nepal.
         </td>
     </tr>
 </table>
+
+## Aditya Bikram Thakur    
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/aditya.jpeg" alt="Image of Aditya Bikram Thakur"/>
+        </td>
+        <td>
+            Aditya Bikram Thakur is a senior A-levels student at Budhanilkantha School. He is interested in various aspects of computer science such as Data structures and algorithms, web developement and Deep learning. His hobbies include listening audiobooks, going on a morning stroll, learning Japanese and watching movies. 
+        </td>
+    </tr>
+</table>
+
+
