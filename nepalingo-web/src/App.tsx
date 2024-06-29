@@ -1,9 +1,10 @@
-import HelloWorld from "./components/HelloWorld";
+import React from "react";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <HelloWorld />
+      <Header />
     </>
   );
 }

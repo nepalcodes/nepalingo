@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../assets/styles//components/header.module.css';
+import styles from './header.module.css';
 
-const HelloWorld: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -11,4 +11,4 @@ const HelloWorld: React.FC = () => {
   );
 };
 
-export default HelloWorld;
+export default Header;

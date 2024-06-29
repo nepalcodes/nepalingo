@@ -46,9 +46,6 @@ my-react-app/
 ├── src/
 │   ├── assets/
 │   │   ├── images/
-│   │   └── styles/
-│   │       ├── components/
-│   │       └── global/
 │   ├── components/
 │   ├── pages/
 │   │   ├── Home/
