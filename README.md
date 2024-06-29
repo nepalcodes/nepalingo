@@ -49,6 +49,18 @@ The contributors of this project are participants of Incubate Nepal.
 
 # Mentees
 
+## Saphal Upreti
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/saphalupreti.jpg" alt="Image of Saphal Upreti"/>
+        </td>
+        <td>
+            Saphal Upreti is a recent high school graduate from Nepal. His hobbies includes watching movies, gaming, occasionally listening and producing music and participating in hackathons. He has his interests in computer science and business. In his free time, he likes to work on different side projects and spend time with his friends and family. 
+        </td>
+    </tr>
+</table>
+
 ## Sanskar Lamsal
 
 <table>
@@ -76,14 +88,27 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 ## Puja Tajpuriya
-
 <table>
     <tr>
         <td width=150>
-            <img src="README-photos/Puja.webp" alt="Image of Puja Tajpuriya"/>
+            <img src="README-photos/puja.png" alt="Image of Puja Tajpuriya"/>
         </td>
         <td>
             Puja Tajpuriya, a high school graduate with a deep passion for creativity and technology, is embarking on an exciting journey into programming. Alongside her hobbies of crafting poetry, singing melodies, and exploring zenart, she is passionately diving into the dynamic world of coding. she is committed to mastering programming fundamentals and leveraging her diverse interests to inspire unique projects. With a keen eye for detail and a natural flair for expression.
         </td>
     </tr>
 </table>
+
+## Aditya Bikram Thakur    
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/aditya.jpeg" alt="Image of Aditya Bikram Thakur"/>
+        </td>
+        <td>
+            Aditya Bikram Thakur is a senior A-levels student at Budhanilkantha School. He is interested in various aspects of computer science such as Data structures and algorithms, web developement and Deep learning. His hobbies include listening audiobooks, going on a morning stroll, learning Japanese and watching movies. 
+        </td>
+    </tr>
+</table>
+
+
