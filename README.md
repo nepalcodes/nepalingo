@@ -111,4 +111,15 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
+## Devaki Rawal
 
+<table>
+    <tr>
+        <td width=150>
+            <img src="README-photos/devakirawal.jpeg" alt="Image of Aditya Bikram Thakur"/>
+        </td>
+        <td>
+            Devaki Rawal is in Kathmandu, living in Bhaktapur, and currently in her gap year. She knows frontend development and UI/UX design from her experience working on a Buddhist lipi to English translation app for tourists. In her free time she enjoys watching Shark Tank, listening to music, and singing.
+        </td>
+    </tr>
+</table>
