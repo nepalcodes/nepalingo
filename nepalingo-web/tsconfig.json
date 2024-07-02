@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "tailwind.config.ts", "postcss.config.ts"]
+  "include": ["src", "tailwind.config.ts", "postcss.config.js"]
 }
