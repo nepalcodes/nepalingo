@@ -5,6 +5,7 @@ function App() {
   return (
     <>
       <Header />
+      <p className="bg-blue-500">Blue Test</p>
     </>
   );
 }
