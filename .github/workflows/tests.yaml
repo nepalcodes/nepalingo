@@ -17,17 +17,14 @@ jobs:
         with:
           node-version: '18'  # Use Node.js 18.x 
 
-      - name: Changing Directory
-        run: cd nepalingo-web
-
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: npm -C nepalingo-web install -g pnpm
         
       - name: Install dependencies
-        run: pnpm  install
+        run: pnpm -C nepalingo-web install
 
       - name: Lint code
-        run: pnpm run lint 
+        run: pnpm -C nepalingo-web run lint 
 
       - name: Test Build
-        run: pnpm run build 
+        run: pnpm -C nepalingo-web run build 
