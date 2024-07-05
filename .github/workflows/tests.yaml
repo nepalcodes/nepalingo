@@ -11,14 +11,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+        #Got this from the official docs
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          node-version: '18'  # Use Node.js 18.x 
+          version: 8
+          run_install: false
 
-      - name: Install pnpm
-        run: npm -C nepalingo-web install -g pnpm
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Changed version to v20
+          cache: 'pnpm'
         
       - name: Install dependencies
         run: pnpm -C nepalingo-web install
