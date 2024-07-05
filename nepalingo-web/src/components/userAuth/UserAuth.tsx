@@ -25,6 +25,11 @@ const User_auth: React.FC = () => {
     setError(null);
     setSuccess(false);
 
+    if (username == "") {
+      setError("Please enter a username");
+      return;
+    }
+
     if (action === "Sign Up" && username != "") {
       // Attempt to sign up the user with the provided email and password
       const { error } = await supabase.auth.signUp({
