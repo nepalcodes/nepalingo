@@ -2,7 +2,8 @@ import useNewari from './useNewari'
 
 const Languages = [
     'newari',
-    'tajpuriya'
+    'tajpuriya',
+    'maithili'
 ]
 
 export type DictionaryProps = {
@@ -17,10 +18,9 @@ export type DictionaryResponse = {
         audio?: { file: string, directory: string },
         image?: string,
         language: string,
-        meaning: string,
-        meaning_np: string,
-        meaning_en?: string,
-
+        meaningOriginal?: string,
+        meaningNp?: string,
+        meaningEn: string,
     }]
 }
 

@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import { DictionaryProps, DictionaryResponse } from './useDictionary'
 
 
-const fetcher = (url: string) => fetch(import.meta.env.VITE_BASE_URL + url, {
+const fetcher = (url: string) => fetch(import.meta.env.VITE_NEPALBHASA_API_URL + url, {
 }).then(r => r.json())
 
 const useNewari = (props: Omit<DictionaryProps, 'language'>) => {
@@ -23,9 +23,9 @@ const useNewari = (props: Omit<DictionaryProps, 'language'>) => {
                 {
                     audio: meaning?.audio,
                     image: meaning?.image,
-                    meaning: meaning?.meaning_nb,
-                    meaning_np: meaning?.meaning_np,
-                    meaning_en: meaning?.meaning_en,
+                    meaningOriginal: meaning?.meaning_nb,
+                    meaningNp: meaning?.meaning_np,
+                    meaningEn: meaning?.meaning_en,
 
                 })
             )
