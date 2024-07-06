@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
-import Header from "./components/Header";
 import supabase from "./components/userAuth/supabaseClient";
 
 const App: React.FC = () => {
@@ -51,6 +50,7 @@ const App: React.FC = () => {
             </Routes>
         </Router>
     );
+
 };
 
 export default App;
