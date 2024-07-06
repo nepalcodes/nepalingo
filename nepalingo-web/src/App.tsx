@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
-import Header from "./components/Header";
 import supabase from "./components/userAuth/supabaseClient";
 
 const App: React.FC = () => {
@@ -39,11 +38,10 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Header />} />
         <Route path="/login" element={<User_auth />} />
-        {/* Protect the /home route, redirect to /login if not authenticated */}
+        {/* Protect the / route, redirect to /login if not authenticated */}
         <Route
-          path="/home"
+          path="/"
           element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
         />
         {/* Default route redirects to /login */}
