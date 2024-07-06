@@ -25,7 +25,7 @@ const User_auth: React.FC = () => {
     setError(null);
     setSuccess(false);
 
-    if (username == "") {
+    if (action === "Sign Up" && username == "") {
       setError("Please enter a username");
       return;
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 const Home: React.FC = () => {
   const location = useLocation();
@@ -14,7 +15,11 @@ const Home: React.FC = () => {
       </div>
       <div className="flex flex-col items-center">
         <div className="w-40 h-40 border-2 border-white rounded-full flex items-center justify-center">
-          <span className="text-3xl font-bold">Logo</span>
+          <img
+            src={logo}
+            alt="Nepalingo Logo"
+            className="w-full h-full object-contain"
+          />
         </div>
         <div className="text-center mt-4">
           <p className="text-3xl font-bold">Nepalingo</p>
