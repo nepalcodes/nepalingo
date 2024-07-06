@@ -9,12 +9,9 @@ import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
 import Header from "./components/Header";
 import supabase from "./components/userAuth/supabaseClient";
-import useNewari from "./hooks/useNewari";
 
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const test = useNewari({ word: "Try" })
-    console.log(test)
 
     // useEffect to check the current session and subscribe to authentication state changes
     useEffect(() => {
