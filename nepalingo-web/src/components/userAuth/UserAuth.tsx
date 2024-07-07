@@ -130,7 +130,7 @@ const User_auth: React.FC = () => {
           </div>
         </div>
 
-        {action === "Log In" ? null : (
+        {action === "Sign Up" ? null : (
           <div className="text-right text-sm text-gray-500 mb-7">
             <span className="text-black font-bold cursor-pointer transition-colors hover:text-gray-700">
               Forgot Password?
