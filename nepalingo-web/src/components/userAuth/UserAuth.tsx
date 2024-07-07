@@ -65,7 +65,7 @@ const User_auth: React.FC = () => {
         if (user) {
           const { user_metadata } = user;
           // Navigate to home page with the username passed as state
-          navigate("/home", { state: { username: user_metadata.username } });
+          navigate("/", { state: { username: user_metadata.username } });
         }
       }
     }
