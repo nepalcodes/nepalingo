@@ -47,7 +47,7 @@ const Card: React.FC<{
             <p className="absolute right-10 top-36 text-xs">{Pronunciation}</p>
             {PronounciationUrl && (
               <button onClick={handlePronunciation} className="absolute right-10 bottom-10">
-                {/* <FontAwesomeIcon icon="fa-solid fa-volume-high" /> */}
+                <FontAwesomeIcon icon="fa-solid fa-volume-high" />
               </button>
             )}
           </div>
