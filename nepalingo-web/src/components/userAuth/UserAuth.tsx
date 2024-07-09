@@ -65,7 +65,7 @@ const User_auth: React.FC = () => {
         if (user) {
           const { user_metadata } = user;
           // Navigate to home page with the username passed as state
-          navigate("/home", { state: { username: user_metadata.username } });
+          navigate("/", { state: { username: user_metadata.username } });
         }
       }
     }
@@ -130,7 +130,7 @@ const User_auth: React.FC = () => {
           </div>
         </div>
 
-        {action === "Log In" ? null : (
+        {action === "Sign Up" ? null : (
           <div className="text-right text-sm text-gray-500 mb-7">
             <span className="text-black font-bold cursor-pointer transition-colors hover:text-gray-700">
               Forgot Password?
