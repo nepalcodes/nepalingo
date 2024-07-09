@@ -6,9 +6,9 @@ const fetcher = (url: string) => fetch(import.meta.env.VITE_NEPALBHASA_API_URL +
 }).then(r => r.json())
 
 const useNewari = (props: Omit<DictionaryProps, 'language'>) => {
-    let { data, error, isLoading } = useSWR(`/dict/en/search/${props.word}`, fetcher)
+    const { data, error, isLoading } = useSWR(`/dict/en/search/${props.word}`, fetcher)
 
-    let response: DictionaryResponse = {
+    const response: DictionaryResponse = {
         language: 'newari',
         word: props.word,
         //Mapping the meanings from the api to create a custom response based on DictionaryResponse
@@ -31,7 +31,7 @@ const useNewari = (props: Omit<DictionaryProps, 'language'>) => {
             )
     }
 
-    return { response, error, isLoading }
+    return { data: response, error, isLoading }
 }
 
 export default useNewari;
