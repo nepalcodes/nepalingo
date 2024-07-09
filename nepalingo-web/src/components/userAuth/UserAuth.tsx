@@ -76,6 +76,8 @@ const User_auth: React.FC = () => {
     setAction(newAction);
     setError(null);
     setSuccess(false);
+    setEmail(""); // the email and password field will reset everytime action is changed
+    setPassword("");
   };
 
   return (
