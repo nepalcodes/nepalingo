@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
+import ReactGA from 'react-ga4';
 
 function App() {
 import React, { useState, useEffect } from "react";
