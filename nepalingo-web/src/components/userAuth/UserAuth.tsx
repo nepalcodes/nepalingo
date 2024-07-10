@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import supabase from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "./UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -15,6 +16,7 @@ const User_auth: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setUsername: setContextUsername } = useUser();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -64,6 +66,7 @@ const User_auth: React.FC = () => {
         const { user } = data;
         if (user) {
           const { user_metadata } = user;
+          setContextUsername(user_metadata.username); // Set the username in the context
           // Navigate to home page with the username passed as state
           navigate("/", { state: { username: user_metadata.username } });
         }

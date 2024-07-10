@@ -8,6 +8,7 @@ import {
 import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
 import supabase from "./components/userAuth/supabaseClient";
+import { UserProvider } from "./components/userAuth/UserContext";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -36,18 +37,20 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<User_auth />} />
-        {/* Protect the / route, redirect to /login if not authenticated */}
-        <Route
-          path="/"
-          element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
-        />
-        {/* Default route redirects to /login */}
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<User_auth />} />
+          {/* Protect the / route, redirect to /login if not authenticated */}
+          <Route
+            path="/"
+            element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
+          />
+          {/* Default route redirects to /login */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 };
 

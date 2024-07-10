@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useUser } from "../../components/userAuth/UserContext";
 
 const Home: React.FC = () => {
-  const location = useLocation();
-  const username = location.state?.username;
+  const { username } = useUser();
 
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white p-10">
