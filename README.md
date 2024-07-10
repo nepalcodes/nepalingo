@@ -2,13 +2,13 @@
 
 A website to learn the indigenous language of Nepal.
 
-# Contributors
+## Contributors
 
 The contributors of this project are participants of Incubate Nepal.
 
-# Mentors
+### Mentors
 
-## Christina Kayastha
+#### Christina Kayastha
 
 <table>
     <tr>
@@ -21,7 +21,7 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-## Binam Kayastha
+#### Binam Kayastha
 
 <table>
     <tr>
@@ -34,8 +34,8 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-# Peer Mentor
-## Hemanta Bhandari
+### Peer Mentor
+#### Hemanta Bhandari
 <table>
     <tr>
         <td width=150>
@@ -47,9 +47,9 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-# Mentees
+### Mentees
 
-## Saphal Upreti
+#### Saphal Upreti
 <table>
     <tr>
         <td width=150>
@@ -61,7 +61,7 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-## Sanskar Lamsal
+#### Sanskar Lamsal
 
 <table>
     <tr>
@@ -74,7 +74,7 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-## Aanchal Nancy Jha
+#### Aanchal Nancy Jha
 
 <table>
     <tr>
@@ -87,7 +87,7 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-## Puja Tajpuriya
+#### Puja Tajpuriya
 <table>
     <tr>
         <td width=150>
@@ -99,7 +99,7 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-## Aditya Bikram Thakur    
+#### Aditya Bikram Thakur    
 <table>
     <tr>
         <td width=150>
@@ -111,7 +111,7 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-## Devaki Rawal
+#### Devaki Rawal
 
 <table>
     <tr>
