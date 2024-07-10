@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - '*'
+
 jobs:
-  build:
+  test_build:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,19 +16,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Use Node.js 16.x 
+          node-version: '20'  # Use Node.js 20.x 
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-      
-      - name: Changing Directory
-        run: cd nepalingo-web
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
         
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm -C nepalingo-web install
 
       - name: Lint code
-        run: pnpm run lint
+        run: pnpm -C nepalingo-web run lint 
 
       - name: Test Build
-        run: pnpm run build
+        run: pnpm -C nepalingo-web run build 

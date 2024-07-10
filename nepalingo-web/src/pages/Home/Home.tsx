@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png";
 import ReactGA from 'react-ga4';
 const Home: React.FC = () => {
   ReactGA.send({ hitType: "pageview", page: "/", title: "home" });
+const Home: React.FC = () => {
   const location = useLocation();
   const username = location.state?.username;
 
