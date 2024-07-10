@@ -13,6 +13,7 @@ import ReactGA from 'react-ga4';
 const App: React.FC = () => {
   const TrackingID = "G-YFFRGF491N"
   ReactGA.initialize(TrackingID);
+  ReactGA.send({ hitType: "pageview", page: "/", title: "home" });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // useEffect to check the current session and subscribe to authentication state changes
