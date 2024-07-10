@@ -9,7 +9,6 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import useQuotes from "../../hooks/useQuotes";
 
 const User_auth: React.FC = () => {
   const [action, setAction] = useState<"Sign Up" | "Log In">("Sign Up");
@@ -20,8 +19,6 @@ const User_auth: React.FC = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const quote = useQuotes({ language: "tajpuriya" });
-  console.log(quote);
 
   // Function to handle form submission
   const handleSubmit = async () => {
