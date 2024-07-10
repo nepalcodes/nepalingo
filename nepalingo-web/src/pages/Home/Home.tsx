@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import ReactGA from 'react-ga4';
 
 const Home: React.FC = () => {
   const location = useLocation();
