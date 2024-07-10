@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import tajpuriya from "../quotes/tajpuriya.txt";
-import newari from "../quotes/newari.txt";
-import maithili from "../quotes/maithili.txt";
 
 const Languages = ["newari", "tajpuriya", "maithili"] as const;
 
@@ -26,13 +23,13 @@ const useQuotes = ({ language }: QuoteProps) => {
 
     switch (language) {
       case "newari":
-        sourceFile = newari;
+        sourceFile = "/quotes/newari.csv";
         break;
       case "tajpuriya":
-        sourceFile = tajpuriya;
+        sourceFile = "/quotes/tajpuriya.csv";
         break;
       case "maithili":
-        sourceFile = maithili;
+        sourceFile = "/quotes/maithili.csv";
         break;
       default:
         sourceFile = "";
@@ -48,14 +45,18 @@ const useQuotes = ({ language }: QuoteProps) => {
           console.error("Error fetching quotes:", error);
         });
     }
+  }, [language]);
 
+  useEffect(() => {
     if (quotesText) {
       const loadQuotes = () => {
-        const quotesArray = quotesText.split("\r\n\r\n").map((line: string) => {
-          const [text, translation] = line.split("||");
+        const quotesArray = quotesText.split("\n").map((line: string) => {
+          const [text, translation] = line.split(",");
           return {
-            text: text ? text.trim() : "",
-            translation: translation ? translation.trim() : "",
+            text: text ? text.trim().replace(/(^"|"$)/g, "") : "",
+            translation: translation
+              ? translation.trim().replace(/(^"|"$)/g, "")
+              : "",
           };
         });
 
