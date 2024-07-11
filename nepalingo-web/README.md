@@ -1,4 +1,4 @@
-# nepalingo
+# NepaLingo
 
 A website to learn the indigenous language of Nepal. This project is a React application built with TypeScript, Vite, and Tailwind CSS. Below are the steps to set up and run the project.
 
