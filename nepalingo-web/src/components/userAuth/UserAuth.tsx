@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import supabase from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "./UserContext";
+import { useAuth } from "./AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -10,16 +10,18 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
+//import ReactGA from "react-ga4";
 
 const User_auth: React.FC = () => {
+  //ReactGA.send({ hitType: "pageview", page: "/login", title: "login" });
   const [action, setAction] = useState<"Sign Up" | "Log In">("Sign Up");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUsername: setContextUsername } = useUser();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { signUp, signIn } = useAuth();
   const navigate = useNavigate();
 
   // Function to handle form submission
@@ -63,13 +65,7 @@ const User_auth: React.FC = () => {
         // If there is an error during log in, set the error message
         setError(error.message);
       } else {
-        const { user } = data;
-        if (user) {
-          const { user_metadata } = user;
-          setContextUsername(user_metadata.username); // Set the username in the context
-          // Navigate to home page with the username passed as state
-          navigate("/", { state: { username: user_metadata.username } });
-        }
+        navigate("/");
       }
     }
   };

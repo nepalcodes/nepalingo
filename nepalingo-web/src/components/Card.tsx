@@ -1,6 +1,13 @@
+<<<<<<< HEAD:nepalingo-web/src/components/card/Card.tsx
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+=======
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+
+>>>>>>> main:nepalingo-web/src/components/Card.tsx
 
 const Card: React.FC<{
   Word: string;
@@ -83,6 +90,7 @@ const Card: React.FC<{
             </p>
             <p className="absolute right-10 top-36 text-xs">{Pronunciation}</p>
             {PronounciationUrl && (
+<<<<<<< HEAD:nepalingo-web/src/components/card/Card.tsx
               <button
                 onClick={handlePronunciation}
                 className="absolute right-10 bottom-10"
@@ -91,6 +99,10 @@ const Card: React.FC<{
                   icon={faVolumeHigh}
                   className="text-black-600"
                 />
+=======
+              <button onClick={handlePronunciation} className="absolute right-10 bottom-10">
+                <FontAwesomeIcon icon={faVolumeHigh} />
+>>>>>>> main:nepalingo-web/src/components/Card.tsx
               </button>
             )}
           </div>
