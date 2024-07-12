@@ -30,9 +30,9 @@ const fetcher = (url: string) => {
 };
 
 const getTajpuria = (props: Omit<DictionaryProps, 'language'>) => {
-  let { data, error, isLoading } = useSWR(`/dict/tajpuriya/search/${props.word}`, fetcher);
+  const { data, error, isLoading } = useSWR(`/dict/tajpuriya/search/${props.word}`, fetcher);
 
-  let response: DictionaryResponse = {
+  const response: DictionaryResponse = {
     language: 'tajpuriya',
     word: props.word,
     meanings: data?.meanings || [],
