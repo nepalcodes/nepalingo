@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,7 +6,6 @@ import {
 } from "react-router-dom";
 import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
-import supabase from "./components/userAuth/supabaseClient";
 import { useAuth } from "./components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
 

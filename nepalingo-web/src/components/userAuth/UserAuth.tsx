@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import supabase from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,10 +9,10 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-//import ReactGA from "react-ga4";
+import ReactGA from "react-ga4";
 
 const User_auth: React.FC = () => {
-  //ReactGA.send({ hitType: "pageview", page: "/login", title: "login" });
+  ReactGA.send({ hitType: "pageview", page: "/login", title: "login" });
   const [action, setAction] = useState<"Sign Up" | "Log In">("Sign Up");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -35,28 +34,23 @@ const User_auth: React.FC = () => {
     }
 
     if (action === "Sign Up" && username != "") {
-      // Attempt to sign up the user with the provided email and password
-      const { error } = await supabase.auth.signUp({
+      const { error } = await signUp({
         email,
         password,
         options: {
           data: {
-            // Store the username in the user metadata
             username: username,
           },
         },
       });
 
       if (error) {
-        // If there is an error during sign up, set the error message
         setError(error.message);
       } else {
-        // If sign up is successful, set success to true
         setSuccess(true);
       }
     } else {
-      // Attempt to log in the user with the provided email and password
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await signIn({
         email,
         password,
       });

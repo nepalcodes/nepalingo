@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useAuth } from "../../components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
