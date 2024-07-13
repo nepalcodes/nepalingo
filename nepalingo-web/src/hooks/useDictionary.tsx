@@ -14,7 +14,7 @@ export type DictionaryProps = {
 export type DictionaryResponse = {
     language: string;
     word: string;
-    meanings: [{
+    meanings?: [{
         audio?: { file: string, directory: string },
         image?: string,
         language: string,
@@ -32,9 +32,17 @@ const useDictionary = ({ language, ...otherProps }: DictionaryProps) => {
         case 'newari':
             return useNewari(otherProps)
         case 'tajpuriya':
-            return
+            return ({
+                error: { message: "Sorry the language doesnot exists" },
+                data: null,
+                isLoading: false,
+            })
         default:
-            break;
+            return ({
+                error: { message: "Sorry the language doesnot exists" },
+                data: null,
+                isLoading: false,
+            })
     }
 }
 
