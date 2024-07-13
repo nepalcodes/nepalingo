@@ -8,8 +8,11 @@ import {
 import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
 import supabase from "./components/userAuth/supabaseClient";
+import ReactGA from 'react-ga4';
 
 const App: React.FC = () => {
+  const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
+  ReactGA.initialize(TrackingID);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // useEffect to check the current session and subscribe to authentication state changes
