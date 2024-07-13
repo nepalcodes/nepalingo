@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 import Button from './Button';
 import useDictionary from '../hooks/useDictionary';
