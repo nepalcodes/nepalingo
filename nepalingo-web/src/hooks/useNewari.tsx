@@ -3,13 +3,13 @@ import { DictionaryProps, DictionaryResponse } from "./useDictionary";
 
 const fetcher = (url: string) =>
   fetch(import.meta.env.VITE_NEPALBHASA_API_URL + url, {}).then((r) =>
-    r.json(),
+    r.json()
   );
 
 const useNewari = (props: Omit<DictionaryProps, "language">) => {
   const { data, error, isLoading } = useSWR(
     `/dict/en/search/${props.word}`,
-    fetcher,
+    fetcher
   );
 
   const response: DictionaryResponse = {
@@ -29,7 +29,7 @@ const useNewari = (props: Omit<DictionaryProps, "language">) => {
         meaningOriginal: meaning?.meaning_nb,
         meaningNp: meaning?.meaning_np,
         meaningEn: meaning?.meaning_en,
-      }),
+      })
     ),
   };
 

@@ -9,4 +9,4 @@ const FlashcardPage: React.FC = () => {
     </>
   )
 }
-export default FlashcardPage 
+export default FlashcardPage
