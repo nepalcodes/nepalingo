@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import ReactGA from 'react-ga4';
 
@@ -34,10 +34,12 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mb-10">
-        <span className="text-xl font-bold p-5 border-2 border-white rounded-full">
-          Coming soon!
-        </span>
-        
+        <Link
+          to="/learn"
+          className="text-xl font-bold p-5 border-2 border-white rounded-full"
+        >
+          Learn Words
+        </Link>
       </div>
     </div>
   );
