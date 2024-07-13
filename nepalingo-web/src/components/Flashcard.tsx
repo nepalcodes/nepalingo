@@ -41,7 +41,6 @@ const Flashcard: React.FC = () => {
                         ImageUrl={meaning?.image?.uri || ''}
                         PronounciationUrl={meaning?.audio?.uri}
                         isFlipped={isFlipped}
-                        handleFlip={handleFlip}
                     />
                 }
 
