@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import User_auth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
-import FlashcardPage from "./pages/Flashcards.tsx"
+import FlashcardPage from "./pages/FlashcardPage"
 import supabase from "./components/userAuth/supabaseClient";
 import ReactGA from 'react-ga4';
 
