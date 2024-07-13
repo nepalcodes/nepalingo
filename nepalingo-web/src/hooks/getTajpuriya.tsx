@@ -1,45 +1,66 @@
-import useSWR from 'swr';
-import { DictionaryProps, DictionaryResponse } from './useDictionary';
-import { parse } from 'papaparse';
-import fs from 'fs';
-interface WordRecord{
-  word: string;
-  translation: string;
-}
-const fetcher = (url: string) => {
-  const csvfilepath = fs.readFile('Tajpuriya grammer - Sheet1.csv','utf8');
-  const records = parse(csvfilepath, {
-    columns: true,
-    skip_empty_lines: true,
-  });
-
-  const wordData = records.find((record: WordRecord) => record.word === url.split('/')[3]);
-
-  if (!wordData) {
-    return { meanings: [] };
-  }
-
-  return {
-    meanings: [
-      {
-      
-        meaningOriginal: wordData.meaning_tajpuriya,
-        meaningEn: wordData.meaning_en,
-      },
-    ],
+import { useState, useEffect } from "react";
+ 
+const Languages = [ "tajpuriya"] as const;
+ 
+export type dictProps = {
+  language: (typeof Languages)[number];
+};
+ 
+export type dictResponse = {
+  language: string;
+  word: {
+    text: string;
+    translation: string;
   };
 };
-
-const getTajpuria = (props: Omit<DictionaryProps, 'language'>) => {
-  const { data, error, isLoading } = useSWR(`/dict/tajpuriya/search/${props.word}`, fetcher);
-
-  const response: DictionaryResponse = {
-    language: 'tajpuriya',
-    word: props.word,
-    meanings: data?.meanings || [],
-  };
-
-  return { response, error, isLoading };
+ 
+const useDict = ({ language }: dictProps) => {
+  const [word, setWord] = useState<dictResponse | null>(null);
+  const  [wordText, setwordText] = useState("");
+ 
+  useEffect(() => {
+    const sourceFile = "./Tajpuriya grammer - Sheet1.csv";
+ 
+   
+    
+ 
+    if (sourceFile) {
+      fetch(sourceFile)
+        .then((r) => r.text())
+        .then((text) => {
+          setwordText(text);
+        })
+        .catch((error) => {
+          console.error("Error fetching quotes:", error);
+        });
+    }
+  }, [language]);
+ 
+  useEffect(() => {
+    if (wordText) {
+      const loadDict = () => {
+        const dictArray = wordText.split("\n").map((line: string) => {
+          const [text, translation] = line.split(",");
+          return {
+            text: text ? text.trim().replace(/(^"|"$)/g, "") : "",
+            translation: translation
+              ? translation.trim().replace(/(^"|"$)/g, "")
+              : "",
+          };
+        });
+ 
+        const randomIndex = Math.floor(Math.random() * dictArray.length);
+        const randomWord = dictArray[randomIndex];
+ 
+        setWord({ language, quote: randomWord });
+      };
+ 
+      loadDict();
+    }
+  }, [wordText]);
+ 
+  return word;
 };
-
-export default getTajpuria;
+ 
+export default useDict;
+ 
