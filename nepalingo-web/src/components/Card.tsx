@@ -24,6 +24,7 @@ const Card: React.FC<CardProps> = ({
   handleFlip
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  console.log(ImageUrl)
 
   const handlePronunciation = (event: React.MouseEvent) => {
     event.stopPropagation();

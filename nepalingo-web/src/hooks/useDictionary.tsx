@@ -15,8 +15,8 @@ export type DictionaryResponse = {
     language: string;
     word: string;
     meanings: [{
-        audio?: { file: string, directory: string },
-        image?: string,
+        audio?: { uri: string},
+        image?: {uri:string},
         language: string,
         meaningOriginal?: string,
         meaningNp?: string,

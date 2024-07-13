@@ -7,7 +7,7 @@ import { generate } from "random-words";
 const Flashcard: React.FC = () => {
 
 
-    const [word, setWord] = useState(generate() as string);
+    const [word, setWord] = useState('salt');
     const [isFlipped, setIsFlipped] = useState(false);
     const { data, isLoading, error } = useDictionary({ language: 'newari', word });
     console.log(error)
@@ -38,8 +38,8 @@ const Flashcard: React.FC = () => {
                         TranslatedWord={meaning?.meaningOriginal || ''}
                         DevenagiriSpelling={meaning?.meaningNp || ''}
                         Pronunciation={meaning?.meaningOriginal || ''}
-                        ImageUrl={meaning?.image || ''}
-                        PronounciationUrl={meaning?.audio ? `${meaning?.audio.directory}/${meaning.audio.file}` : ''}
+                        ImageUrl={meaning?.image?.uri || ''}
+                        PronounciationUrl={meaning?.audio?.uri}
                         isFlipped={isFlipped}
                         handleFlip={handleFlip}
                     />
