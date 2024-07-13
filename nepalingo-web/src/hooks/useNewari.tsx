@@ -8,7 +8,7 @@ const fetcher = (url: string) => fetch(import.meta.env.VITE_NEPALBHASA_API_URL +
 const useNewari = (props: Omit<DictionaryProps, 'language'>) => {
     const { data, error, isLoading } = useSWR(`/dict/en/search/${props.word}`, fetcher)
     console.log(data,error,isLoading)
-    let customError= !!data?.errors.length? {status:true, response:data.errors, message: data.errors[0]}:error 
+    let customError= !!data?.errors.length? {status:true, response:data.errors, message: data.errors[0],}:error 
 
 
     const response: DictionaryResponse = {
