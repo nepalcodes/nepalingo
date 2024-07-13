@@ -5,8 +5,8 @@ import React from 'react';
 const FlashcardPage: React.FC = () => {
   return (
     <>
-    <Header />
-    <Flashcard />
+      <Header />
+      <Flashcard />
     </>
   )
 }
