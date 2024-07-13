@@ -1,10 +1,9 @@
 import React from "react";
 import logo from "../../assets/logo.png";
+import ReactGA from 'react-ga4';
 import { useAuth } from "../../components/userAuth/AuthContext";
-import ReactGA from "react-ga4";
-
 const Home: React.FC = () => {
-  ReactGA.send({ hitType: "pageview", page: "/", title: "home" });
+  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home"});
   const { user } = useAuth();
 
   return (

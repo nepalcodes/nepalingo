@@ -9,10 +9,10 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import ReactGA from "react-ga4";
+import ReactGA from 'react-ga4';
 
 const User_auth: React.FC = () => {
-  ReactGA.send({ hitType: "pageview", page: "/login", title: "login" });
+  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "login"});
   const [action, setAction] = useState<"Sign Up" | "Log In">("Sign Up");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
