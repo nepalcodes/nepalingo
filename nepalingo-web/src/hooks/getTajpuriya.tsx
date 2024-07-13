@@ -3,16 +3,19 @@ import { DictionaryProps, DictionaryResponse } from './useDictionary';
 import { parse } from 'papaparse';
 import fs from 'fs';
 
-
+interface WordRecord{
+  word: string;
+  translation: string;
+}
 
 const fetcher = (url: string) => {
-  const csvData = fs.readFileSync('Tajpuriya grammer - Sheet1.csv', 'utf8');
+  const csvData = fs.readFile('Tajpuriya grammer - Sheet1.csv', 'utf8');
   const records = parse(csvData, {
     columns: true,
     skip_empty_lines: true,
   });
 
-  const wordData = records.find((record) => record.word === url.split('/')[3]);
+  const wordData = records.find((record: WordRecord) => record.word === url.split('/')[3]);
 
   if (!wordData) {
     return { meanings: [] };
