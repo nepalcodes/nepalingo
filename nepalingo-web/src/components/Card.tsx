@@ -10,7 +10,7 @@ interface CardProps {
   ImageUrl?: string;
   PronounciationUrl?: string;
   isFlipped: boolean;
-  handleFlip: () => void;
+  // handleFlip: () => void;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({
   ImageUrl,
   PronounciationUrl,
   isFlipped,
-  handleFlip
+  // handleFlip
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   console.log(ImageUrl)
