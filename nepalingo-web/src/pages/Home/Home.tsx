@@ -2,6 +2,9 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import ReactGA from 'react-ga4';
+import Flashcard from '../../components/Flashcard'
+
+
 const Home: React.FC = () => {
   ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: window.location.pathname});
   const location = useLocation();
@@ -9,6 +12,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white p-10">
+      <Flashcard />
       <div className="mt-10">
         <h1 className="text-5xl font-bold text-center">
           Hello {username}, welcome to Nepalingo!
@@ -35,6 +39,7 @@ const Home: React.FC = () => {
         <span className="text-xl font-bold p-5 border-2 border-white rounded-full">
           Coming soon!
         </span>
+        
       </div>
     </div>
   );

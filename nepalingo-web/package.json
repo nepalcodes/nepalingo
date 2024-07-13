@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@supabase/supabase-js": "^2.44.2",
+    "random-words": "^2.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
@@ -40,4 +41,3 @@
     "vite-tsconfig-paths": "^4.3.2"
   }
 }
-
