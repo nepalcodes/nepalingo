@@ -2,15 +2,13 @@ import useSWR from 'swr';
 import { DictionaryProps, DictionaryResponse } from './useDictionary';
 import { parse } from 'papaparse';
 import fs from 'fs';
-
 interface WordRecord{
   word: string;
   translation: string;
 }
-
 const fetcher = (url: string) => {
-  const csvData = fs.readFile('Tajpuriya grammer - Sheet1.csv', 'utf8');
-  const records = parse(csvData, {
+  const csvfilepath = fs.readFile('Tajpuriya grammer - Sheet1.csv','utf8');
+  const records = parse(csvfilepath, {
     columns: true,
     skip_empty_lines: true,
   });
@@ -25,7 +23,7 @@ const fetcher = (url: string) => {
     meanings: [
       {
       
-        meaningOriginal: wordData.meaning_nb,
+        meaningOriginal: wordData.meaning_tajpuriya,
         meaningEn: wordData.meaning_en,
       },
     ],
