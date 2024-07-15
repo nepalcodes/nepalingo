@@ -6,13 +6,22 @@ import React, {
   useEffect,
 } from "react";
 import supabase from "./supabaseClient";
-import { AuthError, AuthResponse, AuthTokenResponsePassword, SignInWithPasswordCredentials, SignUpWithPasswordCredentials, User } from "@supabase/supabase-js";
+import {
+  AuthError,
+  AuthResponse,
+  AuthTokenResponsePassword,
+  SignInWithPasswordCredentials,
+  SignUpWithPasswordCredentials,
+  User,
+} from "@supabase/supabase-js";
 
 interface AuthContextProps {
   user: User | null;
   signUp: (data: SignUpWithPasswordCredentials) => Promise<AuthResponse>;
-  signIn: (data: SignInWithPasswordCredentials) => Promise<AuthTokenResponsePassword>;
-  signOut: () => Promise<{ error: AuthError | null }> 
+  signIn: (
+    data: SignInWithPasswordCredentials
+  ) => Promise<AuthTokenResponsePassword>;
+  signOut: () => Promise<{ error: AuthError | null }>;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);

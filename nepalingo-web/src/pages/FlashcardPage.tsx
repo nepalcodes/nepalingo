@@ -1,6 +1,6 @@
-import Flashcard from "../components/Flashcard"
-import Header from "../components/Header"
-import React from 'react';
+import Flashcard from "../components/Flashcard";
+import Header from "../components/header/Header";
+import React from "react";
 
 const FlashcardPage: React.FC = () => {
   return (
@@ -8,6 +8,6 @@ const FlashcardPage: React.FC = () => {
       <Header />
       <Flashcard />
     </>
-  )
-}
-export default FlashcardPage
+  );
+};
+export default FlashcardPage;
