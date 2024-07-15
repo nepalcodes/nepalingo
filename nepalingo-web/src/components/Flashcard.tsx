@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "./Card";
 import Button from "./Button";
 import useDictionary from "../hooks/useDictionary";
-//import { generate } from "random-words";
+import { generate } from "random-words";
 
 const Flashcard: React.FC = () => {
   const [word, setWord] = useState("salt");
@@ -18,7 +18,7 @@ const Flashcard: React.FC = () => {
   };
 
   const handleNextWord = () => {
-    //setWord(generate() as string)
+    setWord(generate() as string);
     setIsFlipped(false);
   };
 
