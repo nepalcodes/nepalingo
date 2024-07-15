@@ -7,7 +7,7 @@ const useTajpuriya = (props: Omit<DictionaryProps, 'language'>) => {
   const [translatedText, setTranslatedText] = useState("")
   const [dictionaryText, setDictionaryText] = useState("");
   useEffect(() => {
-    const sourceFile = "./TajpuriyaDictionary.csv";
+    const sourceFile = "./dictionaries/TajpuriyaDictionary.csv";
 
     fetch(sourceFile)
       .then((r) => r.text())
