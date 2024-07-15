@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/NepaLingoLogoWhiteBg.jpg";
-import ProfileIcon from "./ProfileIcon";
+import UserProfile from "./UserProfile";
 
 const Header: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const Header: React.FC = () => {
           <img src={logo} alt="Nepalingo Logo" className="h-24" />
         </a>
         <div className="absolute right-4">
-          <ProfileIcon />
+          <UserProfile />
         </div>
       </div>
     </nav>
