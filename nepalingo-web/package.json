@@ -13,10 +13,12 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@supabase/supabase-js": "^2.44.2",
+    "random-words": "^2.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
     "react-router-dom": "^6.24.1",
+    "react-supabase": "^0.2.0",
     "swr": "^2.2.5"
   },
   "devDependencies": {
@@ -37,7 +39,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2",
     "vite": "^5.3.1",
+    "vite-plugin-string": "^1.2.3",
     "vite-tsconfig-paths": "^4.3.2"
   }
 }
-

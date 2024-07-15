@@ -1,17 +1,18 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import ReactGA from 'react-ga4';
+import { useAuth } from "../../components/userAuth/AuthContext";
+
 const Home: React.FC = () => {
   ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home"});
-  const location = useLocation();
-  const username = location.state?.username;
+  const { user } = useAuth();
 
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white p-10">
       <div className="mt-10">
         <h1 className="text-5xl font-bold text-center">
-          Hello {username}, welcome to Nepalingo!
+          Hello {user?.user_metadata?.username}, welcome to Nepalingo!
         </h1>
       </div>
       <div className="flex flex-col items-center">
@@ -32,9 +33,12 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mb-10">
-        <span className="text-xl font-bold p-5 border-2 border-white rounded-full">
-          Coming soon!
-        </span>
+        <Link
+          to="/learn"
+          className="text-xl font-bold p-5 border-2 border-white rounded-full"
+        >
+          Learn Words
+        </Link>
       </div>
     </div>
   );
