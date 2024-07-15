@@ -17,16 +17,18 @@ const App: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<User_auth />} />
-        <Route path="/learn" element={<FlashcardPage />} />
-        {/* Protect the / route, redirect to /login if not authenticated */}
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-        {/* Default route redirects to /login */}
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
+    <><div>
+      GreetingCardProps ="Good Morning"
+    </div><Router>
+        <Routes>
+          <Route path="/login" element={<User_auth />} />
+          <Route path="/learn" element={<FlashcardPage />} />
+          {/* Protect the / route, redirect to /login if not authenticated */}
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+          {/* Default route redirects to /login */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router></>
   );
 };
 
