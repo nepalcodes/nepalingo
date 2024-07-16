@@ -24,9 +24,9 @@ const { user } = useAuth();
 const App: React.FC = () => {
   return (
     <><div>
-      <GreetingCard message="Good Morning" />
-      <GreetingCard message="Good Afternoon" />
-      <GreetingCard message="Good Evening" />
+      <GreetingCard message="Good Morning" name="Puja" />
+      <GreetingCard message="Good Afternoon" name="Puja" />
+      <GreetingCard message="Good Evening" name="puja" />
     </div><Router>
         <Routes>
           <Route path="/login" element={<User_auth />} />

@@ -2,6 +2,7 @@ import React from 'react';
 
 interface GreetingCardProps {
   message: string;
+  name: string;
 }
 
 const cardStyle: React.CSSProperties = {
@@ -20,7 +21,7 @@ const headingStyle: React.CSSProperties = {
   color: '#333',
 };
 
-const GreetingCard: React.FC<GreetingCardProps> = ({ message }) => {
+const GreetingCard: React.FC<GreetingCardProps> = ({ message, name }) => {
   return (
     <div style={cardStyle}>
       <h1 style={headingStyle}>{message}</h1>
