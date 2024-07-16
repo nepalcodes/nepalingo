@@ -24,7 +24,8 @@ const headingStyle: React.CSSProperties = {
 const GreetingCard: React.FC<GreetingCardProps> = ({ message, name }) => {
   return (
     <div style={cardStyle}>
-      <h1 style={headingStyle}>{message}</h1>
+      <h1 style={headingStyle}>{message} {name}</h1>
+
     </div>
   );
 };
