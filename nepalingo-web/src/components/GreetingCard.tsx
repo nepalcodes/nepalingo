@@ -1,4 +1,3 @@
-// src/components/GreetingCard.tsx
 import React from 'react';
 
 interface GreetingCardProps {

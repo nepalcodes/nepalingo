@@ -10,35 +10,41 @@ import Home from "./pages/Home/Home";
 import FlashcardPage from "./pages/FlashcardPage"
 import { useAuth } from "./components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
-import GreetingCard from './components/greeting';
+import GreetingCard from './components/GreetingCard';
+//const App: React.FC<{}>; {  
+// const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
+// ReactGA.initialize(TrackingID);
+//const { user } = useAuth();
 
-const App: React.FC<{}>; {
 
-  const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
-  ReactGA.initialize(TrackingID);
-  const { user } = useAuth();
-  const greeting = [
-    "Good Morning",
-    "Good Afternoon",
-    "Good Evening",
-  ]
-}
-return (
-  <><div>
-    <GreetingCard message="Good Morning" />
-    <GreetingCard message="Good Afternoon" />
-    <GreetingCard message="Good Evening" />
-  </div><Router>
-      <Routes>
-        <Route path="/login" element={<User_auth />} />
-        <Route path="/learn" element={<FlashcardPage />} />
-        {/* Protect the / route, redirect to /login if not authenticated */}
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-        {/* Default route redirects to /login */}
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router></>
-);
+const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
+ReactGA.initialize(TrackingID);
+const { user } = useAuth();
+const greeting = [
+  "Good Morning",
+  "Good Afternoon",
+  "Good Evening",
+]
+
+const App: React.FC = () => {
+  return (
+    <><div>
+      <GreetingCard message="Good Morning" />
+      <GreetingCard message="Good Afternoon" />
+      <GreetingCard message="Good Evening" />
+    </div><Router>
+        <Routes>
+          <Route path="/login" element={<User_auth />} />
+          <Route path="/learn" element={<FlashcardPage />} />
+          {/* Protect the / route, redirect to /login if not authenticated */}
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+          {/* Default route redirects to /login */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router></>
+  );
+
 };
+
 
 export default App;
