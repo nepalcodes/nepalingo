@@ -49,7 +49,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
     const lastUpdateDate = localStorage.getItem("lastUpdateDate");
 
     if (user) {
-      const { data, error } = await supabase.rpc("update_streak", {
+      const { data } = await supabase.rpc("update_streak", {
         user_id: user.id,
       });
 
