@@ -42,7 +42,7 @@ const Home: React.FC = () => {
       </div>
       <div className="mb-10">
         <Link
-          to="/learn"
+          to="/flashcard"
           className="text-xl font-bold p-5 border-2 border-white rounded-full"
         >
           Learn Words
