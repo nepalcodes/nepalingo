@@ -20,11 +20,6 @@ import GreetingCard from './components/GreetingCard';
 const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
 ReactGA.initialize(TrackingID);
 const { user } = useAuth();
-const greeting = [
-  "Good Morning",
-  "Good Afternoon",
-  "Good Evening",
-]
 
 const App: React.FC = () => {
   return (
