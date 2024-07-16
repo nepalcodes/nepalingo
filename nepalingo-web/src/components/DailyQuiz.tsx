@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Button from './Button';
 const DailyQuiz: React.FC = () => {
-  const backgroundImageUrl = 'https://images8.alphacoders.com/132/1325725.png'; // Set your image URL
+  const backgroundImageUrl = 'https://t3.ftcdn.net/jpg/00/73/08/22/360_F_73082224_ay4Tus31QNHNmGSIty53ZE6mBrBc47cV.jpg'; // Set your image URL
   const navigate = useNavigate(); // Get the navigate function
 
   const handleStartQuizClick = () => {

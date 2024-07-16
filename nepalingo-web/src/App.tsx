@@ -20,7 +20,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/login" element={<User_auth />} />
-        <Route path="/flashcard" element={<FlashcardPage />} />
+        <Route path="/flashcard" element={user ? <FlashcardPage />:<Navigate to="/login" />} />
         {/* Protect the / route, redirect to /login if not authenticated */}
         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
         {/* Default route redirects to /login */}

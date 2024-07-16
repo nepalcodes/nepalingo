@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png";
 import Header from "../../components/header/Header";
 import ReactGA from "react-ga4";
 import { useAuth } from "../../components/userAuth/AuthContext";
+import DailyQuiz from "../../components/DailyQuiz";
 
 const Home: React.FC = () => {
   ReactGA.send({
@@ -41,12 +42,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mb-10">
-        <Link
-          to="/flashcard"
-          className="text-xl font-bold p-5 border-2 border-white rounded-full"
-        >
-          Learn Words
-        </Link>
+        <DailyQuiz />
       </div>
     </div>
   );
