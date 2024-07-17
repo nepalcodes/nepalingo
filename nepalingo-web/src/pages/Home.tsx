@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../assets/logo.png";
 import ReactGA from 'react-ga4';
-import { useAuth } from "../../components/userAuth/AuthContext";
+import { useAuth } from "../hooks/Auth";
 
 const Home: React.FC = () => {
   ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home"});

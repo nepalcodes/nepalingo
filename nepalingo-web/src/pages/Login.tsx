@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../hooks/Auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -21,7 +21,10 @@ const User_auth: React.FC = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
   const { signUp, signIn } = useAuth();
+  
   const navigate = useNavigate();
+
+
 
   // Function to handle form submission
   const handleSubmit = async () => {
