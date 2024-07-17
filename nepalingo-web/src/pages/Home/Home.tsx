@@ -4,7 +4,6 @@ import logo from "../../assets/logo.png";
 import Header from "../../components/header/Header";
 import ReactGA from "react-ga4";
 import { useAuth } from "../../components/userAuth/AuthContext";
-import { useStreak } from "../../components/StreakContext";
 
 const Home: React.FC = () => {
   ReactGA.send({
@@ -13,11 +12,6 @@ const Home: React.FC = () => {
     title: "home",
   });
   const { user } = useAuth();
-  const { updateStreak } = useStreak();
-
-  useEffect(() => {
-    updateStreak(); // Trigger streak update on home page load
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white">
