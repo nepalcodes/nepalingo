@@ -9,9 +9,6 @@ const Home: React.FC = () => {
   ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home" });
   const { user } = useAuth();
 
-  const userName = 'user';
-
-
 
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white p-10">
@@ -22,7 +19,7 @@ const Home: React.FC = () => {
       </div>
 
       <div>
-        <GreetingCard name={userName} />
+        <GreetingCard name={user?.user_metadata?.username} />
       </div>
 
       <div className="flex flex-col items-center">

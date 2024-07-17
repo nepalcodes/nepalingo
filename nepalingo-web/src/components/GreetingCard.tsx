@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga4';
 
 interface GreetingCardProps {
 
@@ -22,6 +23,8 @@ const headingStyle: React.CSSProperties = {
 };
 
 const GreetingCard: React.FC<GreetingCardProps> = ({ name }) => {
+  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home" });
+
   const getCurrentGreeting = (): string => {
     const CurrentHours = new Date().getHours();
     if (CurrentHours < 12) {
