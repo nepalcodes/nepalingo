@@ -11,6 +11,7 @@ const Header: React.FC = () => {
         </a>
         <div className="absolute right-4">
           <UserProfile />
+          
         </div>
       </div>
     </nav>
