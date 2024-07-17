@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "@/hooks/Auth"; // Adjust the import path based on your project structure
+import { useAuth } from "@/hooks/Auth"; 
 
 const UserAvatar: React.FC = () => {
     const { user } = useAuth();
