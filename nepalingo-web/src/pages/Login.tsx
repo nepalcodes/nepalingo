@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/Auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ import {
 import ReactGA from 'react-ga4';
 
 const User_auth: React.FC = () => {
-  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "login"});
+  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "login" });
   const [action, setAction] = useState<"Sign Up" | "Log In">("Sign Up");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +21,8 @@ const User_auth: React.FC = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
   const { signUp, signIn, session } = useAuth();
-  
+
+
   const navigate = useNavigate();
 
 
@@ -75,7 +76,11 @@ const User_auth: React.FC = () => {
     setEmail(""); // the email and password field will reset everytime action is changed
     setPassword("");
   };
-  if(session) return <Navigate to={'/'} replace/>
+
+  if (session) {
+    console.log(session);
+    return <Navigate to={'/'} replace />
+  }
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="container flex flex-col mx-auto w-96 bg-white shadow-lg rounded-lg p-8">
@@ -139,11 +144,10 @@ const User_auth: React.FC = () => {
         {/* Action buttons */}
         <div className="flex justify-between gap-1">
           <div
-            className={`flex justify-center items-center w-36 h-12 rounded-full text-white cursor-pointer transition-colors duration-300 ${
-              action === "Log In"
+            className={`flex justify-center items-center w-36 h-12 rounded-full text-white cursor-pointer transition-colors duration-300 ${action === "Log In"
                 ? "bg-gray-300 text-gray-700"
                 : "bg-black hover:bg-gray-800"
-            }`}
+              }`}
             onClick={() => {
               if (action === "Sign Up") handleSubmit();
               else handleActionChange("Sign Up");
@@ -152,11 +156,10 @@ const User_auth: React.FC = () => {
             Sign Up
           </div>
           <div
-            className={`flex justify-center items-center w-36 h-12 rounded-full text-white cursor-pointer transition-colors duration-300 ${
-              action === "Sign Up"
+            className={`flex justify-center items-center w-36 h-12 rounded-full text-white cursor-pointer transition-colors duration-300 ${action === "Sign Up"
                 ? "bg-gray-300 text-gray-700"
                 : "bg-black hover:bg-gray-800"
-            }`}
+              }`}
             onClick={() => {
               if (action === "Log In") handleSubmit();
               else handleActionChange("Log In");

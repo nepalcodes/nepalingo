@@ -27,16 +27,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        supabaseClient.auth.getSession().then(({ data: { session } }) => {
-            setSession(session)
-        })
-
-        supabaseClient.auth.onAuthStateChange((_event, session) => {
-            setSession(session)
-        })
-    }, [])
-
-    useEffect(() => {
         const setData = async () => {
             const { data: { session }, error } = await supabaseClient.auth.getSession();
             if (error) throw error;
