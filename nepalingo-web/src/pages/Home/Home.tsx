@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import Header from "../../components/header/Header";
 import ReactGA from "react-ga4";
