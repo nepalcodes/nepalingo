@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthResponse, AuthTokenResponsePassword, Session, SignUpWithPasswordCredentials, User } from '@supabase/supabase-js';
 import { useContext, useState, useEffect, createContext } from 'react';
-import { supabaseClient } from '../config/supabase-client';
+import { supabaseClient } from '@/config/supabase-client';
 
 // create a context for authentication
 
@@ -14,9 +14,9 @@ type AuthContextProps = {
     signIn: (data: SignUpWithPasswordCredentials) => Promise<AuthTokenResponsePassword>;
 }
 const AuthContext = createContext<AuthContextProps>({
-    session: null, 
-    user: null, 
-    signOut: () => { }, 
+    session: null,
+    user: null,
+    signOut: () => { },
     signUp: (data) => supabaseClient.auth.signUp(data),
     signIn: (data) => supabaseClient.auth.signInWithPassword(data),
 });

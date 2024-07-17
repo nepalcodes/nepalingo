@@ -8,7 +8,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
+    "outDir": "dist",
+  "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src", "tailwind.config.ts", "postcss.config.js"]
 }

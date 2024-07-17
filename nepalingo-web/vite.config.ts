@@ -5,18 +5,18 @@ import { resolve } from "path";
 import tailwindcss from "tailwindcss";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-  ],
-  css: {
-    postcss: {
-      plugins: [tailwindcss()],
+    plugins: [
+        react(),
+        tsconfigPaths(),
+    ],
+    css: {
+        postcss: {
+            plugins: [tailwindcss()],
+        },
     },
-  },
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "src"),
-    },
-  },
+    resolve: {
+        alias: {
+            "@": resolve(__dirname, "src"),
+        }
+    }
 });

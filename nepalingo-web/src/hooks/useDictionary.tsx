@@ -1,4 +1,4 @@
-import useNewari from './useNewari'
+import useNewari from '@/hooks/useNewari'
 
 const Languages = [
     'newari',
@@ -15,8 +15,8 @@ export type DictionaryResponse = {
     language: string;
     word: string;
     meanings: [{
-        audio?: { uri: string},
-        image?: {uri:string},
+        audio?: { uri: string },
+        image?: { uri: string },
         language: string,
         meaningOriginal?: string,
         meaningNp?: string,
