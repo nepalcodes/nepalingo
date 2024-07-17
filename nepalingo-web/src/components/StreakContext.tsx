@@ -56,7 +56,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
 
     if (user) {
       // Call Supabase function to update streak
-      const { data, error } = await supabase.rpc("update_streak", {
+      const { data } = await supabase.rpc("update_streak", {
         user_id: user.id,
       });
 
