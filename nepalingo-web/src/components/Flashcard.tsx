@@ -3,8 +3,16 @@ import Card from "./Card";
 import Button from "./Button";
 import useDictionary from "../hooks/useDictionary";
 import { generate } from "random-words";
+import ReactGA from "react-ga4";
 
 const Flashcard: React.FC = () => {
+  ReactGA.event({
+    category: "flash cards",
+    action: "Click",
+    value: 99, // optional, must be a number
+    nonInteraction: true, // optional, true/false
+    transport: "xhr", // optional, beacon/xhr/image
+  });
   const [word, setWord] = useState("salt");
   const [isFlipped, setIsFlipped] = useState(false);
   const { data, isLoading, error } = useDictionary({
