@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface GreetingCardProps {
-  message: string;
+
   name: string;
 }
 
@@ -21,10 +21,21 @@ const headingStyle: React.CSSProperties = {
   color: '#333',
 };
 
-const GreetingCard: React.FC<GreetingCardProps> = ({ message, name }) => {
+const GreetingCard: React.FC<GreetingCardProps> = ({ name }) => {
+  const getCurrentGreeting = (): string => {
+    const CurrentHours = new Date().getHours();
+    if (CurrentHours < 12) {
+      return 'Good Morning';
+    }
+    else if (CurrentHours < 18) {
+      return 'Good Afternoon';
+    } else {
+      return 'Good Evening';
+    }
+  }
   return (
     <div style={cardStyle}>
-      <h1 style={headingStyle}>{message} {name}</h1>
+      <h1 style={headingStyle}>{`${getCurrentGreeting()}, ${name}!`}  {name}</h1>
 
     </div>
   );

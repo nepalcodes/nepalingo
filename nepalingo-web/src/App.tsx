@@ -10,12 +10,6 @@ import Home from "./pages/Home/Home";
 import FlashcardPage from "./pages/FlashcardPage"
 import { useAuth } from "./components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
-import GreetingCard from './components/GreetingCard';
-//const App: React.FC<{}>; {  
-// const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
-// ReactGA.initialize(TrackingID);
-//const { user } = useAuth();
-
 
 const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
 ReactGA.initialize(TrackingID);
@@ -24,9 +18,7 @@ const { user } = useAuth();
 const App: React.FC = () => {
   return (
     <><div>
-      <GreetingCard message="Good Morning" name="Puja" />
-      <GreetingCard message="Good Afternoon" name="Puja" />
-      <GreetingCard message="Good Evening" name="puja" />
+      <Home />
     </div><Router>
         <Routes>
           <Route path="/login" element={<User_auth />} />

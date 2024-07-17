@@ -3,10 +3,15 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import ReactGA from 'react-ga4';
 import { useAuth } from "../../components/userAuth/AuthContext";
+import GreetingCard from "../../components/GreetingCard";
 
 const Home: React.FC = () => {
-  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home"});
+  ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "home" });
   const { user } = useAuth();
+
+  const userName = 'user';
+
+
 
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white p-10">
@@ -15,6 +20,11 @@ const Home: React.FC = () => {
           Hello {user?.user_metadata?.username}, welcome to Nepalingo!
         </h1>
       </div>
+
+      <div>
+        <GreetingCard name={userName} />
+      </div>
+
       <div className="flex flex-col items-center">
         <div className="w-40 h-40 border-2 border-white rounded-full flex items-center justify-center">
           <img
