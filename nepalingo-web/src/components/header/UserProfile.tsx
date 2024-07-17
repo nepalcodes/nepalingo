@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UserAvatar from "../UserAvatar";
 import Menu from "./Menu";
-import { useAuth } from "../userAuth/AuthContext";
+import { useAuth } from "../../hooks/Auth"; 
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
