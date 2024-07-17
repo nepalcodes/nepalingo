@@ -60,35 +60,32 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
         user_id: user.id,
       });
 
-      if (data) {
+      if (data && currentDate !== lastUpdateDate) {
         // Check if last update date is different from current date
-        if (lastUpdateDate !== currentDate) {
-          // Calculate new streak
-          const newStreak =
-            lastUpdateDate === null || lastUpdateDate !== currentDate
-              ? 1 // Reset streak if last update was not today
-              : currentStreak + 1; // Increment streak
+        const newStreak =
+          lastUpdateDate === null || lastUpdateDate !== currentDate
+            ? 1 // Reset streak if last update was not today
+            : currentStreak + 1; // Increment streak
 
-          const newLongestStreak = Math.max(newStreak, longestStreak);
+        const newLongestStreak = Math.max(newStreak, longestStreak);
 
-          // Update local state
-          setCurrentStreak(newStreak);
-          setLongestStreak(newLongestStreak);
-          setLastUpdateDate(currentDate);
+        // Update local state
+        setCurrentStreak(newStreak);
+        setLongestStreak(newLongestStreak);
+        setLastUpdateDate(currentDate);
 
-          // Update database
-          const { error } = await supabase.from("user_daily_streaks").upsert({
-            user_id: user.id,
-            streak_start_date: newStreak === 1 ? currentDate : undefined,
-            streak_end_date: currentDate,
-            current_streak: newStreak,
-            longest_streak: newLongestStreak,
-            created_at: new Date().toISOString(),
-          });
+        // Update database
+        const { error } = await supabase.from("user_daily_streaks").upsert({
+          user_id: user.id,
+          streak_start_date: newStreak === 1 ? currentDate : undefined,
+          streak_end_date: currentDate,
+          current_streak: newStreak,
+          longest_streak: newLongestStreak,
+          created_at: new Date().toISOString(),
+        });
 
-          if (error) {
-            console.error("Error updating streak data:", error);
-          }
+        if (error) {
+          console.error("Error updating streak data:", error);
         }
       }
     }
