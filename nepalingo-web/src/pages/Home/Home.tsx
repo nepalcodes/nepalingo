@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import Header from '../../components/header/Header';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
+import UserAuth from './components/userAuth/UserAuth';
+import Home from './pages/Home/Home';
+import Dictionary from './pages/Dictionary';
+import { useAuth } from './components/userAuth/AuthContext';
 import ReactGA from 'react-ga4';
-import { useAuth } from '../../components/userAuth/AuthContext';
+
 
 const Home: React.FC = () => {
   ReactGA.send({
@@ -41,12 +48,14 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mb-10">
+
         <Link
           to="/dictionary"
           className="text-xl font-bold p-5 border-2 border-white rounded-full"
         >
           Go to dictionary
         </Link>
+
       </div>
     </div>
   );

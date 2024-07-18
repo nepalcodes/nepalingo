@@ -19,6 +19,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+
         <Route path="/login" element={<UserAuth />} />
         <Route path="/dictionary" element={user ? <Dictionary /> : <Navigate to="/login" />} />
         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
