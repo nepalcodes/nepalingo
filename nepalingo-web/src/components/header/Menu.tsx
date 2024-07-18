@@ -1,13 +1,15 @@
 import React from "react";
+import { LanguageKey } from "../../hooks/Langauge";
 
 interface MenuProps {
     isOpen: boolean;
-    onSelect: (option: string) => void;
+    onSelect: (option: LanguageKey) => void;
     options: { label: string; value: string }[];
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen, onSelect, options }) => {
     if (!isOpen) return null;
+    console.log(options)
 
     return (
         <div className="origin-top-right absolute left-0 mt-2 rounded-lg shadow-lg bg-grayDark ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
@@ -25,13 +27,13 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onSelect, options }) => {
                             : "hover:bg-[#D03641] hover:text-white"
                             }`}
                         onClick={() =>
-                            option.value !== "comingSoon" && onSelect(option.label)
+                            option.value !== "coming soon" && onSelect(option.label as LanguageKey)
                         }
                         disabled={option.value === "coming soon"}
                     >
                         {option.label}{" "}
-                        {option.value === "comingSoon" && (
-                            <span className="text-xs text-gray-400">(Coming Soon)</span>
+                        {option.value === "coming soon" && (
+                            <p className="text-xs text-gray-400">(Coming Soon)</p>
                         )}
                     </button>
                 ))}
