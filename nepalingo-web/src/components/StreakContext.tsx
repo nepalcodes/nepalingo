@@ -22,40 +22,74 @@ export const StreakContext = createContext<StreakContextProps>({
 
 export const StreakProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
-  const [currentStreak, setCurrentStreak] = useState(1);
-  const [longestStreak, setLongestStreak] = useState(1);
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
+  const [streakEndDate, setStreakEndDate] = useState<string | null>(null);
+
+  const fetchStreakData = async () => {
+    if (user) {
+      const { data, error } = await supabase
+        .from("user_daily_streaks")
+        .select("*")
+        .eq("user_id", user.id)
+        .single();
+
+      if (error && error.code !== "PGRST116") {
+        console.error("Error fetching streak data:", error);
+      }
+
+      if (data) {
+        setCurrentStreak(data.current_streak);
+        setLongestStreak(data.longest_streak);
+        setStreakEndDate(data.streak_end_date);
+      }
+    }
+  };
 
   useEffect(() => {
-    const fetchStreakData = async () => {
-      if (user) {
-        const { data } = await supabase
-          .from("user_daily_streaks")
-          .select("*")
-          .eq("user_id", user.id)
-          .single();
-
-        if (data) {
-          setCurrentStreak(data.current_streak);
-          setLongestStreak(data.longest_streak);
-        }
-      }
-    };
-
     fetchStreakData();
   }, [user]);
 
   const updateStreak = async () => {
     const currentDate = new Date().toISOString().split("T")[0]; // Get current date
-    const lastUpdateDate = localStorage.getItem("lastUpdateDate");
 
     if (user) {
-      const { data, error } = await supabase.rpc("update_streak", {
-        user_id: user.id,
-      });
+      let newStreak = 1;
+      let newLongestStreak = 1;
 
-      if (data && currentDate !== lastUpdateDate) {
-        setCurrentStreak(data.current_streak);
-        setLongestStreak(data.longest_streak);
+      if (streakEndDate) {
+        const lastDate = new Date(streakEndDate).toISOString().split("T")[0];
+        if (lastDate === currentDate) {
+          return; // No update needed if the user has already visited today
+        } else if (
+          new Date(currentDate).getTime() - new Date(lastDate).getTime() ===
+          86400000
+        ) {
+          newStreak = currentStreak + 1;
+          newLongestStreak = Math.max(newStreak, longestStreak);
+        }
+      }
+
+      // Update state
+      setCurrentStreak(newStreak);
+      setLongestStreak(newLongestStreak);
+      setStreakEndDate(currentDate);
+
+      // Upsert database
+      const { error } = await supabase
+        .from("user_daily_streaks")
+        .upsert({
+          user_id: user.id,
+          streak_start_date: newStreak === 1 ? currentDate : undefined,
+          streak_end_date: currentDate, // Update streak_end_date with currentDate
+          current_streak: newStreak,
+          longest_streak: newLongestStreak,
+          created_at: new Date().toISOString(),
+        })
+        .select();
+
+      if (error) {
+        console.error("Error updating streak data:", error);
       }
     }
   };

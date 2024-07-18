@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white">
+    <div className="flex flex-col w-full justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white">
       <Header />
       <div className="flex flex-col items-center justify-center flex-grow">
         <div className="mt-0">
@@ -39,9 +39,10 @@ const Home: React.FC = () => {
             </p>
           </div>
         </div>
-      </div>
-      <div className="mb-10">
-        <DailyQuiz />
+
+        <div className="mb-5 pt-5">
+          <DailyQuiz />
+        </div>
       </div>
     </div>
   );
