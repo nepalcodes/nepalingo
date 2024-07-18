@@ -78,14 +78,17 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
       // Upsert database
       const { error } = await supabase
         .from("user_daily_streaks")
-        .upsert({
-          user_id: user.id,
-          streak_start_date: newStreak === 1 ? currentDate : undefined,
-          streak_end_date: currentDate, // Update streak_end_date with currentDate
-          current_streak: newStreak,
-          longest_streak: newLongestStreak,
-          created_at: new Date().toISOString(),
-        })
+        .upsert(
+          {
+            user_id: user.id,
+            streak_start_date: newStreak === 1 ? currentDate : undefined,
+            streak_end_date: currentDate, // Update streak_end_date with currentDate
+            current_streak: newStreak,
+            longest_streak: newLongestStreak,
+            created_at: new Date().toISOString(),
+          },
+          { onConflict: "user_id" }
+        )
         .select();
 
       if (error) {
