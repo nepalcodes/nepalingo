@@ -15,7 +15,7 @@ const Header: React.FC = () => {
             <img src={logo} alt="Nepalingo Logo" className="h-12" />
           </a>
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 translate-x-40">
+        <div className="absolute left-1/2 transform -translate-x-1/2 translate-x-60">
           <ChangeLanguage />
         </div>
         <div className="absolute right-4">
