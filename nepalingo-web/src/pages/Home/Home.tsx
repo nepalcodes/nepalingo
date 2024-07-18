@@ -13,13 +13,14 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white p-10">
       <div className="mt-10">
-        <h1 className="text-5xl font-bold text-center">
-          Hello {user?.user_metadata?.username}, welcome to Nepalingo!
-        </h1>
-      </div>
-
-      <div>
-        <GreetingCard name={user?.user_metadata?.username} />
+        <div className="text-xl font-bold text-centre">
+          <GreetingCard name={user?.user_metadata?.username} />
+        </div>
+        <div className="text-center mt-2">
+          <p className="text-xl">
+            Welcome to Nepalingo!
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-col items-center">

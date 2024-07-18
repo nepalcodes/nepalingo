@@ -13,12 +13,11 @@ const cardStyle: React.CSSProperties = {
   margin: '10px',
   textAlign: 'center',
   backgroundColor: '#f0f0f0',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   fontFamily: 'Arial, sans-serif',
 };
 
 const headingStyle: React.CSSProperties = {
-  fontSize: '24px',
+  fontSize: '2em',
   color: '#333',
 };
 
@@ -38,7 +37,7 @@ const GreetingCard: React.FC<GreetingCardProps> = ({ name }) => {
   }
   return (
     <div style={cardStyle}>
-      <h1 style={headingStyle}>{`${getCurrentGreeting()}, ${name}!`}  {name}</h1>
+      <h1 style={headingStyle}>{`${getCurrentGreeting()}, ${name}`} </h1>
 
     </div>
   );
