@@ -21,10 +21,20 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onSelect, options }) => {
           <button
             key={option.value}
             type="button"
-            className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-800"
-            onClick={() => onSelect(option.value)}
+            className={`w-full text-left px-4 py-2 text-sm text-white ${
+              option.value === "comingSoon"
+                ? "text-gray-500 cursor-not-allowed"
+                : "hover:bg-gray-800"
+            }`}
+            onClick={() =>
+              option.value !== "comingSoon" && onSelect(option.value)
+            }
+            disabled={option.value === "comingSoon"}
           >
-            {option.label}
+            {option.label}{" "}
+            {option.value === "comingSoon" && (
+              <span className="text-xs text-gray-400">(Coming Soon)</span>
+            )}
           </button>
         ))}
       </div>

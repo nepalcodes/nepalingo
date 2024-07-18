@@ -5,12 +5,17 @@ import ChangeLanguage from "./ChangeLanguage";
 
 const Header: React.FC = () => {
   return (
-    <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-      <div className="flex justify-between items-center mx-auto max-w-screen-xl">
-        <div className="flex items-center space-x-4">
+    <nav
+      className="bg-white border-gray-200 px-4 lg:px-6 py-1 bg-gradient-to-r from-black via-gray-900 to-black
+ text-white"
+    >
+      <div className="flex justify-between items-center mx-auto max-w-screen-xl h-16">
+        <div className="absolute left-1/2 transform -translate-x-1/2">
           <a href="https://nepalingo.com" className="flex items-center">
-            <img src={logo} alt="Nepalingo Logo" className="h-24" />
+            <img src={logo} alt="Nepalingo Logo" className="h-12" />
           </a>
+        </div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 translate-x-40">
           <ChangeLanguage />
         </div>
         <div className="absolute right-4">
