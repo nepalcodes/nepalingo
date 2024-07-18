@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import Header from "../../components/header/Header";
-import ReactGA from "react-ga4";
-import { useAuth } from "../../components/userAuth/AuthContext";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import Header from '../../components/header/Header';
+import ReactGA from 'react-ga4';
+import { useAuth } from '../../components/userAuth/AuthContext';
 
 const Home: React.FC = () => {
   ReactGA.send({
-    hitType: "pageview",
+    hitType: 'pageview',
     page: window.location.pathname,
-    title: "home",
+    title: 'home',
   });
   const { user } = useAuth();
 
@@ -42,10 +42,10 @@ const Home: React.FC = () => {
       </div>
       <div className="mb-10">
         <Link
-          to="/learn"
+          to="/dictionary"
           className="text-xl font-bold p-5 border-2 border-white rounded-full"
         >
-          Learn Words
+          Go to dictionary
         </Link>
       </div>
     </div>
