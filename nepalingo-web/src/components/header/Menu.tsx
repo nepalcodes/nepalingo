@@ -1,5 +1,5 @@
 import React from "react";
-import { LanguageKey } from "../../hooks/Langauge";
+import { LanguageKey } from "@hooks/Langauge";
 
 interface MenuProps {
     isOpen: boolean;
@@ -9,7 +9,6 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ isOpen, onSelect, options }) => {
     if (!isOpen) return null;
-    console.log(options)
 
     return (
         <div className="origin-top-right absolute left-0 mt-2 rounded-lg shadow-lg bg-grayDark ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
