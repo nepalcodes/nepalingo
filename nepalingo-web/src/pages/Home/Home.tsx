@@ -39,9 +39,11 @@ const Home: React.FC = () => {
             </p>
           </div>
         </div>
+        
         <div className="mb-5 pt-5">
           <DailyQuiz />
         </div>
+
       </div>
     </div>
   );
