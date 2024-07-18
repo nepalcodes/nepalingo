@@ -12,27 +12,24 @@ const ChangeLanguage: React.FC = () => {
   };
 
   const handleSelect = (option: string) => {
-    if (option === "newari") {
-      //will be handled later
-    }
     setSelectedLanguage(option);
     setIsOpen(false);
   };
 
   const options = [
     { label: "Nepal Bhasa", value: "newari" },
-    { label: "Tajpuriya", value: "comingSoon" },
-    { label: "Maithili", value: "comingSoon" },
+    { label: "Tajpuriya", value: "tajpuriya" },
+    { label: "Maithili", value: "coming soon" },
   ];
 
   return (
     <div className="relative inline-block text-left">
       <button
         type="button"
-        className="inline-flex justify-between items-center w-48 h-11 px-4 rounded-md border border-gray-300 shadow-sm bg-gray-900 text-sm font-medium text-white hover:bg-gray-800 focus:outline-none"
+        className="inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm bg-[#E6E6E6] text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none"
         onClick={toggleMenu}
       >
-        {selectedLanguage}
+        <span>{selectedLanguage}</span>
         <FontAwesomeIcon icon={faChevronDown} className="ml-2" />
       </button>
       <Menu isOpen={isOpen} onSelect={handleSelect} options={options} />
