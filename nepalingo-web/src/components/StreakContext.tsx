@@ -24,6 +24,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const [currentStreak, setCurrentStreak] = useState(0);
   const [longestStreak, setLongestStreak] = useState(0);
+  const [streakStartDate, setStreakStartDate] = useState(0);
   const [streakEndDate, setStreakEndDate] = useState<string | null>(null);
 
   const fetchStreakData = async () => {
@@ -39,6 +40,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
       }
 
       if (data) {
+        setStreakStartDate(data.streak_start_date);
         setCurrentStreak(data.current_streak);
         setLongestStreak(data.longest_streak);
         setStreakEndDate(data.streak_end_date);
