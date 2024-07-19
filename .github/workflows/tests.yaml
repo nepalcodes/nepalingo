@@ -29,7 +29,7 @@ jobs:
         run: pnpm -C nepalingo-web run lint
 
       - name: Check Prettier
-        run: npx prettier . --check
+        run: pnpm -C npealingo-web prettier . --check
 
       - name: Test Build
         run: pnpm -C nepalingo-web run build
