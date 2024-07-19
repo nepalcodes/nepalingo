@@ -12,12 +12,10 @@ import FlashcardPage from "./pages/FlashcardPage";
 import { useAuth } from "./components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
 
-
 const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
   ReactGA.initialize(TrackingID);
   const { user } = useAuth();
-
 
   return (
     <Router>
@@ -29,15 +27,13 @@ const App: React.FC = () => {
           path="/flashcard"
           element={user ? <FlashcardPage /> : <Navigate to="/login" />}
         />
-        <Route 
-          path="/dictionary" 
-          element={ user ? <SearchBarPage /> : <Navigate to="/login" />} 
+        <Route
+          path="/dictionary"
+          element={user ? <SearchBarPage /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>
   );
-
 };
-
 
 export default App;

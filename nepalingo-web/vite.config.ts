@@ -5,10 +5,7 @@ import { resolve } from "path";
 import tailwindcss from "tailwindcss";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-  ],
+  plugins: [react(), tsconfigPaths()],
   css: {
     postcss: {
       plugins: [tailwindcss()],
