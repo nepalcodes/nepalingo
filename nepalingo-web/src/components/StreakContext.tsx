@@ -5,8 +5,8 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import supabase from "./userAuth/supabaseClient";
-import { useAuth } from "./userAuth/AuthContext";
+import { supabaseClient } from "@/config/supabase-client";
+import { useAuth } from "@/hooks/Auth";
 
 interface StreakContextProps {
   currentStreak: number;
@@ -29,7 +29,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchStreakData = async () => {
     if (user) {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from("user_daily_streaks")
         .select("*")
         .eq("user_id", user.id)
@@ -78,7 +78,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
       setStreakEndDate(currentDate);
 
       // Upsert database
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from("user_daily_streaks")
         .upsert(
           {
