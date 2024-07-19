@@ -1,5 +1,6 @@
+import useNewari from "@/hooks/useNewari";
+
 import { Language } from "./Langauge";
-import useNewari from "./useNewari";
 
 export type DictionaryProps = {
   language: Language;

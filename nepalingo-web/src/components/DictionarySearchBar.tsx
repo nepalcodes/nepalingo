@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import useDictionary, { DictionaryProps } from "../../hooks/useDictionary";
+import useDictionary, { DictionaryProps } from "../hooks/useDictionary";
 
 interface DictionarySearchBarProps {
   language: DictionaryProps["language"]; // Define language as a prop

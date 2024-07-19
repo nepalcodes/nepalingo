@@ -1,5 +1,5 @@
-import Flashcard from "../components/Flashcard";
-import Header from "../components/header/Header";
+import Flashcard from "@/components/Flashcard";
+import Header from "@/components/header/Header";
 import React from "react";
 import ReactGA from "react-ga4";
 

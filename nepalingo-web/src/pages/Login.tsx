@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/Auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ReactGA from "react-ga4";
 
-const User_auth: React.FC = () => {
+const Login: React.FC = () => {
   ReactGA.send({
     hitType: "pageview",
     page: window.location.pathname,
@@ -24,7 +24,8 @@ const User_auth: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { signUp, signIn } = useAuth();
+  const { signUp, signIn, session } = useAuth();
+
   const navigate = useNavigate();
 
   // Function to handle form submission
@@ -77,6 +78,10 @@ const User_auth: React.FC = () => {
     setPassword("");
   };
 
+  if (session) {
+    console.log(session);
+    return <Navigate to={"/"} replace />;
+  }
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="container flex flex-col mx-auto w-96 bg-white shadow-lg rounded-lg p-8">
@@ -177,4 +182,4 @@ const User_auth: React.FC = () => {
   );
 };
 
-export default User_auth;
+export default Login;

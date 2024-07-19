@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "../../assets/logo.png";
-import Header from "../../components/header/Header";
+import logo from "@/assets/logo.png";
 import ReactGA from "react-ga4";
-import { useAuth } from "../../components/userAuth/AuthContext";
-import GreetingCard from "../../components/GreetingCard";
-import DailyQuiz from "../../components/DailyQuiz";
-import ViewDictionary from "../../components/ViewDictionary";
+import { useAuth } from "@/hooks/Auth";
+import Header from "@/components/header/Header";
+import GreetingCard from "@/components/GreetingCard";
+import DailyQuiz from "@/components/DailyQuiz";
+import ViewDictionary from "@/components/ViewDictionary";
 
 const Home: React.FC = () => {
   ReactGA.send({

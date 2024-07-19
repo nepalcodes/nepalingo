@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { DictionaryProps, DictionaryResponse } from "./useDictionary";
+import { DictionaryProps, DictionaryResponse } from "@/hooks/useDictionary";
 
 const fetcher = (url: string) =>
   fetch(import.meta.env.VITE_NEPALBHASA_API_URL + url, {}).then((r) =>

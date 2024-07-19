@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../../assets/NepaLingoLogoWhiteBg.jpg";
-import UserProfile from "./UserProfile";
-import ChangeLanguage from "./ChangeLanguage";
+import logo from "@/assets/NepaLingoLogoWhiteBg.jpg";
+import UserProfile from "@/components/header/UserProfile";
+import ChangeLanguage from "@/components/header/ChangeLanguage";
 
 const Header: React.FC = () => {
   return (

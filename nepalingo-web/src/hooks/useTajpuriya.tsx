@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DictionaryProps } from "./useDictionary";
+import { DictionaryProps } from "@/hooks/useDictionary";
 
 const useTajpuriya = (props: Omit<DictionaryProps, "language">) => {
   const word = props.word;

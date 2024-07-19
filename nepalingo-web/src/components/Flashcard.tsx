@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Card from "./Card";
-import Button from "./Button";
-import useDictionary from "../hooks/useDictionary";
+import Card from "@/components/Card";
+import Button from "@/components/Button";
+import useDictionary from "@/hooks/useDictionary";
 import { generate } from "random-words";
 import ReactGA from "react-ga4";
 
