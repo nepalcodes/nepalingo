@@ -1,9 +1,10 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
-import UserAvatar from "../UserAvatar";
-import { useAuth } from "../userAuth/AuthContext";
-import { StreakContext } from "../StreakContext";
-import fire from "../../assets/fire.svg";
-import { getPhrase } from "./StreakPhrase";
+import React, { useState, useContext, useRef } from "react";
+import UserAvatar from "@/components/UserAvatar";
+import { StreakContext } from "@/hooks/StreakContext";
+import { getPhrase } from "@/components/header/StreakPhrase";
+import { useAuth } from "@/hooks/Auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,13 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import Button from './Button';
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import Button from "./Button";
 const DailyQuiz: React.FC = () => {
-  const backgroundImageUrl = 'https://t3.ftcdn.net/jpg/00/73/08/22/360_F_73082224_ay4Tus31QNHNmGSIty53ZE6mBrBc47cV.jpg'; // Set your image URL
+  const backgroundImageUrl =
+    "https://t3.ftcdn.net/jpg/00/73/08/22/360_F_73082224_ay4Tus31QNHNmGSIty53ZE6mBrBc47cV.jpg"; // Set your image URL
   const navigate = useNavigate(); // Get the navigate function
 
   const handleStartQuizClick = () => {
     // Redirect to /flashcard when the button is clicked
-    navigate('/flashcard');
+    navigate("/flashcard");
   };
 
   return (
@@ -21,7 +22,7 @@ const DailyQuiz: React.FC = () => {
         Taking Quiz is a better and fun way for learning
       </p>
       <Button
-        className="bg-slate-800"
+        className="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
         onClick={handleStartQuizClick} // Call the function on button click
       >
         Start Quiz

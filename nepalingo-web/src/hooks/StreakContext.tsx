@@ -5,8 +5,8 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import supabase from "./userAuth/supabaseClient";
-import { useAuth } from "./userAuth/AuthContext";
+import { supabaseClient } from "@/config/supabase-client";
+import { useAuth } from "@/hooks/Auth";
 
 interface StreakContextProps {
   currentStreak: number;
@@ -24,11 +24,12 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const [currentStreak, setCurrentStreak] = useState(0);
   const [longestStreak, setLongestStreak] = useState(0);
+  const [streakStartDate, setStreakStartDate] = useState(0);
   const [streakEndDate, setStreakEndDate] = useState<string | null>(null);
 
   const fetchStreakData = async () => {
     if (user) {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from("user_daily_streaks")
         .select("*")
         .eq("user_id", user.id)
@@ -39,6 +40,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
       }
 
       if (data) {
+        setStreakStartDate(data.streak_start_date);
         setCurrentStreak(data.current_streak);
         setLongestStreak(data.longest_streak);
         setStreakEndDate(data.streak_end_date);
@@ -76,16 +78,19 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
       setStreakEndDate(currentDate);
 
       // Upsert database
-      const { error } = await supabase
+      const { error } = await supabaseClient
         .from("user_daily_streaks")
-        .upsert({
-          user_id: user.id,
-          streak_start_date: newStreak === 1 ? currentDate : undefined,
-          streak_end_date: currentDate, // Update streak_end_date with currentDate
-          current_streak: newStreak,
-          longest_streak: newLongestStreak,
-          created_at: new Date().toISOString(),
-        })
+        .upsert(
+          {
+            user_id: user.id,
+            streak_start_date: newStreak === 1 ? currentDate : streakStartDate,
+            streak_end_date: currentDate, // Update streak_end_date with currentDate
+            current_streak: newStreak,
+            longest_streak: newLongestStreak,
+            created_at: new Date().toISOString(),
+          },
+          { onConflict: "user_id" },
+        )
         .select();
 
       if (error) {
