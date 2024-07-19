@@ -7,7 +7,7 @@ const SearchBarPage: React.FC = () => {
     <>
       <Header />  
       <h1 className="text-center text-4xl mt-4">Search Dictionary</h1>  
-      <DictionarySearchBar language="english"/>     
+      <DictionarySearchBar language="newari"/>
     </>
   );
 }
