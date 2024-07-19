@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import supabase from "./supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -20,6 +20,7 @@ const User_auth: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { signUp, signIn } = useAuth();
   const navigate = useNavigate();
 
   // Function to handle form submission
@@ -33,28 +34,23 @@ const User_auth: React.FC = () => {
     }
 
     if (action === "Sign Up" && username != "") {
-      // Attempt to sign up the user with the provided email and password
-      const { error } = await supabase.auth.signUp({
+      const { error } = await signUp({
         email,
         password,
         options: {
           data: {
-            // Store the username in the user metadata
             username: username,
           },
         },
       });
 
       if (error) {
-        // If there is an error during sign up, set the error message
         setError(error.message);
       } else {
-        // If sign up is successful, set success to true
         setSuccess(true);
       }
     } else {
-      // Attempt to log in the user with the provided email and password
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await signIn({
         email,
         password,
       });
@@ -63,12 +59,7 @@ const User_auth: React.FC = () => {
         // If there is an error during log in, set the error message
         setError(error.message);
       } else {
-        const { user } = data;
-        if (user) {
-          const { user_metadata } = user;
-          // Navigate to home page with the username passed as state
-          navigate("/", { state: { username: user_metadata.username } });
-        }
+        navigate("/");
       }
     }
   };
@@ -78,6 +69,8 @@ const User_auth: React.FC = () => {
     setAction(newAction);
     setError(null);
     setSuccess(false);
+    setEmail(""); // the email and password field will reset everytime action is changed
+    setPassword("");
   };
 
   return (
