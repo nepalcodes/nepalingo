@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/NewLogoCircular.png";
 import Header from "../../components/header/Header";
 import ReactGA from "react-ga4";
 import { useAuth } from "../../components/userAuth/AuthContext";
@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-col w-full justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white">
+    <div className="flex flex-col w-full justify-between h-screen pt-6 pr-15 pb-6 pl-15 bg-[#1A1A1A] text-white font-primary">
       <Header />
       <div className="flex flex-col items-center justify-center flex-grow">
         <div className="mt-0">
