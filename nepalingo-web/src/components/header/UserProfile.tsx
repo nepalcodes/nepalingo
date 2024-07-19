@@ -1,33 +1,20 @@
 import React, { useState, useContext } from "react";
 import UserAvatar from "../UserAvatar";
-import Menu from "./Menu";
 import { useAuth } from "../userAuth/AuthContext";
 import { StreakContext } from "../StreakContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
+import { getPhrase } from "./StreakPhrase";
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signOut } = useAuth();
-  const { currentStreak, longestStreak } = useContext(StreakContext); // Get streak data from context
+  const { currentStreak, longestStreak } = useContext(StreakContext);
+  const phrase = getPhrase(currentStreak);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  const handleSelect = (option: string) => {
-    if (option === "signOut") {
-      signOut();
-    }
-    setIsOpen(false);
-  };
-
-  const options = [
-    { label: `Username: ${user?.user_metadata?.username}`, value: "username" },
-    { label: `Current Streak: ${currentStreak} days`, value: "currentStreak" },
-    { label: `Longest Streak: ${longestStreak} days`, value: "longestStreak" },
-    { label: "Log out", value: "signOut" },
-  ];
 
   return (
     <div className="relative inline-block text-left">
@@ -51,7 +38,55 @@ const UserProfile: React.FC = () => {
           )}
         </div>
       </button>
-      <Menu isOpen={isOpen} onSelect={handleSelect} options={options} />
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4">
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16">
+              <UserAvatar />
+            </div>
+            <span className="mt-1 text-white text-lg font-bold">
+              {user?.user_metadata?.username}
+            </span>
+            <span className="mt-0 text-gray-400 text-sm">{phrase}</span>
+          </div>
+          <div className="mt-2 p-4 bg-[#D03641] rounded-lg text-white">
+            <div className="flex justify-around">
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <FontAwesomeIcon
+                    icon={faFire}
+                    className="text-yellow-500 text-6xl"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center font-bold text-2xl text-white">
+                    {currentStreak}
+                  </span>
+                </div>
+                <span className="mt-1">Current</span>
+              </div>
+              <div className="border-l border-white h-16"></div>
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <FontAwesomeIcon
+                    icon={faFire}
+                    className="text-yellow-500 text-6xl"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center font-bold text-2xl text-white">
+                    {longestStreak}
+                  </span>
+                </div>
+                <span className="mt-1">Longest</span>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            className="mt-2 w-full py-2 rounded-lg bg-[#D03641] text-white font-bold hover:bg-[#A02C35] focus:outline-none"
+            onClick={signOut}
+          >
+            Log out
+          </button>
+        </div>
+      )}
     </div>
   );
 };

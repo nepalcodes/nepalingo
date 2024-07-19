@@ -54,6 +54,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
 
   const updateStreak = async () => {
     const currentDate = new Date().toISOString().split("T")[0]; // Get current date
+
     if (user) {
       let newStreak = 1;
       let newLongestStreak = 1;
