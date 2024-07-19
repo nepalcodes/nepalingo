@@ -1,13 +1,8 @@
+import { Language } from './Langauge';
 import useNewari from './useNewari'
 
-const Languages = [
-    'newari',
-    'tajpuriya',
-    'maithili'
-]
-
 export type DictionaryProps = {
-    language: typeof Languages[number],
+    language: Language,
     word: string
 }
 
@@ -15,8 +10,8 @@ export type DictionaryResponse = {
     language: string;
     word: string;
     meanings: [{
-        audio?: { uri: string},
-        image?: {uri:string},
+        audio?: { uri: string },
+        image?: { uri: string },
         language: string,
         meaningOriginal?: string,
         meaningNp?: string,
@@ -33,18 +28,18 @@ const useDictionary = ({ language, ...otherProps }: DictionaryProps) => {
             return useNewari(otherProps)
         // case 'tajpuriya':
         //     return ({
-        //         error: { message: "Sorry the language doesnot exists" },
+        //         error: { message: "Sorry the language does not exist" },
         //         data: null,
         //         isLoading: false,
         //     })
         default:
             return ({
-                error: { message: "Sorry the language doesnot exists" },
+                error: { message: "Sorry the language does not exist" },
                 data: undefined,
                 isLoading: false,
             })
     }
 }
 
-
 export default useDictionary
+
