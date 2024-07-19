@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import UserAuth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
-import Dictionary from "./pages/Dictionary";
+import DictionaryPage from "./pages/DictionaryPage";
 import FlashcardPage from "./pages/FlashcardPage";
 import { useAuth } from "./components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
@@ -29,7 +29,7 @@ const App: React.FC = () => {
         />
         <Route
           path="/dictionary"
-          element={user ? <Dictionary /> : <Navigate to="/login" />}
+          element={user ? <DictionaryPage /> : <Navigate to="/login" />}
         />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

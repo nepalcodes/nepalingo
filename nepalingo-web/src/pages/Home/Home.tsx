@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import Header from "../../components/header/Header";
 import ReactGA from "react-ga4";
 import { useAuth } from "../../components/userAuth/AuthContext";
-import { Link } from "react-router-dom";
 import GreetingCard from "../../components/GreetingCard";
 import DailyQuiz from "../../components/DailyQuiz";
+import ViewDictionary from "../../components/ViewDictionary";
 
 const Home: React.FC = () => {
   ReactGA.send({
@@ -47,13 +46,8 @@ const Home: React.FC = () => {
           <DailyQuiz />
         </div>
 
-        <div className="mb-10">
-          <Link
-            to="/dictionary"
-            className="text-xl font-bold p-5 border-2 border-white rounded-full"
-          >
-            Go to dictionary
-          </Link>
+        <div className="mb-5 pt-5">
+          <ViewDictionary />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/header/Header";
 import DictionarySearchBar from "../components/SearchBar/SearchBar";
 
-const SearchBarPage: React.FC = () => {
+const DictionaryPage: React.FC = () => {
   return (
     <>
       <Header />
@@ -12,4 +12,4 @@ const SearchBarPage: React.FC = () => {
   );
 };
 
-export default SearchBarPage;
+export default DictionaryPage;

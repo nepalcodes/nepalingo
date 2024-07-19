@@ -22,7 +22,7 @@ const DailyQuiz: React.FC = () => {
         Taking Quiz is a better and fun way for learning
       </p>
       <Button
-        className="bg-slate-800"
+        className="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
         onClick={handleStartQuizClick} // Call the function on button click
       >
         Start Quiz
