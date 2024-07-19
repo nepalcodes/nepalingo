@@ -43,7 +43,12 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div className="mb-5 pt-5">
-          <DailyQuiz />
+          <DailyQuiz 
+            backgroundImageUrl="https://t3.ftcdn.net/jpg/00/73/08/22/360_F_73082224_ay4Tus31QNHNmGSIty53ZE6mBrBc47cV.jpg"
+            quizYourselfText="QUIZ YOURSELF"
+            descriptionText=" Taking Quiz is a better and fun way for learning"
+            buttonText="Start Quiz"
+          />
         </div>
 
         <div className="mb-5 pt-5">

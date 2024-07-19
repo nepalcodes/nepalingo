@@ -1,32 +1,46 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
-const DailyQuiz: React.FC = () => {
-  const backgroundImageUrl =
-    "https://t3.ftcdn.net/jpg/00/73/08/22/360_F_73082224_ay4Tus31QNHNmGSIty53ZE6mBrBc47cV.jpg"; // Set your image URL
-  const navigate = useNavigate(); // Get the navigate function
+
+interface DailyQuizProps {
+  backgroundImageUrl: string;
+  quizYourselfText: string;
+  descriptionText: string;
+  buttonText: string;
+}
+
+const DailyQuiz: React.FC<DailyQuizProps> = ({
+  backgroundImageUrl,
+  quizYourselfText,
+  descriptionText,
+  buttonText,
+}) => {
+  const navigate = useNavigate();
 
   const handleStartQuizClick = () => {
-    // Redirect to /flashcard when the button is clicked
     navigate("/flashcard");
   };
 
   return (
     <div
-      className="daily-quiz-card bg-cover text-white p-8 rounded-lg"
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      className="daily-quiz-card bg-cover text-white p-8 rounded-lg flex flex-col justify-end"
+      style={{
+        backgroundImage: `url(${backgroundImageUrl})`,
+        borderRadius: "0.5rem",
+        height: "220px", // Reduced height
+        paddingBottom: "20px", // Space at the bottom
+      }}
     >
-      <h1 className="mb-2">Nepalingo</h1>
-      <p className="text-lg font-bold mb-2">QUIZ YOURSELF</p>
-      <p className="text-sm opacity-80 mb-2">
-        Taking Quiz is a better and fun way for learning
-      </p>
-      <Button
-        className="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-        onClick={handleStartQuizClick} // Call the function on button click
-      >
-        Start Quiz
-      </Button>
+      <div>
+        <p className="text-lg font-bold mb-1">{quizYourselfText}</p> {/* Reduced margin-bottom */}
+        <p className="text-sm opacity-80 mb-1">{descriptionText}</p> {/* Reduced margin-bottom */}
+        <Button
+          className="bg-red-600 text-white font-bold py-2 px-4 rounded"
+          onClick={handleStartQuizClick}
+        >
+          {buttonText}
+        </Button>
+      </div>
     </div>
   );
 };
