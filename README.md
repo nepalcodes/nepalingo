@@ -119,7 +119,7 @@ The contributors of this project are participants of Incubate Nepal.
             <img src="README-photos/devakirawal.jpeg" alt="Image of Devaki Rawal"/>
         </td>
         <td>
-           Devaki Rawal is a high school graduate and a tech enthusiast, always eager to spread digital literacy. In her free time, she loves teaching children. She challenges herself every day to become one step better than yesterday. Devaki enjoys traveling, watching Shark Tank, and teaching. She is always open to learning and exploring new things every day.
+           Devaki Rawal is a high school graduate and a tech enthusiast, always eager to spread digital literacy programs. In her free time, she loves teaching children. She challenges herself every day to become one step better than yesterday. Devaki enjoys traveling, watching Shark Tank, and teaching. She is always open to learning and exploring new things every day.
         </td>
     </tr>
 </table>

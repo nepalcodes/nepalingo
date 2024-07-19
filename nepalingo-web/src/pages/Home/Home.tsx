@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import logo from "../../assets/logo.png";
 import Header from "../../components/header/Header";
 import ReactGA from "react-ga4";
@@ -44,9 +45,17 @@ const Home: React.FC = () => {
                     <DailyQuiz />
                 </div>
 
+                <div className="mb-10">
+                  <Link
+                    to="/dictionary"
+                    className="text-xl font-bold p-5 border-2 border-white rounded-full"
+                  >
+                  Search Bar
+                  </Link>
+                </div>
+
             </div>
         </div>
-    );
-};
+  )};
 
 export default Home;
