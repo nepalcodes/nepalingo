@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ReactGA from "react-ga4";
 
-const User_auth: React.FC = () => {
+const Login: React.FC = () => {
   ReactGA.send({
     hitType: "pageview",
     page: window.location.pathname,
@@ -182,4 +182,4 @@ const User_auth: React.FC = () => {
   );
 };
 
-export default User_auth;
+export default Login;

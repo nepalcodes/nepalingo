@@ -1,5 +1,5 @@
 import React from "react";
-import UserAuth from "@/pages/Login";
+import Login from "@/pages/Login";
 import Home from "@/pages/Home";
 import FlashcardPage from "@/pages/FlashcardPage";
 import DictionaryPage from "@/pages/DictionaryPage";
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<UserAuth />} />
+        <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/flashcard" element={<FlashcardPage />} />
