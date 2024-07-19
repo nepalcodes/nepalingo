@@ -6,13 +6,13 @@ import { AuthProvider } from "./components/userAuth/AuthContext";
 import { StreakProvider } from "./components/StreakContext";
 import { LanguageProvider } from "./hooks/Langauge";
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <React.StrictMode>
-        <AuthProvider>
-            <LanguageProvider>
-                <StreakProvider>
-                    <App />
-                </StreakProvider>
-            </LanguageProvider>
-        </AuthProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <AuthProvider>
+      <LanguageProvider>
+        <StreakProvider>
+          <App />
+        </StreakProvider>
+      </LanguageProvider>
+    </AuthProvider>
+  </React.StrictMode>,
 );

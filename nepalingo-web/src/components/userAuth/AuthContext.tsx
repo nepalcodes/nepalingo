@@ -19,7 +19,7 @@ interface AuthContextProps {
   user: User | null;
   signUp: (data: SignUpWithPasswordCredentials) => Promise<AuthResponse>;
   signIn: (
-    data: SignInWithPasswordCredentials
+    data: SignInWithPasswordCredentials,
   ) => Promise<AuthTokenResponsePassword>;
   signOut: () => Promise<{ error: AuthError | null }>;
 }
