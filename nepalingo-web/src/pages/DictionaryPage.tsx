@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/header/Header";
-import DictionarySearchBar from "../components/SearchBar/SearchBar";
+import Header from "@/components/header/Header";
+import DictionarySearchBar from "@/components/DictionarySearchBar";
 
 const DictionaryPage: React.FC = () => {
   return (
