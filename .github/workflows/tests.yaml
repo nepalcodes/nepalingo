@@ -30,3 +30,6 @@ jobs:
 
       - name: Test Build
         run: pnpm -C nepalingo-web run build 
+
+      - name: Check Prettier
+        run: npx prettier . --check
