@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Button from "../components/Button";
 import useDictionary, { DictionaryProps } from "../hooks/useDictionary";
+import InputText from "./InputText";
 
 interface DictionarySearchBarProps {
   language: DictionaryProps["language"]; // Define language as a prop
@@ -32,20 +32,17 @@ const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
   return (
     <div className="flex flex-col items-center mt-5">
       <div className="w-3/4 flex items-center relative">
-        <input
-          type="text"
+      <InputText
           value={searchTerm}
           onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Search here"
-          className="w-full p-2 pl-5 border border-gray-300 rounded-md text-lg shadow-sm transition-colors duration-300 focus:border-blue-500 focus:shadow-lg bg-white"
+          placeholder="Search for words here..."
         />
-        <span
-          className="absolute right-2 text-lg text-gray-600 cursor-pointer"
-          onClick={handleSearchClick}
+        <Button
+          type="submit"
+          className="ml-2 bg-[#D03641] hover:bg-opacity-80 text-white font-bold h-[60px] w-[155px] rounded-md"
         >
-          <FontAwesomeIcon icon={faSearch} />
-        </span>
+          Search
+        </Button>
       </div>
 
       {error && <p className="mt-2 text-red-600">{error.message}</p>}
