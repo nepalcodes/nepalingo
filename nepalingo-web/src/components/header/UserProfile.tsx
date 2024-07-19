@@ -1,10 +1,9 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import UserAvatar from "@/components/UserAvatar";
 import { StreakContext } from "@/hooks/StreakContext";
 import { getPhrase } from "@/components/header/StreakPhrase";
 import { useAuth } from "@/hooks/Auth";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFire } from "@fortawesome/free-solid-svg-icons";
+import fire from "@/assets/fire.svg"
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,8 +64,8 @@ const UserProfile: React.FC = () => {
               <div className="flex flex-col items-center">
                 <div className="relative">
                   <img src={fire} className="text-yellow-500 text-6xl" />
-                  <span className="absolute inset-0 flex items-center justify-center font-bold text-2xl text-white font-primary top-3/4 transform -translate-y-1/2">
-                    {longestStreak}
+                  <span className="absolute font-black font-primary text-2xl text-white font-primary bottom-3 left-1/2 transform -translate-x-1/2">
+                    {currentStreak}
                   </span>
                 </div>
                 <span className="mt-1 font-primary">Current</span>
@@ -75,7 +74,7 @@ const UserProfile: React.FC = () => {
               <div className="flex flex-col items-center">
                 <div className="relative">
                   <img src={fire} className="text-yellow-500 text-6xl" />
-                  <span className="absolute inset-0 flex items-center justify-center font-bold text-2xl text-white font-primary top-3/4 transform -translate-y-1/2">
+                  <span className="absolute font-black font-primary text-2xl text-white font-primary bottom-3 left-1/2 transform -translate-x-1/2">
                     {longestStreak}
                   </span>
                 </div>
