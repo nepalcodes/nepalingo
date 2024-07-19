@@ -8,6 +8,7 @@ import {
 import UserAuth from "./components/userAuth/UserAuth";
 import Home from "./pages/Home/Home";
 import Dictionary from "./pages/Dictionary";
+import FlashcardPage from "./pages/FlashcardPage";
 import { useAuth } from "./components/userAuth/AuthContext";
 import ReactGA from "react-ga4";
 
@@ -20,11 +21,16 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/login" element={<UserAuth />} />
+        {/* Protect the / route, redirect to /login if not authenticated */}
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route
+          path="/flashcard"
+          element={user ? <FlashcardPage /> : <Navigate to="/login" />}
+        />
         <Route
           path="/dictionary"
           element={user ? <Dictionary /> : <Navigate to="/login" />}
         />
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
