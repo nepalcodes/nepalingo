@@ -23,11 +23,7 @@ const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
     // Trigger re-fetch (not necessary for useSWR as it auto-updates)
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearchClick();
-    }
-  };
+  
 
   return (
     <div className="flex flex-col items-center mt-5">
