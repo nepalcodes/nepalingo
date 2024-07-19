@@ -4,8 +4,9 @@ import ReactGA from "react-ga4";
 import { useAuth } from "@/hooks/Auth";
 import Header from "@/components/header/Header";
 import GreetingCard from "@/components/GreetingCard";
-import DailyQuiz from "@/components/DailyQuiz";
+import DailyQuiz from "@/components/ActivityCard";
 import ViewDictionary from "@/components/ViewDictionary";
+import ActivityCard from "@/components/ActivityCard";
 
 const Home: React.FC = () => {
   ReactGA.send({
@@ -43,8 +44,8 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div className="mb-5 pt-5">
-          <DailyQuiz 
-            backgroundImageUrl="https://t3.ftcdn.net/jpg/00/73/08/22/360_F_73082224_ay4Tus31QNHNmGSIty53ZE6mBrBc47cV.jpg"
+          <ActivityCard 
+            backgroundImageUrl="https://t4.ftcdn.net/jpg/06/28/27/29/360_F_628272989_krphWxzqARpTZ20wOBU0YeH2Ecf7iCtI.jpg"
             quizYourselfText="QUIZ YOURSELF"
             descriptionText=" Taking Quiz is a better and fun way for learning"
             buttonText="Start Quiz"
