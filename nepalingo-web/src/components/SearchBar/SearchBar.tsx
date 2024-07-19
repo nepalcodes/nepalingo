@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useDictionary, { DictionaryProps} from '../../hooks/useDictionary';
-import { v4 as uuidv4 } from 'uuid';
 
 interface DictionarySearchBarProps {
   language: DictionaryProps['language']; // Define language as a prop
@@ -50,7 +49,7 @@ const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({ language }) =
   {data && data.meanings ? (
     data.meanings.length > 0 ? (
       data.meanings.map((meaning) => (
-        <li key={uuidv4()} className="bg-gray-100 p-4 mb-2 rounded-md shadow transition-all duration-300 hover:bg-gray-200">
+        <li key={meaning.meaningOriginal} className="bg-gray-100 p-4 mb-2 rounded-md shadow transition-all duration-300 hover:bg-gray-200">
           <h2 className="m-0 mb-2 text-xl text-gray-900">{data.word}</h2>
           <p className="my-1 text-sm text-gray-700">{meaning.meaningEn}</p>
           {meaning.meaningNp && <p className="my-1 text-sm text-gray-700">{meaning.meaningNp}</p>}
