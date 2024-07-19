@@ -3,7 +3,7 @@ import UserAvatar from "@/components/UserAvatar";
 import { StreakContext } from "@/hooks/StreakContext";
 import { getPhrase } from "@/components/header/StreakPhrase";
 import { useAuth } from "@/hooks/Auth";
-import fire from "@/assets/fire.svg"
+import fire from "@/assets/fire.svg";
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
