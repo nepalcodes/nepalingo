@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 .backface-hidden {
-    backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .flipped .rotateY-180 {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 .flipped .rotateY-0 {
-    transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 .rotateY-180 {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 .rotateY-0 {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }

@@ -1,22 +1,21 @@
-import React from 'react';
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
-} from 'react-router-dom';
-import UserAuth from './components/userAuth/UserAuth';
-import Home from './pages/Home/Home';
-import Dictionary from './pages/Dictionary';
-import { useAuth } from './components/userAuth/AuthContext';
-import ReactGA from 'react-ga4';
-
+} from "react-router-dom";
+import UserAuth from "./components/userAuth/UserAuth";
+import Home from "./pages/Home/Home";
+import Dictionary from "./pages/Dictionary";
+import { useAuth } from "./components/userAuth/AuthContext";
+import ReactGA from "react-ga4";
 
 const Home: React.FC = () => {
   ReactGA.send({
-    hitType: 'pageview',
+    hitType: "pageview",
     page: window.location.pathname,
-    title: 'home',
+    title: "home",
   });
   const { user } = useAuth();
 
@@ -48,14 +47,12 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mb-10">
-
         <Link
           to="/dictionary"
           className="text-xl font-bold p-5 border-2 border-white rounded-full"
         >
           Go to dictionary
         </Link>
-
       </div>
     </div>
   );

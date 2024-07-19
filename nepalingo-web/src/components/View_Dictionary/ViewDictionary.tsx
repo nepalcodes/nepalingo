@@ -1,12 +1,11 @@
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ViewDictionary: React.FC = () => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate('/dictionary');
+    navigate("/dictionary");
   };
 
   return (
