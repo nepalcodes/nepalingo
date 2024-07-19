@@ -20,7 +20,7 @@ const phrases = [
 ];
 
 export const getPhrase = (streak: number): string => {
-  for (let phrase of phrases) {
+  for (const phrase of phrases) {
     if (streak >= phrase.min && streak <= phrase.max) {
       return phrase.text;
     }
