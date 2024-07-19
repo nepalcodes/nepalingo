@@ -14,10 +14,10 @@ Ensure you have the following installed on your machine:
 
 1. **Clone the repository:**
 
-    ```sh
-    git clone https://github.com/nepalcodes/nepalingo.git
-    cd nepalingo-web
-    ```
+   ```sh
+   git clone https://github.com/nepalcodes/nepalingo.git
+   cd nepalingo-web
+   ```
 
 2. **Install pnpm (if you have not done it already)**
    ```sh
@@ -25,10 +25,9 @@ Ensure you have the following installed on your machine:
    ```
 3. **Install dependencies:**
 
-    ```sh
-    pnpm install
-    ```
-
+   ```sh
+   pnpm install
+   ```
 
 ## Running the Development Server
 
@@ -39,22 +38,23 @@ pnpm run dev
 ```
 
 ## Project Structure
+
 my-react-app/
 ├── public/
-│   ├── index.html
-│   └── ...
+│ ├── index.html
+│ └── ...
 ├── src/
-│   ├── assets/
-│   │   ├── images/
-│   ├── components/
-│   ├── pages/
-│   │   ├── Home/
-│   │   │   ├── Home.ts
-│   │   └── ...
-│   ├── App.ts
-│   ├── index.ts
-│   ├── routes.ts
-│   └── ...
+│ ├── assets/
+│ │ ├── images/
+│ ├── components/
+│ ├── pages/
+│ │ ├── Home/
+│ │ │ ├── Home.ts
+│ │ └── ...
+│ ├── App.ts
+│ ├── index.ts
+│ ├── routes.ts
+│ └── ...
 ├── .env.example
 ├── .gitignore
 ├── package.json

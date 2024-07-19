@@ -35,7 +35,9 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 ### Peer Mentor
+
 #### Hemanta Bhandari
+
 <table>
     <tr>
         <td width=150>
@@ -50,6 +52,7 @@ The contributors of this project are participants of Incubate Nepal.
 ### Mentees
 
 #### Saphal Upreti
+
 <table>
     <tr>
         <td width=150>
@@ -88,6 +91,7 @@ The contributors of this project are participants of Incubate Nepal.
 </table>
 
 #### Puja Tajpuriya
+
 <table>
     <tr>
         <td width=150>
@@ -99,7 +103,8 @@ The contributors of this project are participants of Incubate Nepal.
     </tr>
 </table>
 
-#### Aditya Bikram Thakur    
+#### Aditya Bikram Thakur
+
 <table>
     <tr>
         <td width=150>

@@ -6,7 +6,7 @@ import ReactGA from "react-ga4";
 
 const FlashcardPage: React.FC = () => {
   const { updateStreak } = useStreak();
-  
+
   ReactGA.send({
     hitType: "pageview",
     page: window.location.pathname,
