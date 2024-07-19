@@ -1,8 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import User_auth from "@/pages/Login";
+import UserAuth from "@/pages/Login";
 import Home from "@/pages/Home";
 import FlashcardPage from "@/pages/FlashcardPage";
+import DictionaryPage from "@/pages/DictionaryPage";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
 
@@ -13,10 +19,11 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<User_auth />} />
+        <Route path="/login" element={<UserAuth />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
-          <Route path="/learn" element={<FlashcardPage />} />
+          <Route path="/flashcard" element={<FlashcardPage />} />
+          <Route path="/dictionary" element={<FlashcardPage />} />
         </Route>
       </Routes>
     </Router>
