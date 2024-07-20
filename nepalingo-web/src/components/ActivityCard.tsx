@@ -22,7 +22,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   };
 
   return (
-    <div className="relative daily-quiz-card text-white p-8 rounded-lg flex flex-col justify-end h-[220px] pb-5 overflow-hidden">
+    <div className="flex-1 relative daily-quiz-card text-white p-4 sm:p-6 md:p-8 rounded-lg flex flex-col justify-end h-[180px] sm:h-[200px] md:h-[220px] pb-5 overflow-hidden">
       <img
         src={backgroundImageUrl}
         alt="Background"
@@ -30,10 +30,10 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       />
       <div className="absolute inset-0 bg-black/80" />
       <div className="relative z-10">
-        <p className="text-lg font-bold mb-1">{quizYourselfText}</p>
-        <p className="text-sm opacity-80 mb-1">{descriptionText}</p>
+        <p className="text-base sm:text-lg font-bold mb-1">{quizYourselfText}</p>
+        <p className="text-xs sm:text-sm opacity-80 mb-1">{descriptionText}</p>
         <Button
-          className="bg-red-600 text-white font-bold py-2 px-4 rounded"
+          className="bg-red-600 text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
           onClick={handleStartQuizClick}
         >
           {buttonText}
@@ -44,4 +44,3 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
 };
 
 export default ActivityCard;
-  
