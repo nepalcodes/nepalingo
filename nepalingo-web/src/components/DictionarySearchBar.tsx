@@ -4,7 +4,7 @@ import useDictionary, { DictionaryProps } from "../hooks/useDictionary";
 import InputText from "./InputText";
 
 interface DictionarySearchBarProps {
-  language: DictionaryProps["language"]; // Define language as a prop
+  language: DictionaryProps["language"]; 
 }
 
 const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
@@ -19,11 +19,6 @@ const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
     setSearchTerm(e.target.value);
   };
 
-  const handleSearchClick = () => {
-    // Trigger re-fetch (not necessary for useSWR as it auto-updates)
-  };
-
-  
 
   return (
     <div className="flex flex-col items-center mt-5">
