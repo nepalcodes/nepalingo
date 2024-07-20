@@ -4,7 +4,7 @@ import useDictionary, { DictionaryProps } from "../hooks/useDictionary";
 import InputText from "./InputText";
 
 interface DictionarySearchBarProps {
-  language: DictionaryProps["language"]; 
+  language: DictionaryProps["language"];
 }
 
 const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
@@ -19,11 +19,10 @@ const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
     setSearchTerm(e.target.value);
   };
 
-
   return (
     <div className="flex flex-col items-center mt-5">
       <div className="w-3/4 flex items-center relative">
-      <InputText
+        <InputText
           value={searchTerm}
           onChange={handleChange}
           placeholder="Search for words here..."
