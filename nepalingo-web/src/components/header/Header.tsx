@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "@/assets/NepaLingoLogoWhiteBg.jpg";
+import logo from "@/assets/NewLogo.png";
 import UserProfile from "@/components/header/UserProfile";
 import ChangeLanguage from "@/components/header/ChangeLanguage";
 

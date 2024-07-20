@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/NewLogoCircular.png";
 import ReactGA from "react-ga4";
 import { useAuth } from "@/hooks/Auth";
 import Header from "@/components/header/Header";
