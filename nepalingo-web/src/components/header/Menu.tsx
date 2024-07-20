@@ -11,7 +11,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onSelect, options }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="origin-top-right absolute left-0 mt-2 rounded-lg shadow-lg bg-grayDark ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
+    <div className="origin-top-right absolute z-10 left-0 mt-2 rounded-lg shadow-lg bg-grayDark ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
       <div
         role="menu"
         aria-orientation="vertical"
