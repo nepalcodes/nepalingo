@@ -4,7 +4,6 @@ import ReactGA from "react-ga4";
 import { useAuth } from "@/hooks/Auth";
 import Header from "@/components/header/Header";
 import GreetingCard from "@/components/GreetingCard";
-import DailyQuiz from "@/components/ActivityCard";
 import ViewDictionary from "@/components/ViewDictionary";
 import ActivityCard from "@/components/ActivityCard";
 
