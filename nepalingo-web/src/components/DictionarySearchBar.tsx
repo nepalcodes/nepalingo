@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import useDictionary, { DictionaryProps } from "../hooks/useDictionary";
 import InputText from "../components/InputText";
-import Button from "../components/Button"; // Assuming you have a Button component
+import Button from "../components/Button";
 
 interface DictionarySearchBarProps {
-  language: DictionaryProps["language"]; // Define language as a prop
+  language: DictionaryProps["language"];
 }
 
 const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
