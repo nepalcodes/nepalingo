@@ -17,37 +17,20 @@ const Home: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-col w-full justify-between h-screen bg-black text-white font-primary">
+    <div className="flex flex-col w-full h-screen bg-black text-white font-primary">
       <Header />
-      <div className="flex flex-col px-6 items-center justify-center flex-grow">
-        <div className="flex items-center justify-between w-full mt-5 text-xl font-primary font-bold">
+      <div className="flex flex-col px-6 flex-grow">
+        <div className="flex justify-between mt-5 text-xl font-primary font-bold">
           <GreetingCard name={user?.user_metadata?.username} />
           <StreakDisplay />
         </div>
-
-        <div className="flex flex-col items-center mt-5">
-          <div className="w-40 h-40 border-2 border-white rounded-full flex items-center justify-center">
-            <img
-              src={logo}
-              alt="Nepalingo Logo"
-              className="w-full h-full object-contain"
-            />
+        <div className="flex flex-row justify-center items-center mt-10 space-x-4 h-full">
+          <div className="flex-1 h-full">
+            <DailyQuiz />
           </div>
-          <div className="text-center mt-4">
-            <p className="text-3xl font-bold">Nepalingo</p>
+          <div className="flex-1 h-full">
+            <ViewDictionary />
           </div>
-          <div className="text-center mt-2">
-            <p className="text-xl">
-              Learn indigenous languages of Nepal for free
-            </p>
-          </div>
-        </div>
-        <div className="mb-5 pt-5">
-          <DailyQuiz />
-        </div>
-
-        <div className="mb-5 pt-5">
-          <ViewDictionary />
         </div>
       </div>
     </div>
