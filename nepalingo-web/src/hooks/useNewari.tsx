@@ -11,7 +11,9 @@ const useNewari = (props: Omit<DictionaryProps, "language">) => {
     `/dict/en/search/${props.word}`,
     fetcher,
   );
-  console.log(data, error, isLoading);
+  if (error) {
+    console.error(data, error, isLoading);
+  }
 
   const customError = data?.errors.length
     ? { status: true, response: data.errors, message: data.errors[0] }

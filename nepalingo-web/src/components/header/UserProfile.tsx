@@ -46,7 +46,7 @@ const UserProfile: React.FC = () => {
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="absolute right-0 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4"
+          className="absolute right-0 z-10 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4"
         >
           <div className="flex flex-col items-center">
             <div className="w-16 h-16">

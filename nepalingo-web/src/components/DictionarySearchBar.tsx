@@ -1,52 +1,45 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import useDictionary, { DictionaryProps } from "../hooks/useDictionary";
+import InputText from "../components/InputText";
+import Button from "../components/Button";
 
 interface DictionarySearchBarProps {
-  language: DictionaryProps["language"]; // Define language as a prop
+  language: DictionaryProps["language"];
 }
 
 const DictionarySearchBar: React.FC<DictionarySearchBarProps> = ({
   language,
 }) => {
+  const [inputValue, setInputValue] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { data, isLoading, error } = useDictionary({
     language,
     word: searchTerm,
   });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
 
-  const handleSearchClick = () => {
-    // Trigger re-fetch (not necessary for useSWR as it auto-updates)
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearchClick();
-    }
+  const handleSearchClick = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearchTerm(inputValue);
   };
 
   return (
     <div className="flex flex-col items-center mt-5">
-      <div className="w-3/4 flex items-center relative">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Search here"
-          className="w-full p-2 pl-5 border border-gray-300 rounded-md text-lg shadow-sm transition-colors duration-300 focus:border-blue-500 focus:shadow-lg bg-white"
+      <form
+        onSubmit={handleSearchClick}
+        className="w-3/4 flex items-center relative"
+      >
+        <InputText
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Search for words here..."
         />
-        <span
-          className="absolute right-2 text-lg text-gray-600 cursor-pointer"
-          onClick={handleSearchClick}
+        <Button
+          type="submit"
+          className="ml-4 text-lg text-gray-600 cursor-pointer h-14"
         >
-          <FontAwesomeIcon icon={faSearch} />
-        </span>
-      </div>
+          Search
+        </Button>
+      </form>
 
       {error && <p className="mt-2 text-red-600">{error.message}</p>}
       <ul className="list-none p-0 mt-5 w-3/4">

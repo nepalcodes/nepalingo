@@ -46,7 +46,6 @@ const ChangeLanguage: React.FC = () => {
     label: key,
     value: Languages[key as LanguageKey],
   }));
-  console.log(options);
   return (
     <div ref={dropdownRef} className="relative text-left h-full">
       <button

@@ -79,7 +79,6 @@ const Login: React.FC = () => {
   };
 
   if (session) {
-    console.log(session);
     return <Navigate to={"/"} replace />;
   }
   return (
