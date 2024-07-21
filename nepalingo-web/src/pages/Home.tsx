@@ -43,7 +43,7 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div className="mb-5 pt-5">
-          <ActivityCard 
+          <ActivityCard
             backgroundImageUrl="src\assets\CardOverlay.jpg"
             quizYourselfText="QUIZ YOURSELF"
             descriptionText=" Taking Quiz is a better and fun way for learning"

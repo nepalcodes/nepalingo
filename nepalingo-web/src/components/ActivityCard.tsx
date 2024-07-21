@@ -31,8 +31,12 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
       <div className="absolute inset-0 bg-black/80" />
       <div className="relative z-10 flex flex-col justify-between h-full">
         <div className="flex-1 flex flex-col justify-end">
-          <p className="text-base sm:text-lg font-bold mb-1">{quizYourselfText}</p>
-          <p className="text-xs sm:text-sm opacity-80 mb-1">{descriptionText}</p>
+          <p className="text-base sm:text-lg font-bold mb-1">
+            {quizYourselfText}
+          </p>
+          <p className="text-xs sm:text-sm opacity-80 mb-1">
+            {descriptionText}
+          </p>
         </div>
         <Button
           className="bg-red-600 text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
@@ -46,4 +50,3 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
 };
 
 export default ActivityCard;
-  
