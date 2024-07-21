@@ -7,19 +7,26 @@ export type DictionaryProps = {
   word: string;
 };
 
+export type Meaning = {
+  audio?: { uri: string };
+  image?: { uri: string };
+  language: string;
+  meaningOriginal?: string;
+  meaningNp?: string;
+  meaningEn: string;
+  partsOfSpeech?: string;
+  dialect?: string;
+  transliterations?: {
+    deva: string;
+    latn: string;
+    original: string;
+  };
+};
+
 export type DictionaryResponse = {
   language: string;
   word: string;
-  meanings: [
-    {
-      audio?: { uri: string };
-      image?: { uri: string };
-      language: string;
-      meaningOriginal?: string;
-      meaningNp?: string;
-      meaningEn: string;
-    },
-  ];
+  meanings: Array<Meaning>;
 };
 
 ///Use case
