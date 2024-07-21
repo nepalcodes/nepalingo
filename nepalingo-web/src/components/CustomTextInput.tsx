@@ -7,25 +7,24 @@ import {
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     value?: string;
-    iconProps: FontAwesomeIconProps;
+    iconProps?: FontAwesomeIconProps;
     placeholder?: string;
     error?: string;
     name: string;
-    inputType: string;
-    className?: string;
+    containerStyle?: string;
 }
-export const CustomTextInput = ({
+const CustomTextInput = ({
     label,
     iconProps,
     placeholder,
     name,
-    inputType,
     className,
     error,
+    containerStyle,
     ...props
 }: TextInputProps) => {
     return (
-        <div className={className}>
+        <div className={`flex-1 h-full  ${containerStyle}`}>
             {label && (
                 <label
                     htmlFor="input-group-1"
@@ -34,13 +33,11 @@ export const CustomTextInput = ({
                     {label}
                 </label>
             )}
-            <div className="relative mb-6 w-full">
-                <FontAwesomeIcon {...iconProps} />
+            <div className="relative  w-full h-full  rounded-lg  bg-grayDark">
+                {iconProps && <FontAwesomeIcon {...iconProps} />}
                 <input
-                    type={inputType}
                     name={name}
-                    className={`p-4 ${iconProps ? "ps-12" : ""
-                        } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-blue-500 focus:border-blue-500 block w-full   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-primary `}
+                    className={`p-4 ${iconProps ? "ps-12" : ""} bg-transparent h-full rounded-lg text-white text-sm  block w-full ${className}`}
                     placeholder={placeholder}
                     {...props}
                 />
@@ -48,3 +45,4 @@ export const CustomTextInput = ({
         </div>
     );
 };
+export default CustomTextInput;
