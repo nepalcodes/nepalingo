@@ -44,7 +44,7 @@ const Home: React.FC = () => {
         </div>
         <div className="mb-5 pt-5">
           <ActivityCard 
-            backgroundImageUrl="https://t4.ftcdn.net/jpg/06/28/27/29/360_F_628272989_krphWxzqARpTZ20wOBU0YeH2Ecf7iCtI.jpg"
+            backgroundImageUrl="src\assets\CardOverlay.jpg"
             quizYourselfText="QUIZ YOURSELF"
             descriptionText=" Taking Quiz is a better and fun way for learning"
             buttonText="Start Quiz"

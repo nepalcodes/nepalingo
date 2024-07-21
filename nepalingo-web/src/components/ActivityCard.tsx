@@ -22,7 +22,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   };
 
   return (
-    <div className="flex-1 aspect-w-16 aspect-h-9 relative daily-quiz-card text-white p-4 sm:p-6 md:p-8 rounded-lg flex flex-col justify-end pb-5 overflow-hidden">
+    <div className="relative daily-quiz-card text-white p-4 sm:p-6 md:p-8 rounded-lg flex flex-col justify-end h-[180px] sm:h-[200px] md:h-[220px] pb-5 overflow-hidden">
       <img
         src={backgroundImageUrl}
         alt="Background"
@@ -46,3 +46,4 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
 };
 
 export default ActivityCard;
+  
