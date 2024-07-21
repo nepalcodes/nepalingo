@@ -19,7 +19,9 @@ const Flashcard: React.FC = () => {
     language: "newari",
     word,
   });
-  console.log(error);
+  if (error) {
+    console.error(error);
+  }
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
