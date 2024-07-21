@@ -6,6 +6,7 @@ import Header from "@/components/header/Header";
 import GreetingCard from "@/components/GreetingCard";
 import DailyQuiz from "@/components/DailyQuiz";
 import ViewDictionary from "@/components/ViewDictionary";
+import StreakDisplay from "@/components/header/StreakDisplay";
 
 const Home: React.FC = () => {
   ReactGA.send({
@@ -16,16 +17,15 @@ const Home: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-col w-full justify-between h-screen bg-gradient-to-r from-black via-gray-800 to-black text-white">
+    <div className="flex flex-col w-full justify-between h-screen bg-black text-white font-primary">
       <Header />
-      <div className="flex flex-col items-center justify-center flex-grow">
-        <div className="mt-10">
-          <div className="text-xl font-bold text-centre">
-            <GreetingCard name={user?.user_metadata?.username} />
-          </div>
+      <div className="flex flex-col px-6 items-center justify-center flex-grow">
+        <div className="flex items-center justify-between w-full mt-5 text-xl font-primary font-bold">
+          <GreetingCard name={user?.user_metadata?.username} />
+          <StreakDisplay />
         </div>
 
-        <div className="flex flex-col items-center mt-10">
+        <div className="flex flex-col items-center mt-5">
           <div className="w-40 h-40 border-2 border-white rounded-full flex items-center justify-center">
             <img
               src={logo}
