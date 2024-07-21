@@ -2,64 +2,64 @@ import useSWR from "swr";
 import { DictionaryProps, DictionaryResponse } from "@/hooks/useDictionary";
 
 const fetcher = (url: string) =>
-    fetch(import.meta.env.VITE_NEPALBHASA_API_URL + url, {}).then((r) =>
-        r.json(),
-    );
+  fetch(import.meta.env.VITE_NEPALBHASA_API_URL + url, {}).then((r) =>
+    r.json(),
+  );
 
 const useNewari = (props: Omit<DictionaryProps, "language">) => {
-    const { data, error, isLoading } = useSWR(props.word ? `/dict/en/search/${props.word}` : null,
-        fetcher,
-    );
-    console.log(data)
+  const { data, error, isLoading } = useSWR(
+    props.word ? `/dict/en/search/${props.word}` : null,
+    fetcher,
+  );
+  console.log(data);
 
-    const customError = data?.errors.length
-        ? { status: true, response: data.errors, message: data.errors[0] }
-        : error;
+  const customError = data?.errors.length
+    ? { status: true, response: data.errors, message: data.errors[0] }
+    : error;
 
-    const response: DictionaryResponse = {
-        language: "newari",
-        word: props.word,
-        //Mapping the meanings from the api to create a custom response based on DictionaryResponse
-        meanings:
-            data?.meanings.length == 0
-                ? []
-                : data?.meanings?.map(
-                    (meaning: {
-                        audio?: { file: string; directory: string };
-                        image?: { file: string; directory: string };
-                        meaning_np?: string;
-                        meaning_nb?: string;
-                        meaning_en?: string;
-                        pos?: string;
-                        dialect?: string;
-                        transliterations?: {
-                            deva: string,
-                            latn: string
-                            newa: string,
-                        }
-                    }) => ({
-                        audio: meaning?.audio && {
-                            uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.audio.directory}/${meaning.audio.file}`,
-                        },
-                        image: meaning?.image && {
-                            uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.image.directory}/w800h800b1sh1/${meaning.image.file}`,
-                        },
-                        meaningOriginal: meaning?.meaning_nb,
-                        meaningNp: meaning?.meaning_np,
-                        meaningEn: meaning?.meaning_en,
-                        dialect: meaning.dialect,
-                        partsOfSpeech: meaning.pos,
-                        transliterations: {
-                            latn: meaning.transliterations?.latn,
-                            deva: meaning.transliterations?.deva,
-                            original: meaning.transliterations?.newa,
-                        }
+  const response: DictionaryResponse = {
+    language: "newari",
+    word: props.word,
+    //Mapping the meanings from the api to create a custom response based on DictionaryResponse
+    meanings:
+      data?.meanings.length == 0
+        ? []
+        : data?.meanings?.map(
+            (meaning: {
+              audio?: { file: string; directory: string };
+              image?: { file: string; directory: string };
+              meaning_np?: string;
+              meaning_nb?: string;
+              meaning_en?: string;
+              pos?: string;
+              dialect?: string;
+              transliterations?: {
+                deva: string;
+                latn: string;
+                newa: string;
+              };
+            }) => ({
+              audio: meaning?.audio && {
+                uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.audio.directory}/${meaning.audio.file}`,
+              },
+              image: meaning?.image && {
+                uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.image.directory}/w800h800b1sh1/${meaning.image.file}`,
+              },
+              meaningOriginal: meaning?.meaning_nb,
+              meaningNp: meaning?.meaning_np,
+              meaningEn: meaning?.meaning_en,
+              dialect: meaning.dialect,
+              partsOfSpeech: meaning.pos,
+              transliterations: {
+                latn: meaning.transliterations?.latn,
+                deva: meaning.transliterations?.deva,
+                original: meaning.transliterations?.newa,
+              },
+            }),
+          ),
+  };
 
-                    }),
-                ),
-    };
-
-    return { data: response, error: customError, isLoading };
+  return { data: response, error: customError, isLoading };
 };
 
 export default useNewari;
