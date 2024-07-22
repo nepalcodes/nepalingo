@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 interface ActivityCardProps {
@@ -7,6 +6,7 @@ interface ActivityCardProps {
   quizYourselfText: string;
   descriptionText: string;
   buttonText: string;
+  onClick: () => void;
 }
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -14,13 +14,8 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   quizYourselfText,
   descriptionText,
   buttonText,
+  onClick,
 }) => {
-  const navigate = useNavigate();
-
-  const handleStartQuizClick = () => {
-    navigate("/flashcard");
-  };
-
   return (
     <div className="relative daily-quiz-card text-white p-4 sm:p-6 md:p-8 rounded-lg flex flex-col justify-end h-[180px] sm:h-[200px] md:h-[220px] pb-5 overflow-hidden">
       <img
@@ -40,7 +35,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         </div>
         <Button
           className="bg-red-600 text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
-          onClick={handleStartQuizClick}
+          onClick={onClick}
         >
           {buttonText}
         </Button>
