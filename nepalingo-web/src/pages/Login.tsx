@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/Auth";
+import CustomTextInput from "@/components/CustomTextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../assets/NewLogo.png";
 import {
   faUser,
   faEnvelope,
@@ -9,6 +11,7 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
+import TheBird from "../assets/TheBird.png";
 import ReactGA from "react-ga4";
 
 const Login: React.FC = () => {
@@ -25,7 +28,6 @@ const Login: React.FC = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
   const { signUp, signIn, session } = useAuth();
-
   const navigate = useNavigate();
 
   // Function to handle form submission
@@ -79,104 +81,127 @@ const Login: React.FC = () => {
   };
 
   if (session) {
-    console.log(session);
     return <Navigate to={"/"} replace />;
   }
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="container flex flex-col mx-auto w-96 bg-white shadow-lg rounded-lg p-8">
-        {/* Header */}
-        <div className="flex flex-col items-center mb-6">
-          <div className="text-4xl font-bold text-black-600">{action}</div>
-          <div className="w-12 h-1 bg-black-600 rounded-full mt-2"></div>
-        </div>
+    <div className="flex h-screen bg-black text-white">
+      {/* Left part with TheBird */}
+      <div className="relative w-1/2 flex items-end">
+        <img
+          src={TheBird}
+          alt="TheBird"
+          className="absolute bottom right-36 h-full w-full object-contain"
+        />
+      </div>
 
-        {/* Input fields */}
-        <div className="flex flex-col gap-5 mb-5">
-          {action === "Log In" ? null : (
-            <div className="flex items-center w-full h-12 bg-gray-200 rounded-md px-3">
-              <FontAwesomeIcon icon={faUser} className="text-black-600" />
-              <input
-                type="text"
+      {/* Right part with logo and login form */}
+      <div className="relative w-1/2 flex justify-center items-center m-0">
+        <img
+          src={logo}
+          alt="Nepalingo Logo"
+          className="absolute top-4 w-80 h-24 object-contain"
+        />
+        <div className="container absolute top-40 flex-col w-96 bg-black p-2">
+          {/* Header */}
+          <div className="flex flex-col mb-6">
+            <div className="text-4xl font-bold text-primary">{action}</div>
+          </div>
+
+          {/* Input fields */}
+          <div className="flex flex-col gap-3 mb-8">
+            {action !== "Log In" && (
+              <CustomTextInput
+                label="Username"
+                name="username"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full h-full bg-transparent border-none outline-none text-gray-800 placeholder-gray-500 p-2"
+                iconProps={{
+                  icon: faUser,
+                  className:
+                    "text-white absolute left-3 top-1/2 transform -translate-y-1/2",
+                }}
+                containerStyle="h-12"
               />
-            </div>
-          )}
+            )}
 
-          <div className="flex items-center w-full h-12 bg-gray-200 rounded-md px-3">
-            <FontAwesomeIcon icon={faEnvelope} className="text-black-600" />
-            <input
-              type="email"
+            <CustomTextInput
+              label="Email"
+              name="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-full bg-transparent border-none outline-none text-gray-800 placeholder-gray-500 p-2"
+              iconProps={{
+                icon: faEnvelope,
+                className:
+                  "text-white absolute left-3 top-1/2 transform -translate-y-1/2",
+              }}
+              containerStyle="h-12"
             />
+
+            <div className="relative">
+              <CustomTextInput
+                label="Password"
+                name="password"
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                iconProps={{
+                  icon: faLock,
+                  className:
+                    "text-white absolute left-3 top-1/2 transform -translate-y-1/2",
+                }}
+                containerStyle="h-12"
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEyeSlash : faEye}
+                className="text-white absolute right-3 bottom-4 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            </div>
           </div>
 
-          <div className="flex items-center w-full h-12 bg-gray-200 rounded-md px-3">
-            <FontAwesomeIcon icon={faLock} className="text-black-600" />
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-full bg-transparent border-none outline-none text-gray-800 placeholder-gray-500 p-2"
-            />
-            <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
-              className="text-black-600 cursor-pointer ml-2"
-              onClick={() => setShowPassword(!showPassword)}
-            />
+          {action === "Sign Up" ? null : (
+            <div className="text-right text-sm text-gray-400 mb-3">
+              <span className="text-white font-bold cursor-pointer transition-colors hover:text-gray-300">
+                Forgot Password?
+              </span>
+            </div>
+          )}
+
+          {/* Action buttons */}
+          <div className="flex justify-between gap-1 ">
+            <div
+              className={`flex justify-center items-center w-44 h-12 rounded-lg text-white cursor-pointer transition-colors duration-300 ${
+                action === "Log In" ? "bg-[#2B2B2B]" : "bg-[#D03641]"
+              }`}
+              onClick={() => {
+                if (action === "Sign Up") handleSubmit();
+                else handleActionChange("Sign Up");
+              }}
+            >
+              Sign Up
+            </div>
+            <div
+              className={`flex justify-center items-center w-44 h-12 rounded-lg text-white cursor-pointer transition-colors duration-300 ${
+                action === "Sign Up" ? "bg-[#2B2B2B]" : "bg-[#D03641]"
+              }`}
+              onClick={() => {
+                if (action === "Log In") handleSubmit();
+                else handleActionChange("Log In");
+              }}
+            >
+              Log In
+            </div>
           </div>
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+          {success && action === "Sign Up" && (
+            <p className="text-green-500 mt-4">
+              Sign up successful! Please check your email to confirm.
+            </p>
+          )}
         </div>
-
-        {action === "Sign Up" ? null : (
-          <div className="text-right text-sm text-gray-500 mb-7">
-            <span className="text-black font-bold cursor-pointer transition-colors hover:text-gray-700">
-              Forgot Password?
-            </span>
-          </div>
-        )}
-
-        {/* Action buttons */}
-        <div className="flex justify-between gap-1">
-          <div
-            className={`flex justify-center items-center w-36 h-12 rounded-full text-white cursor-pointer transition-colors duration-300 ${
-              action === "Log In"
-                ? "bg-gray-300 text-gray-700"
-                : "bg-black hover:bg-gray-800"
-            }`}
-            onClick={() => {
-              if (action === "Sign Up") handleSubmit();
-              else handleActionChange("Sign Up");
-            }}
-          >
-            Sign Up
-          </div>
-          <div
-            className={`flex justify-center items-center w-36 h-12 rounded-full text-white cursor-pointer transition-colors duration-300 ${
-              action === "Sign Up"
-                ? "bg-gray-300 text-gray-700"
-                : "bg-black hover:bg-gray-800"
-            }`}
-            onClick={() => {
-              if (action === "Log In") handleSubmit();
-              else handleActionChange("Log In");
-            }}
-          >
-            Log In
-          </div>
-        </div>
-        {error && <p className="text-red-500 mt-4">{error}</p>}
-        {success && action === "Sign Up" && (
-          <p className="text-green-500 mt-4">
-            Sign up successful! Please check your email to confirm.
-          </p>
-        )}
       </div>
     </div>
   );

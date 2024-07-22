@@ -8,6 +8,7 @@ const ChangeLanguage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { selectedLanguage, switchLanguage } = useLanguage();
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -31,7 +32,7 @@ const ChangeLanguage: React.FC = () => {
       window.removeEventListener("keydown", handleEscape);
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [open]);
+  }, [isOpen]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -45,18 +46,17 @@ const ChangeLanguage: React.FC = () => {
     label: key,
     value: Languages[key as LanguageKey],
   }));
-  console.log(options);
   return (
     <div ref={dropdownRef} className="relative text-left h-full">
       <button
         type="button"
-        className="w-full bg-grayDark px-6 h-10 rounded-lg  text-sm font-medium text-gray-900 focus:outline-none"
+        className="w-48 bg-grayDark px-4 h-10 rounded-lg text-sm font-medium text-gray-900 focus:outline-none flex justify-between items-center"
         onClick={toggleMenu}
       >
-        <span className="text-white font-primary font-black ">
+        <span className="text-white font-primary font-black">
           {selectedLanguage}
         </span>
-        <FontAwesomeIcon icon={faChevronDown} className="ml-2 text-white " />
+        <FontAwesomeIcon icon={faChevronDown} className="text-white ml-2" />
       </button>
       <Menu isOpen={isOpen} onSelect={handleSelect} options={options} />
     </div>

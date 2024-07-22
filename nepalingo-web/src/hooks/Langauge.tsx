@@ -8,7 +8,7 @@ export type LanguageKey = keyof typeof Languages;
 
 export const Languages = {
   Newari: "newari",
-  Tajpuriya: "tajpuriya",
+  Tajpuriya: "coming soon",
   Maithili: "coming soon",
 } as const;
 

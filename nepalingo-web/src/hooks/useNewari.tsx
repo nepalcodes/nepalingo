@@ -8,10 +8,10 @@ const fetcher = (url: string) =>
 
 const useNewari = (props: Omit<DictionaryProps, "language">) => {
   const { data, error, isLoading } = useSWR(
-    `/dict/en/search/${props.word}`,
+    props.word ? `/dict/en/search/${props.word}` : null,
     fetcher,
   );
-  console.log(data, error, isLoading);
+  console.log(data);
 
   const customError = data?.errors.length
     ? { status: true, response: data.errors, message: data.errors[0] }
@@ -31,6 +31,13 @@ const useNewari = (props: Omit<DictionaryProps, "language">) => {
               meaning_np?: string;
               meaning_nb?: string;
               meaning_en?: string;
+              pos?: string;
+              dialect?: string;
+              transliterations?: {
+                deva: string;
+                latn: string;
+                newa: string;
+              };
             }) => ({
               audio: meaning?.audio && {
                 uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.audio.directory}/${meaning.audio.file}`,
@@ -41,6 +48,13 @@ const useNewari = (props: Omit<DictionaryProps, "language">) => {
               meaningOriginal: meaning?.meaning_nb,
               meaningNp: meaning?.meaning_np,
               meaningEn: meaning?.meaning_en,
+              dialect: meaning.dialect,
+              partsOfSpeech: meaning.pos,
+              transliterations: {
+                latn: meaning.transliterations?.latn,
+                deva: meaning.transliterations?.deva,
+                original: meaning.transliterations?.newa,
+              },
             }),
           ),
   };

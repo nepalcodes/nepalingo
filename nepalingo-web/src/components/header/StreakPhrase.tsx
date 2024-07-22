@@ -1,4 +1,3 @@
-// streakPhrases.ts
 export interface StreakPhrase {
   min: number;
   max: number;
