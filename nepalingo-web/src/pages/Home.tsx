@@ -1,5 +1,5 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "@/assets/logo.png";
 import ReactGA from "react-ga4";
 import { useAuth } from "@/hooks/Auth";
 import Header from "@/components/header/Header";
