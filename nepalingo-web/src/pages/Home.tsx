@@ -28,7 +28,7 @@ const Home: React.FC = () => {
         </div>
         <div className="mb-5 pt-5">
           <ActivityCard
-            backgroundImageUrl="src\assets\CardOverlay.jpg"
+            backgroundImageUrl="/CardOverlay.jpg"
             quizYourselfText="QUIZ YOURSELF"
             descriptionText=" Taking Quiz is a better and fun way for learning"
             buttonText="Start Quiz"
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
 
         <div className="mb-5 pt-5">
           <ActivityCard
-            backgroundImageUrl="src\assets\CardOverlay.jpg"
+            backgroundImageUrl="/CardOverlay.jpg"
             quizYourselfText="View Dictionary"
             descriptionText={`Search for word meanings in our english to ${selectedLanguage} dicitonary!`}
             buttonText="Go to Dictionary"
