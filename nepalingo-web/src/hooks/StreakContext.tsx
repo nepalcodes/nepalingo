@@ -50,7 +50,9 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    updateStreakState();
+    if (user) {
+      updateStreakState();
+    }
   }, [user]);
 
   const updateStreak = async () => {
