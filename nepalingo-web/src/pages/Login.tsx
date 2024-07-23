@@ -113,7 +113,7 @@ const Login: React.FC = () => {
               <CustomTextInput
                 label="Username"
                 name="username"
-                placeholder="Username"
+                placeholder="eg., The Bird"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 iconProps={{
@@ -128,7 +128,7 @@ const Login: React.FC = () => {
             <CustomTextInput
               label="Email"
               name="email"
-              placeholder="Email"
+              placeholder="eg., bird24@bigbirds.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               iconProps={{
@@ -143,7 +143,7 @@ const Login: React.FC = () => {
               <CustomTextInput
                 label="Password"
                 name="password"
-                placeholder="Password"
+                placeholder="eg., @ReallySecure07"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
