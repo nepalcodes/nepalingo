@@ -94,7 +94,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
             longest_streak: newLongestStreak,
             created_at: new Date().toISOString(),
           },
-          { onConflict: "user_id" }
+          { onConflict: "user_id" },
         )
         .select();
 
