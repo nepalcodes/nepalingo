@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
@@ -60,8 +60,8 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
     const currentDate = new Date().toISOString().split("T")[0]; // Get current date
 
     if (user) {
-      let newStreak = 1;
-      let newLongestStreak = 1;
+      let newStreak = 0;
+      let newLongestStreak = 0;
 
       if (data?.streak_end_date) {
         const lastDate = new Date(data.streak_end_date)
@@ -81,7 +81,6 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
       }
 
       // Update state
-
       // Upsert database
       const { error } = await supabaseClient
         .from("user_daily_streaks")
@@ -95,7 +94,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
             longest_streak: newLongestStreak,
             created_at: new Date().toISOString(),
           },
-          { onConflict: "user_id" },
+          { onConflict: "user_id" }
         )
         .select();
 
