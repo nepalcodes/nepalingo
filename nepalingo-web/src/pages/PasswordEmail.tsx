@@ -53,17 +53,7 @@ const PasswordEmail: React.FC = () => {
           </Button>
         </form>
         {message && <p className="text-green-500 mt-4">{message}</p>}
-        {error && (
-          <div className="mt-4 text-red-500">
-            {error}{" "}
-            <button
-              className="underline text-white"
-              onClick={() => navigate("/login")}
-            >
-              Sign Up
-            </button>
-          </div>
-        )}
+        {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
     </div>
   );
