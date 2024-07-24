@@ -3,14 +3,12 @@ import { useAuth } from "@/hooks/Auth";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import CustomTextInput from "@/components/CustomTextInput";
 import Button from "@/components/Button";
-import { useNavigate } from "react-router-dom";
 
 const PasswordEmail: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const { resetPasswordEmail } = useAuth();
-  const navigate = useNavigate();
 
   const handlePasswordEmail = async (event: React.FormEvent) => {
     event.preventDefault();
