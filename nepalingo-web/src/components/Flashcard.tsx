@@ -13,23 +13,25 @@ const Flashcard: React.FC = () => {
     nonInteraction: true, // optional, true/false
     transport: "xhr", // optional, beacon/xhr/image
   });
+
   const [word, setWord] = useState("salt");
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [viewType, setViewType] = useState(0);
   const { data, isLoading, error } = useDictionary({
     language: "newari",
     word,
   });
+
   if (error) {
     console.error(error);
   }
 
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    setViewType((prevViewType) => (prevViewType + 1) % 3);
   };
 
   const handleNextWord = () => {
     setWord(generate() as string);
-    setIsFlipped(false);
+    setViewType(0);
   };
 
   if (isLoading) return <div>Loading</div>;
@@ -49,7 +51,7 @@ const Flashcard: React.FC = () => {
             Pronunciation={meaning?.meaningOriginal || ""}
             ImageUrl={meaning?.image?.uri || ""}
             PronounciationUrl={meaning?.audio?.uri}
-            isFlipped={isFlipped}
+            viewType={viewType}
           />
         )}
 

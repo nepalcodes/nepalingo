@@ -9,7 +9,7 @@ interface CardProps {
   DevenagiriSpelling: string;
   ImageUrl?: string;
   PronounciationUrl?: string;
-  isFlipped: boolean;
+  viewType: number;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({
   DevenagiriSpelling,
   ImageUrl,
   PronounciationUrl,
-  isFlipped,
+  viewType,
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
@@ -43,40 +43,129 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className="relative w-[519px] h-[510px] rounded-[43px] overflow-hidden"
+      className={`relative rounded-[43px] overflow-hidden shadow-2xl ${
+        viewType === 1 ? "w-[519px] h-[600px]" : "w-[519px] h-[510px]"
+      }`}
       style={{ perspective: "1000px" }}
     >
+      {/* Front View */}
       <div
-        className={`absolute inset-0 bg-[#4F56F0] text-white flex justify-center items-center backface-hidden ${isFlipped ? "rotate-y-180" : ""
-          }`}
+        className={`absolute inset-0 bg-[#c8383c] text-[#ffffff] flex justify-center items-center ${
+          viewType === 0 ? "block" : "hidden"
+        }`}
         style={{
-          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 0.6s",
         }}
       >
-        {!isFlipped && <div className="text-4xl font-bold">{Word}</div>}
+        {viewType === 0 && <div className="text-6xl font-bold">{Word}</div>} {/* Increased text size */}
       </div>
+
+      {/* Second View */}
       <div
-        className={`absolute inset-0 bg-[#DCDEFF] text-black flex flex-col justify-center items-start p-4 backface-hidden ${isFlipped ? "" : "rotate-y-180"
-          }`}
+        className={`absolute inset-0 flex flex-col ${
+          viewType === 1 ? "block" : "hidden"
+        }`}
         style={{
-          transform: isFlipped ? "rotateY(0deg)" : "rotateY(-180deg)",
           transition: "transform 0.6s",
         }}
       >
-        <div className="bg-[#4F56F0] text-white w-full text-center py-4 rounded-t-[43px]">
-          <p className="text-4xl font-bold">{Word}</p>
+        <div
+          className="relative bg-[#DC143C] text-[#ffffff] w-full rounded-[43px]"
+          style={{
+            height: "100%", // Main red div height
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            className="relative bg-[#1a1a1a] w-full rounded-[20px] mx-4 mt-4"
+            style={{
+              overflow: "hidden",
+              flex: "1 1 auto",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {ImageUrl && (
+              <div className="relative h-[70%] w-full">
+                <img
+                  src={ImageUrl}
+                  alt={Word}
+                  className="absolute top-0 left-0 w-full h-full object-cover rounded-t-[20px]"
+                />
+              </div>
+            )}
+            <div
+              className="flex flex-col items-center justify-center h-[30%] z-10"
+              style={{ flex: "0 1 auto" }}
+            >
+              <p className="text-5xl font-bold">{Word}</p>
+              <p className="text-2xl">{Pronunciation}</p>
+              {PronounciationUrl && (
+                <button
+                  onClick={handlePronunciation}
+                  className="absolute right-4 bottom-4 z-10"
+                >
+                  <FontAwesomeIcon icon={faVolumeHigh} />
+                </button>
+              )}
+            </div>
+          </div>
+          <div
+            className="w-full p-4"
+            style={{ borderRadius: '20px 20px 43px 43px' }} // Adjust the radius for the red div
+          >
+            <p className="text-2xl font-bold mb-2">Nepali: {TranslatedWord}</p>
+            <p className="text-2xl font-bold mb-2">Newari: {DevenagiriSpelling}</p>
+            <p className="text-2xl font-bold mb-2">English: {Pronunciation}</p>
+          </div>
         </div>
-        <div className="p-4 mt-10">
-          <p className="text-xl font-bold mb-2">Nepali: {TranslatedWord}</p>
-          <p className="text-xl font-bold mb-2">Newari: {DevenagiriSpelling}</p>
-          <p className="text-xl font-bold mb-2">English: {Pronunciation}</p>
+      </div>
+
+      {/* Third View */}
+      <div
+        className={`absolute inset-0 flex flex-col ${
+          viewType === 2 ? "block" : "hidden"
+        }`}
+        style={{
+          transition: "transform 0.6s",
+        }}
+      >
+        <div
+          className="relative bg-[#c8383c] text-[#ffffff] w-full h-full rounded-[43px]"
+          style={{
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {ImageUrl && (
+            <div className="relative h-[70%] w-full">
+              <img
+                src={ImageUrl}
+                alt={Word}
+                className="absolute top-0 left-0 w-full h-full object-cover rounded-[43px]"
+              />
+            </div>
+          )}
+          <div
+            className="flex flex-col items-center justify-center h-[30%] z-10"
+            style={{ flex: "0 1 auto" }}
+          >
+            <p className="text-5xl font-bold">{Word}</p>
+            <p className="text-2xl">{Pronunciation}</p>
+            {PronounciationUrl && (
+              <button
+                onClick={handlePronunciation}
+                className="absolute right-4 bottom-4 z-10"
+              >
+                <FontAwesomeIcon icon={faVolumeHigh} />
+              </button>
+            )}
+          </div>
         </div>
-        {PronounciationUrl && (
-          <button onClick={handlePronunciation} className="absolute right-10 bottom-10">
-            <FontAwesomeIcon icon={faVolumeHigh} />
-          </button>
-        )}
       </div>
     </div>
   );
