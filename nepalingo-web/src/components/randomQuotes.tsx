@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuotes, useLanguage } from '../hooks/useQuotes/useLanguage'; // Adjust the import path as needed
+import useQuotes from '../hooks/useQuotes'
 
 const RandomQuote = () => {
     const { quotes } = useQuotes(); // Assuming useQuotes returns an object with a quotes array
