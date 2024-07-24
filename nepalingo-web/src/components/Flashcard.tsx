@@ -37,7 +37,7 @@ const Flashcard: React.FC = () => {
   const meaning = data && data.meanings[0];
 
   return (
-    <div className="max-w-md mx-auto p-4 flex justify-center border-2">
+    <div className="max-w-md mx-auto p-4 flex justify-center">
       <div className="mx-auto max-w-[calc(100% - 20px)]">
         {error ? (
           <div>Error: {error.message}</div>

@@ -42,52 +42,41 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div>
+    <div
+      className="relative w-[519px] h-[510px] rounded-[43px] overflow-hidden"
+      style={{ perspective: "1000px" }}
+    >
       <div
-        className={`relative w-96 h-72 ${isFlipped ? "flipped" : ""}`}
-        style={{ perspective: "1000px" }}
+        className={`absolute inset-0 bg-[#4F56F0] text-white flex justify-center items-center backface-hidden ${isFlipped ? "rotate-y-180" : ""
+          }`}
+        style={{
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          transition: "transform 0.6s",
+        }}
       >
-        <div
-          className="bg-white text-4xl font-bold absolute inset-0 text-black flex justify-center items-center backface-hidden"
-          style={{
-            transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-            transition: "transform 0.6s",
-          }}
-        >
-          {!isFlipped && <div>{Word}</div>}
+        {!isFlipped && <div className="text-4xl font-bold">{Word}</div>}
+      </div>
+      <div
+        className={`absolute inset-0 bg-[#DCDEFF] text-black flex flex-col justify-center items-start p-4 backface-hidden ${isFlipped ? "" : "rotate-y-180"
+          }`}
+        style={{
+          transform: isFlipped ? "rotateY(0deg)" : "rotateY(-180deg)",
+          transition: "transform 0.6s",
+        }}
+      >
+        <div className="bg-[#4F56F0] text-white w-full text-center py-4 rounded-t-[43px]">
+          <p className="text-4xl font-bold">{Word}</p>
         </div>
-        <div
-          className="absolute inset-0 bg-white text-black flex justify-center items-center backface-hidden transform rotateY-180 font-bold"
-          style={{
-            transform: isFlipped ? "rotateY(0deg)" : "rotateY(-180deg)",
-            transition: "transform 0.6s",
-          }}
-        >
-          <div className="flex flex-col items-start justify-center">
-            {ImageUrl && (
-              <img
-                src={ImageUrl}
-                alt={Word}
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 object-cover w-40 h-60"
-              />
-            )}
-            <p className="absolute right-10 top-16 text-2xl font-bold">
-              {TranslatedWord}
-            </p>
-            <p className="absolute right-10 top-28 text-sm">
-              {DevenagiriSpelling}
-            </p>
-            <p className="absolute right-10 top-36 text-xs">{Pronunciation}</p>
-            {PronounciationUrl && (
-              <button
-                onClick={handlePronunciation}
-                className="absolute right-10 bottom-10"
-              >
-                <FontAwesomeIcon icon={faVolumeHigh} />
-              </button>
-            )}
-          </div>
+        <div className="p-4 mt-10">
+          <p className="text-xl font-bold mb-2">Nepali: {TranslatedWord}</p>
+          <p className="text-xl font-bold mb-2">Newari: {DevenagiriSpelling}</p>
+          <p className="text-xl font-bold mb-2">English: {Pronunciation}</p>
         </div>
+        {PronounciationUrl && (
+          <button onClick={handlePronunciation} className="absolute right-10 bottom-10">
+            <FontAwesomeIcon icon={faVolumeHigh} />
+          </button>
+        )}
       </div>
     </div>
   );
