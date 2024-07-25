@@ -80,8 +80,6 @@ const Login: React.FC = () => {
     setPassword("");
   };
 
-
-
   if (session) {
     return <Navigate to={"/"} replace />;
   }
@@ -168,7 +166,7 @@ const Login: React.FC = () => {
             <div className="text-right text-sm text-gray-400 mb-3">
               <span
                 className="text-white font-bold cursor-pointer transition-colors hover:text-gray-300"
-                onClick={()=>navigate("/reset-password-email")}
+                onClick={() => navigate("/reset-password-email")}
               >
                 Forgot Password?
               </span>

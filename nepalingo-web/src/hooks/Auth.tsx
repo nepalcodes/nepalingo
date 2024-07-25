@@ -28,7 +28,7 @@ const AuthContext = createContext<AuthContextProps>({
   signIn: (data) => supabaseClient.auth.signInWithPassword(data),
   resetPasswordEmail: (email) =>
     supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://localhost:5173/reset-password",
+      redirectTo: "http://nepalingo.com/reset-password",
     }),
   resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
 });
