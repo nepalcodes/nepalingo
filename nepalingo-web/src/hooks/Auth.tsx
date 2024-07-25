@@ -15,7 +15,7 @@ type AuthContextProps = {
   signOut: () => void;
   signUp: (data: SignUpWithPasswordCredentials) => Promise<AuthResponse>;
   signIn: (
-    data: SignUpWithPasswordCredentials,
+    data: SignUpWithPasswordCredentials
   ) => Promise<AuthTokenResponsePassword>;
   resetPasswordEmail: (email: string) => Promise<{ error: Error | null }>;
   resetPassword: (password: string) => Promise<{ error: Error | null }>;
@@ -28,7 +28,7 @@ const AuthContext = createContext<AuthContextProps>({
   signIn: (data) => supabaseClient.auth.signInWithPassword(data),
   resetPasswordEmail: (email) =>
     supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://localhost:5173/reset-password",
+      redirectTo: "http://nepalingo.com/reset-password",
     }),
   resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
 });
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSession(session);
         setUser(session?.user);
         setLoading(false);
-      },
+      }
     );
 
     setData();
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signIn: (data) => supabaseClient.auth.signInWithPassword(data),
     resetPasswordEmail: (email) =>
       supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: "http://localhost:5173/reset-password",
+        redirectTo: "http://nepalingo.com/reset-password",
       }),
     resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
   };
