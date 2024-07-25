@@ -1,22 +1,24 @@
 import { useState, useEffect } from "react";
 
-const Languages = ["newari", "tajpuriya", "maithili"] as const;
+interface Quote {
+  text: string;
+  translation: string;
 
-export type QuoteProps = {
-  language: (typeof Languages)[number];
-};
 
-export type QuoteResponse = {
-  language: string;
-  quote: {
-    text: string;
-    translation: string;
-  };
-};
+}
+export interface QuotesResponse {
+  quotes: Quote[];
+  randomQuote: Quote | null;
+}
 
-const useQuotes = ({ language }: QuoteProps) => {
-  const [quote, setQuote] = useState<QuoteResponse | null>(null);
+interface useQuotesProps {
+  language: 'newari' | 'tajpuria' | 'maithili';
+}
+
+const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
+  const [quotes, setQuotes] = useState<Quote[]>([]);
   const [quotesText, setQuotesText] = useState("");
+  const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
 
   useEffect(() => {
     let sourceFile = "";
@@ -25,7 +27,7 @@ const useQuotes = ({ language }: QuoteProps) => {
       case "newari":
         sourceFile = "/quotes/newari.csv";
         break;
-      case "tajpuriya":
+      case "tajpuria":
         sourceFile = "/quotes/tajpuriya.csv";
         break;
       case "maithili":
@@ -63,14 +65,15 @@ const useQuotes = ({ language }: QuoteProps) => {
         const randomIndex = Math.floor(Math.random() * quotesArray.length);
         const randomQuote = quotesArray[randomIndex];
 
-        setQuote({ language, quote: randomQuote });
+        setQuotes(quotesArray);
+        setRandomQuote(randomQuote);
       };
 
       loadQuotes();
     }
   }, [quotesText]);
 
-  return quote;
+  return { quotes, randomQuote };
 };
 
 export default useQuotes;
