@@ -10,23 +10,21 @@ export type dictResponse = {
   };
 };
 
-const getTajpuriya = () => {
+const getTajpuriya = (trigger: number) => {
   const [word, setWord] = useState<dictResponse | null>(null);
-  const [wordText, setwordText] = useState("");
+  const [wordText, setWordText] = useState("");
 
   useEffect(() => {
-    const sourceFile = "./dictionaries/Tajpuriya grammer - Sheet1.csv";
+    const sourceFile = "./dictionaries/TajpuriyaDictionary.csv";
 
-    if (sourceFile) {
-      fetch(sourceFile)
-        .then((r) => r.text())
-        .then((text) => {
-          setwordText(text);
-        })
-        .catch((error) => {
-          console.error("Error fetching quotes:", error);
-        });
-    }
+    fetch(sourceFile)
+      .then((r) => r.text())
+      .then((text) => {
+        setWordText(text);
+      })
+      .catch((error) => {
+        console.error("Error fetching words:", error);
+      });
   }, []);
 
   useEffect(() => {
@@ -50,7 +48,7 @@ const getTajpuriya = () => {
 
       loadDict();
     }
-  }, [wordText]);
+  }, [wordText, trigger]);
 
   return word;
 };

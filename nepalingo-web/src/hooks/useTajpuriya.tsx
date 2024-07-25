@@ -33,6 +33,7 @@ const useTajpuriya = (props: Omit<DictionaryProps, "language">) => {
       loadDict();
     }
   }, [dictionaryText, word]);
+
   return translatedText;
 };
 export default useTajpuriya;
