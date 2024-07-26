@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/Auth";
 import CustomTextInput from "@/components/CustomTextInput";
+import logo from "@/assets/NewLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from "../assets/NewLogo.png";
 import {
   faUser,
   faEnvelope,
@@ -164,7 +164,10 @@ const Login: React.FC = () => {
 
           {action === "Sign Up" ? null : (
             <div className="text-right text-sm text-gray-400 mb-3">
-              <span className="text-white font-bold cursor-pointer transition-colors hover:text-gray-300">
+              <span
+                className="text-white font-bold cursor-pointer transition-colors hover:text-gray-300"
+                onClick={() => navigate("/reset-password-email")}
+              >
                 Forgot Password?
               </span>
             </div>
