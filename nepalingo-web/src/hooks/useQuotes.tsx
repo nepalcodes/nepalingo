@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 
 interface Quote {
   text: string;
-  translation: string;
+  translation: {
+    newari: string;
+    maithili: string;
+    tajpuria: string;
+  };
 
 
 }
@@ -53,12 +57,14 @@ const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
     if (quotesText) {
       const loadQuotes = () => {
         const quotesArray = quotesText.split("\n").map((line: string) => {
-          const [text, translation] = line.split(",");
+          const [text, newari, tajpuria, maithili] = line.split(",");
           return {
             text: text ? text.trim().replace(/(^"|"$)/g, "") : "",
-            translation: translation
-              ? translation.trim().replace(/(^"|"$)/g, "")
-              : "",
+            translation: {
+              newari: newari ? newari.trim().replace(/(^"|"$)/g, "") : "",
+              maithili: maithili ? maithili.trim().replace(/(^"|"$)/g, "") : "",
+              tajpuria: tajpuria ? tajpuria.trim().replace(/(^"|"$)/g, "") : "",
+            }
           };
         });
 

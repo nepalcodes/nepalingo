@@ -9,12 +9,13 @@ const RandomQuoteComponent: React.FC = () => {
     if (!randomQuote) {
         return <div>Loading...</div>;
     }
+    const { text, } = randomQuote;
+    const translatedText = [language];
 
     return (
         <div>
-            <h1>Random Quote</h1>
-            <p>{randomQuote.text}</p>
-            <p><em>{randomQuote.translation}</em></p>
+            <p style={styles.quote}>{text}</p>
+            <p style={styles.translation}><em>{translatedText}</em></p>
         </div>
     );
 };
