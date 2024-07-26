@@ -53,6 +53,7 @@ const Card: React.FC<CardProps> = ({
         }`}
         style={{
           transition: "transform 0.6s",
+          borderRadius: "20px",
         }}
       >
         {viewType === 0 && <div className="text-6xl font-bold">{Word}</div>}
@@ -73,46 +74,40 @@ const Card: React.FC<CardProps> = ({
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
           }}
         >
           <div
-            className="relative bg-[#4f42d8] w-full h-[60%] overflow-hidden rounded-[20px]"
+            className="relative w-full h-[30%] overflow-hidden rounded-t-[20px] flex flex-col items-center justify-center"
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              zIndex: 1, 
+              zIndex: 1,
+              backgroundColor: "#4f42d8",
+              borderRadius: "20px 20px 0 0",
             }}
           >
-            {ImageUrl && (
-              <div className="relative w-full h-full rounded-[20px] overflow-hidden">
-                <img
-                  src={ImageUrl}
-                  alt={Word}
-                  className="absolute top-0 left-0 w-full h-full object-cover rounded-[20px]"
-                  style={{ zIndex: -1 }} // Ensuring image appears behind the text
-                />
-              </div>
+            <p className="text-5xl font-bold text-white">{Word}</p>
+            <p className="text-2xl text-white">{Pronunciation}</p>
+            {PronounciationUrl && (
+              <button
+                onClick={handlePronunciation}
+                className="absolute right-4 bottom-4 z-10"
+                style={{ color: "white" }}
+              >
+                <FontAwesomeIcon icon={faVolumeHigh} />
+              </button>
             )}
-            <div
-              className="flex flex-col items-center justify-center h-[60%] z-10"
-              style={{ flex: "0 1 auto" }}
-            >
-              <p className="text-5xl font-bold text-white">{Word}</p>
-              <p className="text-2xl text-white">{Pronunciation}</p>
-              {PronounciationUrl && (
-                <button
-                  onClick={handlePronunciation}
-                  className="absolute right-4 bottom-4 z-10"
-                >
-                  <FontAwesomeIcon icon={faVolumeHigh} />
-                </button>
-              )}
-            </div>
+          </div>
+          <div className="relative w-full h-[30%] rounded-b-[20px] overflow-hidden">
+            {ImageUrl && (
+              <img
+                src={ImageUrl}
+                alt={Word}
+                className="absolute top-0 left-0 w-full h-full object-cover rounded-b-[20px]"
+                style={{ zIndex: 1 }}
+              />
+            )}
           </div>
           <div
-            className="w-full p-4 rounded-b-[20px]"
+            className="w-full p-4 flex flex-col items-center justify-center"
             style={{ borderRadius: "0 0 20px 20px" }}
           >
             <p className="text-2xl font-bold mb-2">Nepali: {TranslatedWord}</p>
@@ -137,31 +132,30 @@ const Card: React.FC<CardProps> = ({
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
-          {ImageUrl && (
-            <div className="relative h-[70%] w-full rounded-[20px] overflow-hidden">
-              <img
-                src={ImageUrl}
-                alt={Word}
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-[20px]"
-                style={{ zIndex: 1 }} // Ensuring image appears behind the text
-              />
-            </div>
-          )}  
-          <div
-            className="flex flex-col items-center justify-center h-[30%] z-10"
-            style={{ flex: "0 1 auto" }}
-          >
+          <div className="relative w-full h-[30%] overflow-hidden rounded-t-[20px] flex flex-col items-center justify-center">
             <p className="text-5xl font-bold">{Word}</p>
             <p className="text-2xl">{Pronunciation}</p>
             {PronounciationUrl && (
               <button
                 onClick={handlePronunciation}
                 className="absolute right-4 bottom-4 z-10"
+                style={{ color: "white" }}
               >
                 <FontAwesomeIcon icon={faVolumeHigh} />
               </button>
+            )}
+          </div>
+          <div className="relative h-[70%] w-full rounded-b-[20px] overflow-hidden">
+            {ImageUrl && (
+              <img
+                src={ImageUrl}
+                alt={Word}
+                className="absolute top-0 left-0 w-full h-full object-cover rounded-b-[20px]"
+                style={{ zIndex: 1 }}
+              />
             )}
           </div>
         </div>
