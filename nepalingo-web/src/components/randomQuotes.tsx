@@ -4,7 +4,7 @@ import useQuotes from '../hooks/useQuotes';
 
 const RandomQuoteComponent: React.FC = () => {
     const { language } = useLanguage();
-    const { quotes, randomQuote } = useQuotes({ language });
+    const { randomQuote } = useQuotes({ language });
 
     if (!randomQuote) {
         return <div>Loading...</div>;
