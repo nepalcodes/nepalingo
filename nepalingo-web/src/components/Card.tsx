@@ -4,8 +4,8 @@ import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
 interface CardProps {
   Word: string;
-  TranslatedWord: string; 
-  Pronunciation: string; 
+  TranslatedWord: string;
+  Pronunciation: string;
   ImageUrl?: string;
   PronounciationUrl?: string;
   viewType: number;
@@ -43,21 +43,31 @@ const Card: React.FC<CardProps> = ({
     <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[300px] h-[400px] sm:w-[300px] sm:h-[400px] md:w-[350px] md:h-[450px] lg:w-[519px] lg:h-[600px]">
       {/* Front View */}
       <div
-        className={`absolute inset-0 bg-[#4f42d8] text-white flex justify-center items-center transition-transform duration-600 ${viewType === 0 ? "block" : "hidden"
-          } rounded-2xl`}
+        className={`absolute inset-0 bg-[#4f42d8] text-white flex justify-center items-center transition-transform duration-600 ${
+          viewType === 0 ? "block" : "hidden"
+        } rounded-2xl`}
       >
-        {viewType === 0 && <div className="text-3xl font-bold sm:text-3xl md:text-4xl lg:text-6xl">{Word}</div>}
+        {viewType === 0 && (
+          <div className="text-3xl font-bold sm:text-3xl md:text-4xl lg:text-6xl">
+            {Word}
+          </div>
+        )}
       </div>
 
       {/* Second View */}
       <div
-        className={`absolute inset-0 flex flex-col transition-transform duration-600 ${viewType === 1 ? "block" : "hidden"
-          }`}
+        className={`absolute inset-0 flex flex-col transition-transform duration-600 ${
+          viewType === 1 ? "block" : "hidden"
+        }`}
       >
         <div className="relative bg-white text-black w-full h-full rounded-2xl overflow-hidden flex flex-col">
           <div className="relative w-full h-[30%] overflow-hidden rounded-t-2xl flex flex-col items-center justify-center bg-[#4f42d8]">
-            <p className="text-2xl font-bold text-white sm:text-2xl md:text-3xl lg:text-5xl">{Word}</p>
-            <p className="text-lg text-white sm:text-lg md:text-xl lg:text-2xl">{Pronunciation}</p>
+            <p className="text-2xl font-bold text-white sm:text-2xl md:text-3xl lg:text-5xl">
+              {Word}
+            </p>
+            <p className="text-lg text-white sm:text-lg md:text-xl lg:text-2xl">
+              {Pronunciation}
+            </p>
             {PronounciationUrl && (
               <button
                 onClick={handlePronunciation}
@@ -97,13 +107,18 @@ const Card: React.FC<CardProps> = ({
 
       {/* Third View */}
       <div
-        className={`absolute inset-0 flex flex-col transition-transform duration-600 ${viewType === 2 ? "block" : "hidden"
-          }`}
+        className={`absolute inset-0 flex flex-col transition-transform duration-600 ${
+          viewType === 2 ? "block" : "hidden"
+        }`}
       >
         <div className="relative bg-[#4f42d8] text-white w-full h-full rounded-2xl overflow-hidden flex flex-col justify-between">
           <div className="relative w-full h-[30%] overflow-hidden rounded-t-2xl flex flex-col items-center justify-center">
-            <p className="text-2xl font-bold sm:text-2xl md:text-3xl lg:text-5xl">{Word}</p>
-            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl">{Pronunciation}</p>
+            <p className="text-2xl font-bold sm:text-2xl md:text-3xl lg:text-5xl">
+              {Word}
+            </p>
+            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl">
+              {Pronunciation}
+            </p>
             {PronounciationUrl && (
               <button
                 onClick={handlePronunciation}

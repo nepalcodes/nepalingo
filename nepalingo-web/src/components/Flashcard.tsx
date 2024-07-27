@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faEye, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faThumbsUp,
+  faEye,
+  faThumbsDown,
+} from "@fortawesome/free-solid-svg-icons";
 import Card from "@/components/Card";
 import useDictionary from "@/hooks/useDictionary";
 import { generate } from "random-words";
