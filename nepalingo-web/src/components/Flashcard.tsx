@@ -52,7 +52,6 @@ const Flashcard: React.FC = () => {
           <Card
             Word={word}
             TranslatedWord={meaning?.meaningOriginal || ""}
-            DevenagiriSpelling={meaning?.meaningNp || ""}
             Pronunciation={meaning?.meaningOriginal || ""}
             ImageUrl={meaning?.image?.uri || ""}
             PronounciationUrl={meaning?.audio?.uri}
