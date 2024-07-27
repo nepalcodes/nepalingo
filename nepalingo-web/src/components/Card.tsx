@@ -6,7 +6,6 @@ interface CardProps {
   Word: string;
   TranslatedWord: string; 
   Pronunciation: string; 
-  DevenagiriSpelling: string; 
   ImageUrl?: string;
   PronounciationUrl?: string;
   viewType: number;
@@ -16,7 +15,6 @@ const Card: React.FC<CardProps> = ({
   Word,
   TranslatedWord,
   Pronunciation,
-  DevenagiriSpelling,
   ImageUrl,
   PronounciationUrl,
   viewType,
