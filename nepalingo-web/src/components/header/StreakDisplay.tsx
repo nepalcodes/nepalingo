@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StreakContext } from "@/hooks/StreakContext";
 import { getPhrase } from "@/components/header/StreakPhrase";
-import fire from "../../assets/fire.svg";
+import fire from "@/assets/fire.svg";
 
 const StreakDisplay: React.FC = () => {
   const { currentStreak } = useContext(StreakContext);

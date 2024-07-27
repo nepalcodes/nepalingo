@@ -5,7 +5,7 @@ export interface StreakPhrase {
 }
 
 const phrases = [
-  { min: 1, max: 5, text: "Starting strong! Keep going!" },
+  { min: 0, max: 5, text: "Starting strong! Keep going!" },
   { min: 6, max: 10, text: "On a roll! Nice job!" },
   { min: 11, max: 20, text: "Heating up! As hot as a chilly!" },
   { min: 21, max: 30, text: "Crushing it! Unstoppable!" },

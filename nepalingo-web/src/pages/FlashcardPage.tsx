@@ -15,7 +15,6 @@ const FlashcardPage: React.FC = () => {
 
   useEffect(() => {
     updateStreak(); // Trigger streak update on flashcard page load
-    console.log("Updated Streak");
   }, []);
 
   return (
