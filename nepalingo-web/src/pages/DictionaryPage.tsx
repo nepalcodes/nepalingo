@@ -13,7 +13,6 @@ const DictionaryPage: React.FC = () => {
     language: selectedLanguage || "",
     word: searchTerm,
   });
-  console.log(data?.meanings);
 
   const handleSearchClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

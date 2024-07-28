@@ -29,7 +29,6 @@ const Flashcard: React.FC = () => {
 
   function getNextIndex(wordArray: Array<string>) {
     const newIndex = (index + 1) % wordArray.length;
-    console.log("newIndex", newIndex);
     return newIndex;
   }
 
@@ -70,8 +69,6 @@ const Flashcard: React.FC = () => {
     const newIndex = getNextIndex(wordArray);
     setIndex(newIndex);
     setWord(wordArray[newIndex]);
-    console.log("wordArray", wordArray);
-    console.log(wordArray[newIndex]);
     setIsFlipped(false);
   };
 

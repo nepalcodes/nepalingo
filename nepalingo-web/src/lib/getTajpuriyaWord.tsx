@@ -19,11 +19,7 @@ export async function getTajpuriyaWord(
       .split(",")
       .map((word) => word.trim().replace(/(^"|"$)/g, ""));
 
-    console.log("englishWord", englishWord);
-    console.log("word", word);
-    console.log(englishWord == word);
     if (englishWord == word) {
-      console.log("pls");
       return {
         language: "tajpuriya",
         word: word,
