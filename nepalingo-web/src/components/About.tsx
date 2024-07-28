@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "./header/Header";
 
 const teamMembers = [
 
@@ -68,51 +69,54 @@ const teamMembers = [
 
 const About: React.FC = () => {
   return (
-    <div className="p-6 md:p-12 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-center">Incubate Nepal</h1>
-      <p className="mb-8 text-lg leading-relaxed">
-        Incubate Nepal is an 8-week virtual program that connects students from all over Nepal to collaborate on open-ended projects. These students are matched with accomplished mentors as they navigate through their projects in small teams. Students will need to think creatively, deeply, and collaboratively as they write papers or prototype apps during the program. Mentors and guest speakers will also provide guidance on the US college admission process, as well as career advice in research and entrepreneurship. Incubate Nepal is completely free and available to students who have completed Grade 11 or Grade 12, and not yet enrolled in university.
-        <br />
-        This program was founded by a group of MIT and Harvard graduates to make project-based learning more accessible to students in Nepal. In addition to connecting students from all over Nepal, this virtual program offers mentorship and exposure to open-ended projects.
-        <br />
-        <a href="https://www.incubatenepal.com/" className="text-blue-600 hover:underline">
-          Learn more about Incubate Nepal
-        </a>
-      </p>
+    <>
+      <Header />
+      <div className="p-6 md:p-12 max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold mb-6 text-center">Incubate Nepal</h1>
+        <p className="mb-8 text-lg leading-relaxed">
+          Incubate Nepal is an 8-week virtual program that connects students from all over Nepal to collaborate on open-ended projects. These students are matched with accomplished mentors as they navigate through their projects in small teams. Students will need to think creatively, deeply, and collaboratively as they write papers or prototype apps during the program. Mentors and guest speakers will also provide guidance on the US college admission process, as well as career advice in research and entrepreneurship. Incubate Nepal is completely free and available to students who have completed Grade 11 or Grade 12, and not yet enrolled in university.
+          <br />
+          This program was founded by a group of MIT and Harvard graduates to make project-based learning more accessible to students in Nepal. In addition to connecting students from all over Nepal, this virtual program offers mentorship and exposure to open-ended projects.
+          <br />
+          <a href="https://www.incubatenepal.com/" className="text-blue-600 hover:underline">
+            Learn more about Incubate Nepal
+          </a>
+        </p>
 
-      <h1 className="text-4xl font-bold mb-6 text-center">Nepalingo</h1>
-      <p className="mb-8 text-lg leading-relaxed">
-        Nepalingo is a project under Incubate Nepal. Since 1795, 61% of native languages across the world have already been lost, and many of Nepal&apos;s 100 indigenous languages have also been identified as at risk. Nepalingo.com aims to help preserve these languages and with them our stories, songs, history, and culture. We take the work of linguists who have already expended great efforts accumulating the knowledge of these languages into dictionaries and make that information easier to learn and remember. In doing so, we hope to help new generations connect with their elders and reconnect with their heritage.
-      </p>
+        <h1 className="text-4xl font-bold mb-6 text-center">Nepalingo</h1>
+        <p className="mb-8 text-lg leading-relaxed">
+          Nepalingo is a project under Incubate Nepal. Since 1795, 61% of native languages across the world have already been lost, and many of Nepal&apos;s 100 indigenous languages have also been identified as at risk. Nepalingo.com aims to help preserve these languages and with them our stories, songs, history, and culture. We take the work of linguists who have already expended great efforts accumulating the knowledge of these languages into dictionaries and make that information easier to learn and remember. In doing so, we hope to help new generations connect with their elders and reconnect with their heritage.
+        </p>
 
-      <h2 className="text-3xl font-semibold mb-6 text-center">Team Members</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {teamMembers.map((member, index) => (
-         <div
-         key={index}
-         className="flex flex-col items-center text-center p-6 bg-white shadow-lg rounded-lg border border-gray-200 hover:bg-[#D03641] hover:shadow-xl transition-all duration-300"
-       >
-         <img
-           src={member.image}
-           alt={member.name}
-           className="h-32 w-32 rounded-full mb-4 object-cover"
-         />
-         <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-         <p className="text-sm text-black-800 mb-4">{member.role}</p>
-         <p className="text-sm text-gray-700">{member.bio}</p>
-       </div>
-        ))}
+        <h2 className="text-3xl font-semibold mb-6 text-center">Team Members</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+          <div
+          key={index}
+          className="flex flex-col items-center text-center p-6 bg-white shadow-lg rounded-lg border border-gray-200 hover:bg-[#D03641] hover:shadow-xl transition-all duration-300"
+        >
+          <img
+            src={member.image}
+            alt={member.name}
+            className="h-32 w-32 rounded-full mb-4 object-cover"
+          />
+          <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+          <p className="text-sm text-black-800 mb-4">{member.role}</p>
+          <p className="text-sm text-gray-700">{member.bio}</p>
+        </div>
+          ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <a href="https://github.com/nepalcodes/nepalingo" className="text-blue-600 hover:underline mx-2">
+            GitHub Project
+          </a>
+          <a href="https://github.com/nepalcodes/nepalingo" className="text-blue-600 hover:underline mx-2">
+            GitHub Repo
+          </a>
+        </div>
       </div>
-
-      <div className="mt-8 text-center">
-        <a href="https://github.com/nepalcodes/nepalingo" className="text-blue-600 hover:underline mx-2">
-          GitHub Project
-        </a>
-        <a href="https://github.com/nepalcodes/nepalingo" className="text-blue-600 hover:underline mx-2">
-          GitHub Repo
-        </a>
-      </div>
-    </div>
+    </>
   );
 };
 
