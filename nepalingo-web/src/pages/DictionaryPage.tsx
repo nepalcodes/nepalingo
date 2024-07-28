@@ -43,9 +43,6 @@ const DictionaryPage: React.FC = () => {
           </Button>
         </form>
 
-        {!isLoading && !data && error && (
-          <p className="mt-2 text-red-600">{error.message}</p>
-        )}
         <div className="p-0 mt-5 gap-4 flex flex-col ">
           {isLoading && <p className="mt-2 text-gray-600 ">Loading...</p>}
           {data && data.meanings?.length > 0
