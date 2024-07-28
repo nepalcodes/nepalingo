@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import QuizComponent from './components/QuizComponent';
 import RandomQuoteComponent from "./components/randomQuotes";
 
 const App: React.FC = () => {
@@ -26,7 +27,11 @@ const App: React.FC = () => {
             <Route path="/dictionary" element={<DictionaryPage />} />
           </Route>
         </Routes>
-      </Router></>
+      </Router>
+      <div className="min-h-screen flex justify-center items-center">
+      <QuizComponent />
+    </div>
+    </>
   );
 };
 
