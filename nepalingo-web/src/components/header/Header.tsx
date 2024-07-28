@@ -12,7 +12,7 @@ const Header: React.FC = () => {
         </a>
       </div>
       <div className="flex flex-row justify-between items-center gap-4">
-      <a href="/about" className="text-white hover:underline">
+        <a href="/about" className="text-white hover:underline">
           About
         </a>
         <ChangeLanguage />
