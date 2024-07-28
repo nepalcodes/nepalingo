@@ -49,6 +49,17 @@ const Home: React.FC = () => {
             }}
           />
         </div>
+        <div className="mb-5 pt-5">
+          <ActivityCard
+            backgroundImageUrl="/CardOverlay.jpg"
+            quizYourselfText="View Dictionary"
+            descriptionText={`Search for word meanings in our english to ${selectedLanguage} dicitonary!`}
+            buttonText="Test Yourself"
+            onClick={() => {
+              navigate("/test-yourself");
+            }}
+          />
+        </div>
       </div>
     </div>
   );
