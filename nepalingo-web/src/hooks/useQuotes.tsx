@@ -54,7 +54,9 @@ const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
           const [quote, englishTranslation] = line.split(",");
           return {
             text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
-            translation: englishTranslation ? englishTranslation.trim().replace(/(^"|"$)/g, "") : "",
+            translation: englishTranslation
+              ? englishTranslation.trim().replace(/(^"|"$)/g, "")
+              : "",
           };
         });
 

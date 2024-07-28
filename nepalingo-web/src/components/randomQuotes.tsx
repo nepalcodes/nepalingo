@@ -10,7 +10,7 @@ const RandomQuoteComponent: React.FC = () => {
   }
 
   const { randomQuote } = useQuotes({
-    language: selectedLanguage
+    language: selectedLanguage,
   });
 
   if (!randomQuote) {
