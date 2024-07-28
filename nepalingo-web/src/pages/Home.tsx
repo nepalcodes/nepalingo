@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/Auth";
 import Header from "@/components/header/Header";
 import GreetingCard from "@/components/GreetingCard";
 import ActivityCard from "@/components/ActivityCard";
-import { LanguageProvider, useLanguage } from "@/hooks/Langauge";
+import { useLanguage } from "@/hooks/Langauge";
 import StreakDisplay from "@/components/header/StreakDisplay";
 import RandomQuoteComponent from "@/components/randomQuotes";
 
@@ -20,10 +20,7 @@ const Home: React.FC = () => {
   const { selectedLanguage } = useLanguage();
 
   return (
-
-    <><LanguageProvider>
-      <RandomQuoteComponent></RandomQuoteComponent>
-    </LanguageProvider>
+    <>
       <div className="flex flex-col w-full h-screen bg-black text-white font-primary">
         <Header />
         <div className="flex flex-col px-6 flex-grow">
@@ -54,8 +51,21 @@ const Home: React.FC = () => {
               }}
             />
           </div>
+
+          <div className="mb-5 pt-5">
+            <ActivityCard
+              backgroundImageUrl="/CardOverlayBlur.png"
+              quizYourselfText="Random Quote!"
+              descriptionText={`Here's a random quote!`}
+            >
+              <div className="flex justify-center">
+                <RandomQuoteComponent />
+              </div>
+            </ActivityCard>
+          </div>
         </div>
-      </div></>
+      </div>
+    </>
   );
 };
 

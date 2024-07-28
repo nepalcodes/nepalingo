@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 
 interface Quote {
   text: string;
-  translation: {
-    newari: string;
-    maithili: string;
-    tajpuria: string;
-  };
-
-
+  translation: string;
 }
 export interface QuotesResponse {
   quotes: Quote[];
@@ -16,7 +10,7 @@ export interface QuotesResponse {
 }
 
 interface useQuotesProps {
-  language: 'newari' | 'tajpuria' | 'maithili';
+  language: string;
 }
 
 const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
@@ -28,13 +22,13 @@ const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
     let sourceFile = "";
 
     switch (language) {
-      case "newari":
+      case "Newari":
         sourceFile = "/quotes/newari.csv";
         break;
-      case "tajpuria":
+      case "Tajpuria":
         sourceFile = "/quotes/tajpuriya.csv";
         break;
-      case "maithili":
+      case "Maithili":
         sourceFile = "/quotes/maithili.csv";
         break;
       default:
@@ -57,14 +51,10 @@ const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
     if (quotesText) {
       const loadQuotes = () => {
         const quotesArray = quotesText.split("\n").map((line: string) => {
-          const [text, newari, tajpuria, maithili] = line.split(",");
+          const [quote, englishTranslation] = line.split(",");
           return {
-            text: text ? text.trim().replace(/(^"|"$)/g, "") : "",
-            translation: {
-              newari: newari ? newari.trim().replace(/(^"|"$)/g, "") : "",
-              maithili: maithili ? maithili.trim().replace(/(^"|"$)/g, "") : "",
-              tajpuria: tajpuria ? tajpuria.trim().replace(/(^"|"$)/g, "") : "",
-            }
+            text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
+            translation: englishTranslation ? englishTranslation.trim().replace(/(^"|"$)/g, "") : "",
           };
         });
 
