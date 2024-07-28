@@ -7,6 +7,11 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
     {},
   ).then((r) => r.json());
 
+  if (data?.errors.length) {
+    console.error(data.errors);
+    throw new Error(data.errors[0]);
+  }
+
   const response: DictionaryResponse = {
     language: "newari",
     word: word,
