@@ -19,7 +19,7 @@ export async function getTajpuriyaWord(
       .split(",")
       .map((word) => word.trim().replace(/(^"|"$)/g, ""));
 
-    if (englishWord == word) {
+    if (englishWord.toLowerCase() == word.toLowerCase()) {
       return {
         language: "tajpuriya",
         word: word,
