@@ -1,6 +1,6 @@
 import { DictionaryResponse } from "@/hooks/useDictionary";
 
-export async function getNewariWord(word: string) {
+export async function getNewariWord(word: string): Promise<DictionaryResponse> {
   const api_endpoint = `/dict/en/search/${word}`;
   const data = await fetch(
     import.meta.env.VITE_NEPALBHASA_API_URL + api_endpoint,

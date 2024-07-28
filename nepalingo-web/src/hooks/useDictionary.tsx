@@ -33,7 +33,10 @@ export type DictionaryResponse = {
   meanings: Array<Meaning>;
 };
 
-async function getFetcherByLanguage(language: string, word?: string) {
+async function getFetcherByLanguage(
+  language: string,
+  word?: string,
+): Promise<DictionaryResponse> {
   if (!word) {
     word = "hello";
   }

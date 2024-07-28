@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { DictionaryResponse } from "./useDictionary";
 
 const language = "tajpuriya" as const;
 
@@ -10,7 +11,7 @@ export type dictResponse = {
   };
 };
 
-const getTajpuriya = (trigger: number) => {
+const getTajpuriya = (trigger: number): Promise<DictionaryResponse> => {
   const [word, setWord] = useState<dictResponse | null>(null);
   const [wordText, setWordText] = useState("");
 
