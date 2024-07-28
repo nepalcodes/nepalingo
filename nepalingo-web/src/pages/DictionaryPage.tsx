@@ -4,14 +4,15 @@ import CustomTextInput from "@/components/CustomTextInput";
 import Button from "@/components/Button";
 import useDictionary from "@/hooks/useDictionary";
 import SearchResponseCard from "@/components/SearchResponseCard";
+import { useLanguage } from "@/hooks/Langauge";
 
 const DictionaryPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const { selectedLanguage } = useLanguage();
   const { data, isLoading, error } = useDictionary({
-    language: "newari",
+    language: selectedLanguage || "",
     word: searchTerm,
   });
-  console.log(data?.meanings);
 
   const handleSearchClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,9 +43,6 @@ const DictionaryPage: React.FC = () => {
           </Button>
         </form>
 
-        {!isLoading && !data && error && (
-          <p className="mt-2 text-red-600">{error.message}</p>
-        )}
         <div className="p-0 mt-5 gap-4 flex flex-col ">
           {isLoading && <p className="mt-2 text-gray-600 ">Loading...</p>}
           {data && data.meanings?.length > 0
