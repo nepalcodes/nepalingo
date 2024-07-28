@@ -1,34 +1,34 @@
 import { useState, useEffect } from "react";
 
-const Languages = ["newari", "tajpuriya", "maithili"] as const;
+interface Quote {
+  text: string;
+  translation: string;
+}
+export interface QuotesResponse {
+  quotes: Quote[];
+  randomQuote: Quote | null;
+}
 
-export type QuoteProps = {
-  language: (typeof Languages)[number];
-};
-
-export type QuoteResponse = {
+interface useQuotesProps {
   language: string;
-  quote: {
-    text: string;
-    translation: string;
-  };
-};
+}
 
-const useQuotes = ({ language }: QuoteProps) => {
-  const [quote, setQuote] = useState<QuoteResponse | null>(null);
+const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
+  const [quotes, setQuotes] = useState<Quote[]>([]);
   const [quotesText, setQuotesText] = useState("");
+  const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
 
   useEffect(() => {
     let sourceFile = "";
 
     switch (language) {
-      case "newari":
+      case "Newari":
         sourceFile = "/quotes/newari.csv";
         break;
-      case "tajpuriya":
+      case "Tajpuria":
         sourceFile = "/quotes/tajpuriya.csv";
         break;
-      case "maithili":
+      case "Maithili":
         sourceFile = "/quotes/maithili.csv";
         break;
       default:
@@ -51,11 +51,11 @@ const useQuotes = ({ language }: QuoteProps) => {
     if (quotesText) {
       const loadQuotes = () => {
         const quotesArray = quotesText.split("\n").map((line: string) => {
-          const [text, translation] = line.split(",");
+          const [quote, englishTranslation] = line.split(",");
           return {
-            text: text ? text.trim().replace(/(^"|"$)/g, "") : "",
-            translation: translation
-              ? translation.trim().replace(/(^"|"$)/g, "")
+            text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
+            translation: englishTranslation
+              ? englishTranslation.trim().replace(/(^"|"$)/g, "")
               : "",
           };
         });
@@ -63,14 +63,15 @@ const useQuotes = ({ language }: QuoteProps) => {
         const randomIndex = Math.floor(Math.random() * quotesArray.length);
         const randomQuote = quotesArray[randomIndex];
 
-        setQuote({ language, quote: randomQuote });
+        setQuotes(quotesArray);
+        setRandomQuote(randomQuote);
       };
 
       loadQuotes();
     }
   }, [quotesText]);
 
-  return quote;
+  return { quotes, randomQuote };
 };
 
 export default useQuotes;

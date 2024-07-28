@@ -5,8 +5,10 @@ interface ActivityCardProps {
   backgroundImageUrl: string;
   quizYourselfText: string;
   descriptionText: string;
-  buttonText: string;
-  onClick: () => void;
+  buttonText?: string;
+  backDrop?: boolean;
+  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -14,6 +16,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   quizYourselfText,
   descriptionText,
   buttonText,
+  children,
   onClick,
 }) => {
   return (
@@ -33,13 +36,16 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
             {descriptionText}
           </p>
         </div>
-        <Button
-          className="bg-red-600 text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
-          smallHeight={true}
-          onClick={onClick}
-        >
-          {buttonText}
-        </Button>
+        {children}
+        {buttonText && onClick && (
+          <Button
+            className="bg-red-600 text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
+            smallHeight={true}
+            onClick={onClick}
+          >
+            {buttonText}
+          </Button>
+        )}
       </div>
     </div>
   );
