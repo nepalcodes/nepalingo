@@ -22,7 +22,6 @@ const Flashcard: React.FC = () => {
   const [viewType, setViewType] = useState(0);
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("Today");
-  const [isFlipped, setIsFlipped] = useState(false);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -103,7 +102,6 @@ const Flashcard: React.FC = () => {
     const newIndex = getNextIndex(wordArray);
     setIndex(newIndex);
     setWord(wordArray[newIndex]);
-    setIsFlipped(false);
     setViewType(0);
   };
 
