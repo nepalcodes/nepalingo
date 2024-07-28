@@ -3,6 +3,8 @@ import Login from "@/pages/Login";
 import Home from "@/pages/Home";
 import FlashcardPage from "@/pages/FlashcardPage";
 import DictionaryPage from "@/pages/DictionaryPage";
+import ResetPassword from "@/pages/ResetPassword";
+import PasswordEmail from "@/pages/PasswordEmail";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
@@ -15,6 +17,8 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password-email" element={<PasswordEmail />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/flashcard" element={<FlashcardPage />} />

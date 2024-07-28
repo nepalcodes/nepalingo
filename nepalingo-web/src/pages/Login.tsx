@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/Auth";
 import CustomTextInput from "@/components/CustomTextInput";
+import logo from "@/assets/NewLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from "../assets/NewLogo.png";
 import {
   faUser,
   faEnvelope,
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
               <CustomTextInput
                 label="Username"
                 name="username"
-                placeholder="Username"
+                placeholder="eg., The Bird"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 iconProps={{
@@ -128,7 +128,7 @@ const Login: React.FC = () => {
             <CustomTextInput
               label="Email"
               name="email"
-              placeholder="Email"
+              placeholder="eg., bird24@bigbirds.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               iconProps={{
@@ -143,7 +143,7 @@ const Login: React.FC = () => {
               <CustomTextInput
                 label="Password"
                 name="password"
-                placeholder="Password"
+                placeholder="eg., @ReallySecure07"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -164,7 +164,10 @@ const Login: React.FC = () => {
 
           {action === "Sign Up" ? null : (
             <div className="text-right text-sm text-gray-400 mb-3">
-              <span className="text-white font-bold cursor-pointer transition-colors hover:text-gray-300">
+              <span
+                className="text-white font-bold cursor-pointer transition-colors hover:text-gray-300"
+                onClick={() => navigate("/reset-password-email")}
+              >
                 Forgot Password?
               </span>
             </div>
