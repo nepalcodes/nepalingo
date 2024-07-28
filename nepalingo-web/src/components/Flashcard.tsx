@@ -18,13 +18,24 @@ const Flashcard: React.FC = () => {
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("Today");
   const [isFlipped, setIsFlipped] = useState(false);
-  const [trigger, setTrigger] = useState(0);
+  // const [trigger, setTrigger] = useState(0);
+  const [index, setIndex] = useState(0);
+
+  function getRandomWord<T>(arr: Array<T>) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function getNextIndex(wordArray: Array<string>) {
+    const newIndex = (index + 1) % wordArray.length;
+    console.log("newIndex", newIndex);
+    return newIndex;
+  }
 
   const { data, isLoading, error } = useDictionary({
-    language: "newari",
+    language: selectedLanguage || "",
     word,
   });
-  const tajpuriyaWord = getTajpuriya(trigger);
+  // const tajpuriyaWord = getTajpuriya(trigger);
 
   if (error) {
     console.error(error);
@@ -34,10 +45,36 @@ const Flashcard: React.FC = () => {
     setIsFlipped(!isFlipped);
   };
 
-  const handleNextWord = () => {
-    setWord(generate() as string);
+  // const handleNextWord = () => {
+  //   setWord(generate() as string);
+  //   setIsFlipped(false);
+  //   setTrigger((prev) => prev + 1);
+  // };
+  //
+  const handleNextWord = async () => {
+    let wordArray: Array<string> = [];
+    if (selectedLanguage === "Newari") {
+      wordArray = ["salt", "hello", "go"];
+    } else if (selectedLanguage === "Tajpuriya") {
+      const wordText = await fetch("./dictionaries/TajpuriyaDictionary.csv")
+        .then((r) => r.text())
+        .catch((error) => {
+          console.error("Error fetching words:", error);
+        });
+
+      if (wordText) {
+        wordArray = wordText.split("\n").map((line: string) =>
+          line
+            .split(",")[0]
+            .trim()
+            .replace(/(^"|"$)/g, ""),
+        );
+      }
+    }
+    const newIndex = getNextIndex(wordArray);
+    setIndex(newIndex);
+    setWord(wordArray[newIndex]);
     setIsFlipped(false);
-    setTrigger((prev) => prev + 1);
   };
 
   if (isLoading) return <div>Loading</div>;

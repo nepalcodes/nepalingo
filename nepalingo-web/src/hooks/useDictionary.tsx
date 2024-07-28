@@ -1,10 +1,13 @@
+import useSWR from "swr";
 import useNewari from "@/hooks/useNewari";
 
 import { Language } from "./Langauge";
+import { getNewariWord } from "@/lib/getNewariWord";
 
 export type DictionaryProps = {
-  language: Language;
-  word: string;
+  language: string;
+  // If word is not specified, a word will be chosen
+  word?: string;
 };
 
 export type Meaning = {
@@ -29,19 +32,16 @@ export type DictionaryResponse = {
   meanings: Array<Meaning>;
 };
 
-///Use case
-//const {data, isLoading, error} = useDictionary('newari', "Hello")
+async function getFetcherByLanguage(language: string, word?: string) {
+  if (!word) {
+    word = "salt";
+  }
 
-const useDictionary = ({ language, ...otherProps }: DictionaryProps) => {
   switch (language) {
-    case "newari":
-      return useNewari(otherProps);
-    // case 'tajpuriya':
-    //     return ({
-    //         error: { message: "Sorry the language does not exist" },
-    //         data: null,
-    //         isLoading: false,
-    //     })
+    case "Newari":
+      return await getNewariWord(word);
+    // case "Tajpuriya":
+    //   return await getTajpuriyaWord(word)
     default:
       return {
         error: { message: "Sorry the language does not exist" },
@@ -49,6 +49,17 @@ const useDictionary = ({ language, ...otherProps }: DictionaryProps) => {
         isLoading: false,
       };
   }
+}
+
+///Use case
+//const {data, isLoading, error} = useDictionary('newari', "Hello")
+
+const useDictionary = ({ language, word }: DictionaryProps) => {
+  const { data, error, isLoading } = useSWR(
+    word ? `/dict/en/search/${word}` : null,
+    () => getFetcherByLanguage(language, word),
+  );
+  return { data, error, isLoading };
 };
 
 export default useDictionary;
