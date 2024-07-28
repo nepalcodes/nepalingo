@@ -8,25 +8,27 @@ import PasswordEmail from "@/pages/PasswordEmail";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
+import Landing from "./pages/Landing";
 
 const App: React.FC = () => {
-  const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
-  ReactGA.initialize(TrackingID);
+    const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
+    ReactGA.initialize(TrackingID);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/reset-password-email" element={<PasswordEmail />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/flashcard" element={<FlashcardPage />} />
-          <Route path="/dictionary" element={<DictionaryPage />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/reset-password-email" element={<PasswordEmail />} />
+                <Route element={<PrivateRoutes />}>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/flashcard" element={<FlashcardPage />} />
+                    <Route path="/dictionary" element={<DictionaryPage />} />
+                </Route>
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;
