@@ -31,7 +31,7 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
         .from("user_daily_streaks")
         .select("*")
         .eq("user_id", user.id)
-        .single();
+        .maybeSingle();
 
       if (error && error.code !== "PGRST116") {
         console.error("Error fetching streak data:", error);
@@ -60,8 +60,8 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
     const currentDate = new Date().toISOString().split("T")[0]; // Get current date
 
     if (user) {
-      let newStreak = 0;
-      let newLongestStreak = 0;
+      let newStreak = 1;
+      let newLongestStreak = 1;
 
       if (data?.streak_end_date) {
         const lastDate = new Date(data.streak_end_date)
@@ -102,6 +102,9 @@ export const StreakProvider = ({ children }: { children: ReactNode }) => {
         console.error("Error updating streak data:", error);
       }
     }
+
+    // Update the streak state by fetching from the database after an update
+    updateStreakState();
   };
 
   return (

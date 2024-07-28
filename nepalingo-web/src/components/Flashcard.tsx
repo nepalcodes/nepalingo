@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsUp,
@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "@/components/Card";
 import useDictionary from "@/hooks/useDictionary";
-import { generate } from "random-words";
 import ReactGA from "react-ga4";
+import { useLanguage } from "@/hooks/Langauge";
 
 const Flashcard: React.FC = () => {
   ReactGA.event({
@@ -19,10 +19,24 @@ const Flashcard: React.FC = () => {
     transport: "xhr",
   });
 
-  const [word, setWord] = useState("salt");
   const [viewType, setViewType] = useState(0);
+  const { selectedLanguage } = useLanguage();
+  const [word, setWord] = useState("Today");
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    // Make sure flashcard is updated when language is changed
+    handleNextWord();
+  }, [selectedLanguage]);
+
+  function getNextIndex(wordArray: Array<string>) {
+    const newIndex = (index + 1) % wordArray.length;
+    return newIndex;
+  }
+
   const { data, isLoading, error } = useDictionary({
-    language: "newari",
+    language: selectedLanguage || "",
     word,
   });
 
@@ -34,21 +48,76 @@ const Flashcard: React.FC = () => {
     setViewType((prevViewType) => (prevViewType + 1) % 3);
   };
 
-  const handleNextWord = () => {
-    setWord(generate() as string);
+  const handleNextWord = async () => {
+    let wordArray: Array<string> = [];
+    if (selectedLanguage === "Newari") {
+      wordArray = [
+        "hello",
+        "call",
+        "can",
+        "do",
+        "how",
+        "I",
+        "my",
+        "what",
+        "where",
+        "a",
+        "do",
+        "not",
+        "for",
+        "from",
+        "fun",
+        "have",
+        "help",
+        "language",
+        "me",
+        "name",
+        "need",
+        "please",
+        "police",
+        "sick",
+        "speak",
+        "understand",
+        "well",
+        "you",
+        "your",
+        "salt",
+      ];
+    } else if (selectedLanguage === "Tajpuriya") {
+      const wordText = await fetch("./dictionaries/TajpuriyaDictionary.csv")
+        .then((r) => r.text())
+        .catch((error) => {
+          console.error("Error fetching words:", error);
+        });
+
+      if (wordText) {
+        wordArray = wordText.split("\n").map((line: string) =>
+          line
+            .split(",")[0]
+            .trim()
+            .replace(/(^"|"$)/g, ""),
+        );
+      }
+    }
+
+    const newIndex = getNextIndex(wordArray);
+    setIndex(newIndex);
+    setWord(wordArray[newIndex]);
+    setIsFlipped(false);
     setViewType(0);
   };
 
   if (isLoading) return <div>Loading...</div>;
   if (error?.response?.length) handleNextWord();
-  const meaning = data && data.meanings[0];
+
+  const meaning = data ? data.meanings[0] : null;
 
   return (
     <div className="max-w-md mx-auto p-4 flex flex-col items-center">
       <div className="mx-auto max-w-[calc(100% - 20px)]">
         {error ? (
           <div>Error: {error.message}</div>
-        ) : (
+        ) : selectedLanguage ? (
           <Card
             Word={word}
             TranslatedWord={meaning?.meaningOriginal || ""}
@@ -57,6 +126,8 @@ const Flashcard: React.FC = () => {
             PronounciationUrl={meaning?.audio?.uri}
             viewType={viewType}
           />
+        ) : (
+          <div>No data available</div>
         )}
 
         <div className="flex justify-center mt-4 space-x-2">
