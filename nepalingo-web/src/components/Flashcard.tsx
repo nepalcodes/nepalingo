@@ -44,7 +44,38 @@ const Flashcard: React.FC = () => {
   const handleNextWord = async () => {
     let wordArray: Array<string> = [];
     if (selectedLanguage === "Newari") {
-      wordArray = ["salt", "hello", "go"];
+      wordArray = [
+        "hello",
+        "call",
+        "can",
+        "do",
+        "how",
+        "I",
+        "my",
+        "what",
+        "where",
+        "a",
+        "do",
+        "not",
+        "for",
+        "from",
+        "fun",
+        "have",
+        "help",
+        "language",
+        "me",
+        "name",
+        "need",
+        "please",
+        "police",
+        "sick",
+        "speak",
+        "understand",
+        "well",
+        "you",
+        "your",
+        "salt",
+      ];
     } else if (selectedLanguage === "Tajpuriya") {
       const wordText = await fetch("./dictionaries/TajpuriyaDictionary.csv")
         .then((r) => r.text())
