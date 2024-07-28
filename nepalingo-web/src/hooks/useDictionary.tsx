@@ -1,14 +1,11 @@
 import useSWR from "swr";
-import useNewari from "@/hooks/useNewari";
 
-import { Language } from "./Langauge";
 import { getNewariWord } from "@/lib/getNewariWord";
 import { getTajpuriyaWord } from "@/lib/getTajpuriyaWord";
 
 export type DictionaryProps = {
   language: string;
-  // If word is not specified, a word will be chosen
-  word?: string;
+  word: string;
 };
 
 export type Meaning = {
@@ -47,11 +44,7 @@ async function getFetcherByLanguage(
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     default:
-      return {
-        error: { message: "Sorry the language does not exist" },
-        data: undefined,
-        isLoading: false,
-      };
+      throw new Error(`Language ${language} not supported`);
   }
 }
 

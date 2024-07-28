@@ -23,10 +23,6 @@ const Flashcard: React.FC = () => {
     handleNextWord();
   }, [selectedLanguage]);
 
-  function getRandomWord<T>(arr: Array<T>) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
   function getNextIndex(wordArray: Array<string>) {
     const newIndex = (index + 1) % wordArray.length;
     return newIndex;

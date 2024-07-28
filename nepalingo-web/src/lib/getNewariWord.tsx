@@ -6,10 +6,6 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
     import.meta.env.VITE_NEPALBHASA_API_URL + api_endpoint,
     {},
   ).then((r) => r.json());
-  // errors
-  // const customError = data?.errors.length
-  //   ? { status: true, response: data.errors, message: data.errors[0] }
-  //   : error;
 
   const response: DictionaryResponse = {
     language: "newari",
