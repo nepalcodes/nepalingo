@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
-import ExitModal from './ExitModal';
+import React from 'react';
+import Flashcard from './Flashcard'; // Assuming FlashCard is a separate component
 
-const QuizComponent: React.FC = () => {
-  const [showExitModal, setShowExitModal] = useState(false);
+interface QuizProps {
+  onExit: () => void;
+}
 
-  const handleExitClick = () => {
-    setShowExitModal(true);
-  };
-
+const Quiz: React.FC<QuizProps> = ({ onExit }) => {
   return (
-    <div className="p-4">
-      <h1 className="text-2xl mb-4">Quiz Section</h1>
-      {/* Quiz content here */}
+    <div className="quiz-container">
+      <Flashcard />
       <button
-        className="bg-red-500 text-white px-4 py-2 rounded-md"
-        onClick={handleExitClick}
+        className="bg-red-500 text-white px-4 py-2 rounded-md mt-4"
+        onClick={onExit}
       >
-        Exit
+        Exit Quiz
       </button>
-      {showExitModal && <ExitModal onClose={() => setShowExitModal(false)} />}
     </div>
   );
 };
 
-export default QuizComponent;
+export default Quiz;

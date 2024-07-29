@@ -29,8 +29,8 @@ const App: React.FC = () => {
         </Routes>
       </Router>
       <div className="min-h-screen flex justify-center items-center">
-      <QuizComponent />
-    </div>
+        <QuizComponent />
+      </div>
     </>
   );
 };
