@@ -34,10 +34,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
     <div className="bg-white p-6 rounded-lg">
       {submitted ? (
         <div className="text-center">
-          <h2 className="text-lg font-semibold mb-4">Thank you for your feedback! 🎉</h2>
-          <p className="mb-4">
-            Well done!
-          </p>
+          <p className="text-lg font-semibold mb-4">Thank you for your feedback! 🎉 </p>
         </div>
       ) : (
         <>
