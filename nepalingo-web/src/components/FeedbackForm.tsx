@@ -11,13 +11,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [ShowFeedback, setShowFeedback] = useState<boolean>(true);
 
-  const handleStarRating = (rate: number) => {
-    setRating(rate);
-  };
 
-  const handleEmojiRating = (rate: number) => {
-    setEmojiRating(rate);
-  };
 
   const handleClose = () => {
     setShowFeedback(false);
