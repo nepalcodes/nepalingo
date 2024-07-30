@@ -7,8 +7,6 @@ interface Quote {
     maithili: string;
     tajpuria: string;
   };
-
-
 }
 export interface QuotesResponse {
   quotes: Quote[];
@@ -16,7 +14,7 @@ export interface QuotesResponse {
 }
 
 interface useQuotesProps {
-  language: 'newari' | 'tajpuria' | 'maithili';
+  language: "newari" | "tajpuria" | "maithili";
 }
 
 const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
@@ -64,7 +62,7 @@ const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
               newari: newari ? newari.trim().replace(/(^"|"$)/g, "") : "",
               maithili: maithili ? maithili.trim().replace(/(^"|"$)/g, "") : "",
               tajpuria: tajpuria ? tajpuria.trim().replace(/(^"|"$)/g, "") : "",
-            }
+            },
           };
         });
 

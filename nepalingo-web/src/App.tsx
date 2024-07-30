@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import QuizComponent from './components/QuizComponent';
+import QuizComponent from "./components/QuizComponent";
 import RandomQuoteComponent from "./components/randomQuotes";
 
 const App: React.FC = () => {
@@ -15,10 +15,11 @@ const App: React.FC = () => {
   ReactGA.initialize(TrackingID);
 
   return (
-
-    <><LanguageProvider>
-      <RandomQuoteComponent></RandomQuoteComponent>
-    </LanguageProvider><Router>
+    <>
+      <LanguageProvider>
+        <RandomQuoteComponent></RandomQuoteComponent>
+      </LanguageProvider>
+      <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoutes />}>

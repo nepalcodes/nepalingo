@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import FeedbackForm from './FeedbackForm';
+import React, { useState } from "react";
+import FeedbackForm from "./FeedbackForm";
 
 interface ExitModalProps {
   onClose: () => void;

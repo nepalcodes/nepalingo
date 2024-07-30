@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ExitModal from './ExitModal';
+import React, { useState } from "react";
+import ExitModal from "./ExitModal";
 
 const QuizComponent: React.FC = () => {
   const [showExitModal, setShowExitModal] = useState(false);
