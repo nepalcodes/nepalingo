@@ -16,9 +16,8 @@ const QuizComponent: React.FC = () => {
       >
         Exit
       </button>
-      {showExitModal && <ExitModal onClose={() => setShowExitModal(false)} onConfrim={function (): void {
-        throw new Error("Function not implemented.");
-      }} />}
+      {showExitModal && <ExitModal onClose={() => setShowExitModal(false)} onConfrim={() => setShowExitModal(true)}
+      />}
     </div>
   );
 };

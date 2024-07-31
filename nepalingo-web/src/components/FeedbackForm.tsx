@@ -27,7 +27,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
     <div className="bg-white p-6 rounded-lg">
       {submitted && ShowFeedback ? (
         <div className="text-center">
-          <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          <button className="absolute top-2 right-2 text-black-500 hover:text-black-700"
             onClick={handleClose}>
             &times;
           </button>
