@@ -21,7 +21,7 @@ const TestYourself: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const { data, isLoading } = useDictionary({
-    language: selectedLanguage || "newar",
+    language: selectedLanguage || "newari",
     word,
   });
 
@@ -88,7 +88,7 @@ const TestYourself: React.FC = () => {
           line
             .split(",")[0]
             .trim()
-            .replace(/(^"|"$)/g, ""),
+            .replace(/(^"|"$)/g, "")
         );
       }
     }
