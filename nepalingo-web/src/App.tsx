@@ -9,6 +9,7 @@ import About from "@/components/About";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
+import TestYourself from "@/pages/TestYourself";
 
 const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/flashcard" element={<FlashcardPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
+          <Route path="/test-yourself" element={<TestYourself />} />
         </Route>
       </Routes>
     </Router>
