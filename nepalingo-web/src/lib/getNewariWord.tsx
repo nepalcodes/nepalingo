@@ -1,24 +1,20 @@
-import useSWR from "swr";
-import { DictionaryProps, DictionaryResponse } from "@/hooks/useDictionary";
+import { DictionaryResponse } from "@/hooks/useDictionary";
 
-const fetcher = (url: string) =>
-  fetch(import.meta.env.VITE_NEPALBHASA_API_URL + url, {}).then((r) =>
-    r.json(),
-  );
+export async function getNewariWord(word: string): Promise<DictionaryResponse> {
+  const api_endpoint = `/dict/en/search/${word}`;
+  const data = await fetch(
+    import.meta.env.VITE_NEPALBHASA_API_URL + api_endpoint,
+    {}
+  ).then((r) => r.json());
 
-const useNewari = (props: Omit<DictionaryProps, "language">) => {
-  const { data, error, isLoading } = useSWR(
-    props.word ? `/dict/en/search/${props.word}` : null,
-    fetcher,
-  );
-
-  const customError = data?.errors.length
-    ? { status: true, response: data.errors, message: data.errors[0] }
-    : error;
+  if (data?.errors.length) {
+    console.error(data.errors);
+    throw new Error(data.errors[0]);
+  }
 
   const response: DictionaryResponse = {
     language: "newari",
-    word: props.word,
+    word: word,
     //Mapping the meanings from the api to create a custom response based on DictionaryResponse
     meanings:
       data?.meanings.length == 0
@@ -54,11 +50,8 @@ const useNewari = (props: Omit<DictionaryProps, "language">) => {
                 deva: meaning.transliterations?.deva,
                 original: meaning.transliterations?.newa,
               },
-            }),
+            })
           ),
   };
-
-  return { data: response, error: customError, isLoading };
-};
-
-export default useNewari;
+  return response;
+}
