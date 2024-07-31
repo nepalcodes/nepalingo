@@ -88,7 +88,7 @@ const TestYourself: React.FC = () => {
           line
             .split(",")[0]
             .trim()
-            .replace(/(^"|"$)/g, "")
+            .replace(/(^"|"$)/g, ""),
         );
       }
     }
