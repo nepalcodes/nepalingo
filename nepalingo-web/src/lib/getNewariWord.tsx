@@ -4,7 +4,7 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
   const api_endpoint = `/dict/en/search/${word}`;
   const data = await fetch(
     import.meta.env.VITE_NEPALBHASA_API_URL + api_endpoint,
-    {}
+    {},
   ).then((r) => r.json());
 
   if (data?.errors.length) {
@@ -50,7 +50,7 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
                 deva: meaning.transliterations?.deva,
                 original: meaning.transliterations?.newa,
               },
-            })
+            }),
           ),
   };
   return response;

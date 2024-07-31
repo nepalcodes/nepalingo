@@ -1,6 +1,6 @@
 import React from "react";
-import { useLanguage } from "../hooks/Langauge";
-import useQuotes from "../hooks/useQuotes";
+import { useLanguage } from "@/hooks/Langauge";
+import useQuotes from "@/hooks/useQuotes";
 
 const RandomQuoteComponent: React.FC = () => {
   const { selectedLanguage } = useLanguage();
