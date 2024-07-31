@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useDictionary from "@/hooks/useDictionary";
 import { generate } from "random-words";
 import Header from "@/components/header/Header";
 import Button from "@/components/Button";
+import { useStreak } from "@/hooks/StreakContext";
 
 const TestYourself: React.FC = () => {
+  const { updateStreak } = useStreak();
   const [word, setWord] = useState("today");
   const [options, setOptions] = useState<string[]>([
     "today",
@@ -19,6 +21,11 @@ const TestYourself: React.FC = () => {
     language: "newari",
     word,
   });
+
+  useEffect(() => {
+    updateStreak(); // Trigger streak update on flashcard page load
+  }, []);
+
   const getOptions = (word: string) => {
     const randomWords = generate({ exactly: 3 }) as string[];
     randomWords.push(word);
