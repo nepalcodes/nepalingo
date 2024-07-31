@@ -5,7 +5,7 @@ import FlashcardPage from "@/pages/FlashcardPage";
 import DictionaryPage from "@/pages/DictionaryPage";
 import ResetPassword from "@/pages/ResetPassword";
 import PasswordEmail from "@/pages/PasswordEmail";
-import About from "@/components/About";
+import About from "@/components/header/About";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";

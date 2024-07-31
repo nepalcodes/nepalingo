@@ -51,6 +51,17 @@ const Home: React.FC = () => {
               }}
             />
           </div>
+          <div className="mb-5 pt-5">
+            <ActivityCard
+              backgroundImageUrl="/CardOverlay.jpg"
+              quizYourselfText="Test yourself"
+              descriptionText={`Try some multiple choice questions to test your ${selectedLanguage} vocabulary`}
+              buttonText="Test Yourself"
+              onClick={() => {
+                navigate("/test-yourself");
+              }}
+            />
+          </div>
 
           <div className="mb-5 pt-5">
             <ActivityCard
@@ -63,17 +74,6 @@ const Home: React.FC = () => {
               </div>
             </ActivityCard>
           </div>
-        </div>
-        <div className="mb-5 pt-5">
-          <ActivityCard
-            backgroundImageUrl="/CardOverlay.jpg"
-            quizYourselfText="Test yourself"
-            descriptionText={`Try some multiple choice questions to test your ${selectedLanguage} vocabulary`}
-            buttonText="Test Yourself"
-            onClick={() => {
-              navigate("/test-yourself");
-            }}
-          />
         </div>
       </div>
     </>
