@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import useDictionary from "@/hooks/useDictionary";
 import { generate } from "random-words";
-import Header from "./header/Header";
-import Button from "./Button";
+import Header from "@/components/header/Header";
+import Button from "@/components/Button";
 
 const TestYourself: React.FC = () => {
   const [word, setWord] = useState("today");
