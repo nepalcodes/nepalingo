@@ -49,7 +49,7 @@ const Flashcard: React.FC = () => {
   };
 
   const handleNextWord = async (
-    generator?: Generator<string, void, unknown>
+    generator?: Generator<string, void, unknown>,
   ) => {
     if (!generator && wordGenerator) {
       generator = wordGenerator;
