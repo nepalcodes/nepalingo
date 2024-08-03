@@ -11,7 +11,7 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import TheBird from "../assets/TheBird.png";
+import TheBird from "../components/AnimatedBhasa";
 import ReactGA from "react-ga4";
 
 const Login: React.FC = () => {
@@ -87,11 +87,7 @@ const Login: React.FC = () => {
     <div className="flex h-screen bg-black text-white">
       {/* Left part with TheBird */}
       <div className="relative w-1/2 flex items-end">
-        <img
-          src={TheBird}
-          alt="TheBird"
-          className="absolute bottom right-36 h-full w-full object-contain"
-        />
+      <TheBird/>
       </div>
 
       {/* Right part with logo and login form */}
