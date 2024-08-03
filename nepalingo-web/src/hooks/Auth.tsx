@@ -28,7 +28,7 @@ const AuthContext = createContext<AuthContextProps>({
   signIn: (data) => supabaseClient.auth.signInWithPassword(data),
   resetPasswordEmail: (email) =>
     supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://nepalingo.com/reset-password",
+      redirectTo: "https://www.nepalingo.com/reset-password",
     }),
   resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
 });
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signIn: (data) => supabaseClient.auth.signInWithPassword(data),
     resetPasswordEmail: (email) =>
       supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: "http://nepalingo.com/reset-password",
+        redirectTo: "https://www.nepalingo.com/reset-password",
       }),
     resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
   };
