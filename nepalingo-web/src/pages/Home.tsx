@@ -60,10 +60,10 @@ const Home: React.FC = () => {
           />
         </div>
 
-        <div className="fixed top-4 right-4">
+        <div className="flex h-16 max-h-12 items-center justify-between py-4 px-5 bg-white-sidebar border-black">
           <button
             onClick={handleOpenFeedbackForm}
-            className="bg-blue-500 text-black px-2 py-1 rounded-md hover:bg-white-600"
+            className="bg-white-500 text-black px-2 py-1 rounded-md hover:bg-red-600"
           >
             Give Feedback
           </button>
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
 
 
         {isFeedbackFormOpen && (
-          <div className="fixed inset-0 bg-black-800 bg-opacity-0 flex justify-center items-center">
+          <div className="fixed inset-0 bg-white-800 bg-opacity-50 flex justify-center items-center">
             <FeedbackForm onClose={handleCloseFeedbackForm} />
           </div>
         )}
