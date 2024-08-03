@@ -87,7 +87,7 @@ const Login: React.FC = () => {
     <div className="flex h-screen bg-black text-white">
       {/* Left part with TheBird */}
       <div className="relative w-1/2 flex items-end">
-      <TheBird/>
+      <TheBird style={{ transform: 'scaleX(-1)' }} />
       </div>
 
       {/* Right part with logo and login form */}
