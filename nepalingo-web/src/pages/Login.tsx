@@ -11,7 +11,7 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import TheBird from "@/assets/TheBird.png";
+import BhasaAnimation from "@/components/AnimatedBhasaWithLottie";
 import ReactGA from "react-ga4";
 
 const Login: React.FC = () => {
@@ -20,6 +20,7 @@ const Login: React.FC = () => {
     page: window.location.pathname,
     title: "login",
   });
+
   const [action, setAction] = useState<"Sign Up" | "Log In">("Sign Up");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -35,12 +36,12 @@ const Login: React.FC = () => {
     setError(null);
     setSuccess(false);
 
-    if (action === "Sign Up" && username == "") {
+    if (action === "Sign Up" && username === "") {
       setError("Please enter a username");
       return;
     }
 
-    if (action === "Sign Up" && username != "") {
+    if (action === "Sign Up" && username !== "") {
       const { error } = await signUp({
         email,
         password,
@@ -83,19 +84,30 @@ const Login: React.FC = () => {
   if (session) {
     return <Navigate to={"/"} replace />;
   }
+
   return (
     <div className="flex h-screen bg-black text-white">
-      {/* Left part with TheBird */}
-      <div className="relative w-1/2 flex items-end">
-        <img
-          src={TheBird}
-          alt="TheBird"
-          className="absolute bottom right-36 h-full w-full object-contain"
-        />
+      <div className="relative w-1/2 flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <svg
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute z-0 w-full h-full"
+          >
+            <path
+              fill="#FFD6E8"
+              d="M52.9,-53.1C66.5,-39.4,74,-19.7,70.6,-3.4C67.2,12.9,52.9,25.7,39.3,36.9C25.7,48.1,12.9,57.5,-3.2,60.7C-19.2,63.9,-38.3,60.7,-51.7,49.5C-65,38.3,-72.5,19.2,-68.5,4.1C-64.4,-11,-48.8,-22.1,-35.4,-35.8C-22.1,-49.5,-11,-65.9,4.3,-70.2C19.7,-74.5,39.4,-66.8,52.9,-53.1Z"
+              transform="translate(102 117) scale(1.36)"
+            />
+          </svg>
+          <div style={{ transform: "scaleX(-1)" }}>
+            <BhasaAnimation />
+          </div>
+        </div>
       </div>
 
       {/* Right part with logo and login form */}
-      <div className="relative w-1/2 flex justify-center items-center m-0">
+      <div className="relative w-1/2 flex justify-center items-center">
         <img
           src={logo}
           alt="Nepalingo Logo"
@@ -162,6 +174,7 @@ const Login: React.FC = () => {
             </div>
           </div>
 
+          {/* Forgot Password link */}
           {action === "Sign Up" ? null : (
             <div className="text-right text-sm text-gray-400 mb-3">
               <span
