@@ -41,7 +41,7 @@ const Flashcard: React.FC = () => {
   };
 
   const handleNextWord = async (
-    generator?: Generator<string, void, unknown>,
+    generator?: Generator<string, void, unknown>
   ) => {
     if (!generator && wordGenerator) {
       generator = wordGenerator;
@@ -83,18 +83,17 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-red-500 p-4 rounded-[16px] shadow-md hover:bg-red-500 hover:text-white flex items-center justify-center"
-            onClick={() =>{
+            onClick={() => {
               handleNextWord();
               ReactGA.event({
                 category: "flash cards",
-                label:"thumbs down",
+                label: "thumbs down",
                 action: "Click",
                 value: 99,
                 nonInteraction: true,
                 transport: "xhr",
               });
-            }
-          }
+            }}
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faThumbsDown} size="lg" />
@@ -102,18 +101,17 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-gray-500 p-4 rounded-[16px] shadow-md hover:bg-gray-500 hover:text-white flex items-center justify-center"
-            onClick={ () =>{ 
+            onClick={() => {
               handleFlip();
               ReactGA.event({
                 category: "flash cards",
-                label:"eye",
+                label: "eye",
                 action: "Click",
                 value: 99,
                 nonInteraction: true,
                 transport: "xhr",
               });
-            }
-          }
+            }}
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faEye} size="lg" />
@@ -125,14 +123,13 @@ const Flashcard: React.FC = () => {
               handleNextWord();
               ReactGA.event({
                 category: "flash cards",
-                label:"thumbs up",
+                label: "thumbs up",
                 action: "Click",
                 value: 99,
                 nonInteraction: true,
                 transport: "xhr",
               });
-            }
-          }
+            }}
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faThumbsUp} size="lg" />
