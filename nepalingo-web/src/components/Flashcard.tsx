@@ -46,7 +46,6 @@ const Flashcard: React.FC = () => {
   const handleFlip = () => {
     setViewType((prevViewType) => (prevViewType + 1) % 3);
   };
-
   const handleNextWord = async () => {
     let wordArray: Array<string> = [];
     if (selectedLanguage === "Newari") {
@@ -94,7 +93,7 @@ const Flashcard: React.FC = () => {
           line
             .split(",")[0]
             .trim()
-            .replace(/(^"|"$)/g, ""),
+            .replace(/(^"|"$)/g, "")
         );
       }
     }
@@ -133,7 +132,16 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-red-500 p-4 rounded-[16px] shadow-md hover:bg-red-500 hover:text-white flex items-center justify-center"
-            onClick={handleNextWord}
+            onClick={() => {
+              handleNextWord();
+              ReactGA.event({
+                category: "thumbs up",
+                action: "Click",
+                value: 99,
+                nonInteraction: true,
+                transport: "xhr",
+              });
+            }}
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faThumbsDown} size="lg" />
@@ -141,7 +149,16 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-gray-500 p-4 rounded-[16px] shadow-md hover:bg-gray-500 hover:text-white flex items-center justify-center"
-            onClick={handleFlip}
+            onClick={() => {
+              handleFlip();
+              ReactGA.event({
+                category: "eye",
+                action: "Click",
+                value: 99,
+                nonInteraction: true,
+                transport: "xhr",
+              });
+            }}
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faEye} size="lg" />
@@ -149,7 +166,16 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-green-500 p-4 rounded-[16px] shadow-md hover:bg-green-500 hover:text-white flex items-center justify-center"
-            onClick={handleNextWord}
+            onClick={() => {
+              handleNextWord();
+              ReactGA.event({
+                category: "thumbs down",
+                action: "Click",
+                value: 99,
+                nonInteraction: true,
+                transport: "xhr",
+              });
+            }}
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faThumbsUp} size="lg" />
