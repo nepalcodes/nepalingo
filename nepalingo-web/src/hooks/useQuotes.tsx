@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLanguage } from "./Langauge";
+import { useLanguage } from "@/hooks/Langauge";
 
 interface Quote {
   text: string;
@@ -36,7 +36,6 @@ const useQuotes = (): QuotesResponse => {
   }
   const loadQuotes = (quotesText: string) => {
     const quotesArray = quotesText.split(/\r\n|\n/).map((line: string) => {
-      console.log(line);
       const [quote, englishTranslation] = parse(line);
       return {
         text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
@@ -59,7 +58,7 @@ const useQuotes = (): QuotesResponse => {
       case "Newari":
         sourceFile = "/quotes/newari.csv";
         break;
-      case "Tajpuria":
+      case "Tajpuriya":
         sourceFile = "/quotes/tajpuriya.csv";
         break;
       case "Maithili":
