@@ -83,7 +83,7 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-red-500 p-4 rounded-[16px] shadow-md hover:bg-red-500 hover:text-white flex items-center justify-center"
-            onClick={() => 
+            onClick={() =>{
               handleNextWord();
               ReactGA.event({
                 category: "flash cards",
@@ -94,6 +94,7 @@ const Flashcard: React.FC = () => {
                 transport: "xhr",
               });
             }
+          }
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faThumbsDown} size="lg" />
@@ -101,7 +102,7 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-gray-500 p-4 rounded-[16px] shadow-md hover:bg-gray-500 hover:text-white flex items-center justify-center"
-            onClick={ () => 
+            onClick={ () =>{ 
               handleFlip();
               ReactGA.event({
                 category: "flash cards",
@@ -112,6 +113,7 @@ const Flashcard: React.FC = () => {
                 transport: "xhr",
               });
             }
+          }
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faEye} size="lg" />
@@ -119,7 +121,7 @@ const Flashcard: React.FC = () => {
           <button
             disabled={isLoading}
             className="bg-white text-green-500 p-4 rounded-[16px] shadow-md hover:bg-green-500 hover:text-white flex items-center justify-center"
-            onClick={() => 
+            onClick={() => {
               handleNextWord();
               ReactGA.event({
                 category: "flash cards",
@@ -130,6 +132,7 @@ const Flashcard: React.FC = () => {
                 transport: "xhr",
               });
             }
+          }
             style={{ width: "50px", height: "50px" }}
           >
             <FontAwesomeIcon icon={faThumbsUp} size="lg" />
