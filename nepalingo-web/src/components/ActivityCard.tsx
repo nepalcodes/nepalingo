@@ -20,7 +20,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
   onClick,
 }) => {
   return (
-    <div className="relative daily-quiz-card text-white p-4 sm:p-4 md:p-4 rounded-lg flex flex-col justify-end h-full min-h-32 h-48 pb-5 overflow-hidden">
+    <div className="relative daily-quiz-card text-white p-4 sm:p-4 md:p-4 rounded-lg flex flex-col justify-end  min-h-32 h-48 pb-5 overflow-hidden">
       <img
         src={backgroundImageUrl}
         alt="Background"
