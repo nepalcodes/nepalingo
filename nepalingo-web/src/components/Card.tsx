@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import { useLanguage } from "@/hooks/Langauge";
 
 interface CardProps {
   Word: string;
   TranslatedWord: string;
+  NepaliWord?: string;
   Pronunciation: string;
   ImageUrl?: string;
   PronounciationUrl?: string;
@@ -14,12 +16,14 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({
   Word,
   TranslatedWord,
+  NepaliWord,
   Pronunciation,
   ImageUrl,
   PronounciationUrl,
   viewType,
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const { selectedLanguage } = useLanguage();
 
   const handlePronunciation = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -89,13 +93,15 @@ const Card: React.FC<CardProps> = ({
           <div className="w-full p-4 flex flex-col items-center justify-center text-center">
             <div className="text-center flex flex-col">
               <div className="text-lg font-bold mb-2 flex justify-center sm:text-lg md:text-xl lg:text-2xl">
-                <p>Nepali: </p>
+                <p>{selectedLanguage}: </p>
                 <p className="ml-2">{TranslatedWord}</p>
               </div>
-              <div className="text-lg font-bold mb-2 flex justify-center sm:text-lg md:text-xl lg:text-2xl">
-                <p>Newari: </p>
-                <p className="ml-2">{TranslatedWord}</p>
-              </div>
+              {NepaliWord && (
+                <div className="text-lg font-bold mb-2 flex justify-center sm:text-lg md:text-xl lg:text-2xl">
+                  <p>Nepali: </p>
+                  <p className="ml-2">{NepaliWord}</p>
+                </div>
+              )}
               <div className="text-lg font-bold mb-2 flex justify-center sm:text-lg md:text-xl lg:text-2xl">
                 <p>English: </p>
                 <p className="ml-2">{Word}</p>

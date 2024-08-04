@@ -11,7 +11,7 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import TheBird from "../assets/TheBird.png";
+import TheBird from "@/assets/TheBird.png";
 import ReactGA from "react-ga4";
 
 const Login: React.FC = () => {

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useDictionary from "@/hooks/useDictionary";
 import { generate } from "random-words";
 import Header from "@/components/header/Header";
 import Button from "@/components/Button";
 import { useStreak } from "@/hooks/StreakContext";
 import { useLanguage } from "@/hooks/Langauge";
+import { getNextWord } from "@/lib/getNextWord";
 
 const TestYourself: React.FC = () => {
   const { updateStreak } = useStreak();
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("today");
-  const [index, setIndex] = useState(0);
 
   const [options, setOptions] = useState<string[]>([
     "today",
@@ -21,12 +21,14 @@ const TestYourself: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const { data, isLoading } = useDictionary({
-    language: selectedLanguage || "newar",
+    language: selectedLanguage || "newari",
     word,
   });
+  const wordGeneratorRef = useRef<ReturnType<typeof getNextWord> | null>(null);
 
   useEffect(() => {
     updateStreak(); // Trigger streak update on flashcard page load
+    wordGeneratorRef.current = getNextWord(selectedLanguage || "newari");
   }, [selectedLanguage]);
 
   const getOptions = (word: string) => {
@@ -36,72 +38,21 @@ const TestYourself: React.FC = () => {
     setOptions(shuffledOptions);
   };
 
-  function getNextIndex(wordArray: Array<string>) {
-    const newIndex = (index + 1) % wordArray.length;
-    return newIndex;
-  }
-
   const handleNextQuestion = async () => {
-    let wordArray: Array<string> = [];
-    if (selectedLanguage === "Newari") {
-      wordArray = [
-        "hello",
-        "call",
-        "can",
-        "do",
-        "how",
-        "I",
-        "my",
-        "what",
-        "where",
-        "a",
-        "do",
-        "not",
-        "for",
-        "from",
-        "fun",
-        "have",
-        "help",
-        "language",
-        "me",
-        "name",
-        "need",
-        "please",
-        "police",
-        "sick",
-        "speak",
-        "understand",
-        "well",
-        "you",
-        "your",
-        "salt",
-      ];
-    } else if (selectedLanguage === "Tajpuriya") {
-      const wordText = await fetch("./dictionaries/TajpuriyaDictionary.csv")
-        .then((r) => r.text())
-        .catch((error) => {
-          console.error("Error fetching words:", error);
-        });
+    const generator = await wordGeneratorRef.current;
+    if (generator) {
+      const nextWord = generator?.next()?.value;
 
-      if (wordText) {
-        wordArray = wordText.split("\n").map((line: string) =>
-          line
-            .split(",")[0]
-            .trim()
-            .replace(/(^"|"$)/g, ""),
-        );
+      if (typeof nextWord === "string") {
+        setWord(nextWord);
+        setSelectedOption(null);
+        setIsCorrect(null);
+        getOptions(nextWord);
+      } else {
+        console.error("Generated word is not a string.");
       }
-    }
-
-    if (wordArray.length > 0) {
-      const newIndex = getNextIndex(wordArray);
-      setIndex(newIndex);
-      setWord(wordArray[newIndex]);
-      setSelectedOption(null);
-      setIsCorrect(null);
-      getOptions(wordArray[newIndex]);
     } else {
-      console.error("Word array is empty");
+      console.error("Word generator not initialized.");
     }
   };
 
