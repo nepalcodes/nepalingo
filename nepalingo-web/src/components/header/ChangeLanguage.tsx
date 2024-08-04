@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Menu from "./Menu";
+import Menu from "@/components/header/Menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { LanguageKey, Languages, useLanguage } from "@/hooks/Langauge";
