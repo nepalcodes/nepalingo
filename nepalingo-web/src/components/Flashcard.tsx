@@ -9,91 +9,49 @@ import Card from "@/components/Card";
 import useDictionary from "@/hooks/useDictionary";
 import ReactGA from "react-ga4";
 import { useLanguage } from "@/hooks/Langauge";
+import { getNextWord } from "@/lib/getNextWord";
 
 const Flashcard: React.FC = () => {
   const [viewType, setViewType] = useState(0);
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("Today");
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    // Make sure flashcard is updated when language is changed
-    handleNextWord();
-  }, [selectedLanguage]);
-
-  function getNextIndex(wordArray: Array<string>) {
-    const newIndex = (index + 1) % wordArray.length;
-    return newIndex;
-  }
+  const [wordGenerator, setWordGenerator] = useState<Generator<
+    string,
+    void,
+    unknown
+  > | null>(null);
 
   const { data, isLoading, error } = useDictionary({
     language: selectedLanguage || "",
     word,
   });
 
-  if (error) {
-    console.error(error);
-  }
+  useEffect(() => {
+    // Initialize the word generator when the language changes
+    const initWordGenerator = async () => {
+      const generator = await getNextWord(selectedLanguage || "Newari");
+      setWordGenerator(generator);
+      handleNextWord(generator);
+    };
+    initWordGenerator();
+  }, [selectedLanguage]);
 
   const handleFlip = () => {
     setViewType((prevViewType) => (prevViewType + 1) % 3);
   };
-  const handleNextWord = async () => {
-    let wordArray: Array<string> = [];
-    if (selectedLanguage === "Newari") {
-      wordArray = [
-        "hello",
-        "call",
-        "can",
-        "do",
-        "how",
-        "I",
-        "my",
-        "what",
-        "where",
-        "a",
-        "do",
-        "not",
-        "for",
-        "from",
-        "fun",
-        "have",
-        "help",
-        "language",
-        "me",
-        "name",
-        "need",
-        "please",
-        "police",
-        "sick",
-        "speak",
-        "understand",
-        "well",
-        "you",
-        "your",
-        "salt",
-      ];
-    } else if (selectedLanguage === "Tajpuriya") {
-      const wordText = await fetch("./dictionaries/TajpuriyaDictionary.csv")
-        .then((r) => r.text())
-        .catch((error) => {
-          console.error("Error fetching words:", error);
-        });
-
-      if (wordText) {
-        wordArray = wordText.split("\n").map((line: string) =>
-          line
-            .split(",")[0]
-            .trim()
-            .replace(/(^"|"$)/g, "")
-        );
+  const handleNextWord = async (
+    generator?: Generator<string, void, unknown>,
+  ) => {
+    if (!generator && wordGenerator) {
+      generator = wordGenerator;
+    }
+    if (generator) {
+      const nextWord = generator.next().value;
+      if (typeof nextWord === "string") {
+        setWord(nextWord);
+        setViewType(0);
       }
     }
-
-    const newIndex = getNextIndex(wordArray);
-    setIndex(newIndex);
-    setWord(wordArray[newIndex]);
-    setViewType(0);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -127,7 +85,7 @@ const Flashcard: React.FC = () => {
             onClick={() => {
               handleNextWord();
               ReactGA.event({
-                category: "thumbs up",
+                category: "thumbs down",
                 action: "Click",
                 nonInteraction: true,
                 transport: "xhr",
@@ -159,7 +117,7 @@ const Flashcard: React.FC = () => {
             onClick={() => {
               handleNextWord();
               ReactGA.event({
-                category: "thumbs down",
+                category: "thumbs up",
                 action: "Click",
                 nonInteraction: true,
                 transport: "xhr",
