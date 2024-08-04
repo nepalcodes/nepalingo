@@ -11,14 +11,6 @@ import ReactGA from "react-ga4";
 import { useLanguage } from "@/hooks/Langauge";
 
 const Flashcard: React.FC = () => {
-  ReactGA.event({
-    category: "flash cards",
-    action: "Click",
-    value: 99,
-    nonInteraction: true,
-    transport: "xhr",
-  });
-
   const [viewType, setViewType] = useState(0);
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("Today");
@@ -137,7 +129,6 @@ const Flashcard: React.FC = () => {
               ReactGA.event({
                 category: "thumbs up",
                 action: "Click",
-                value: 99,
                 nonInteraction: true,
                 transport: "xhr",
               });
@@ -154,7 +145,6 @@ const Flashcard: React.FC = () => {
               ReactGA.event({
                 category: "eye",
                 action: "Click",
-                value: 99,
                 nonInteraction: true,
                 transport: "xhr",
               });
@@ -171,7 +161,6 @@ const Flashcard: React.FC = () => {
               ReactGA.event({
                 category: "thumbs down",
                 action: "Click",
-                value: 99,
                 nonInteraction: true,
                 transport: "xhr",
               });
