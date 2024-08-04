@@ -38,9 +38,7 @@ const useQuotes = (): QuotesResponse => {
     const quotesArray = quotesText.split(/\r\n|\n/).map((line: string) => {
       const [quote, englishTranslation] = parse(line);
       return {
-        text: quote
-          ? quote.trim().replace(/(^"|"$)/g, "") + selectedLanguage
-          : "",
+        text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
         translation: englishTranslation
           ? englishTranslation.trim().replace(/(^"|"$)/g, "")
           : "",
