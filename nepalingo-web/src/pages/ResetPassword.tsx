@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../hooks/Auth";
+import { useAuth } from "@/hooks/Auth";
 import { useNavigate } from "react-router-dom";
 import CustomTextInput from "@/components/CustomTextInput";
 import Button from "@/components/Button";

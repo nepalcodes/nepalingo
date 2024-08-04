@@ -65,6 +65,7 @@ const Home: React.FC = () => {
             />
           </div>
 
+
           <div className="mb-5">
             <ActivityCard
               backgroundImageUrl="/CardOverlayBlur.png"
@@ -75,6 +76,12 @@ const Home: React.FC = () => {
                 <RandomQuoteComponent />
               </div>
             </ActivityCard>
+          </div>
+
+          <div className="mb-5 pt-5">
+            <div className="flex justify-center">
+              <RandomQuoteComponent />
+            </div>
           </div>
         </div>
       </div>

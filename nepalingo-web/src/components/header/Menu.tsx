@@ -1,5 +1,5 @@
 import React from "react";
-import { LanguageKey } from "../../hooks/Langauge";
+import { LanguageKey } from "@/hooks/Langauge";
 
 interface MenuProps {
   isOpen: boolean;

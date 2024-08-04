@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "@/App";
-import "./index.css";
+import "@/index.css";
 import { AuthProvider } from "@/hooks/Auth";
 import { StreakProvider } from "@/hooks/StreakContext";
 import { LanguageProvider } from "@/hooks/Langauge";
