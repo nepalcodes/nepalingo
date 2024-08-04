@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/hooks/Langauge";
 
 interface Quote {
   text: string;
@@ -9,23 +10,55 @@ export interface QuotesResponse {
   randomQuote: Quote | null;
 }
 
-interface useQuotesProps {
-  language: string;
-}
-
-const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
+const useQuotes = (): QuotesResponse => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
-  const [quotesText, setQuotesText] = useState("");
   const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
+  const { selectedLanguage } = useLanguage();
+
+  function parse(row: string) {
+    let insideQuote = false,
+      entry: Array<string> = [];
+    const entries = [];
+    row.split("").forEach(function (character) {
+      if (character === '"') {
+        insideQuote = !insideQuote;
+      } else {
+        if (character == "," && !insideQuote) {
+          entries.push(entry.join(""));
+          entry = [];
+        } else {
+          entry.push(character);
+        }
+      }
+    });
+    entries.push(entry.join(""));
+    return entries;
+  }
+  const loadQuotes = (quotesText: string) => {
+    const quotesArray = quotesText.split(/\r\n|\n/).map((line: string) => {
+      const [quote, englishTranslation] = parse(line);
+      return {
+        text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
+        translation: englishTranslation
+          ? englishTranslation.trim().replace(/(^"|"$)/g, "")
+          : "",
+      };
+    });
+
+    const randomIndex = Math.floor(Math.random() * quotesArray.length);
+    const randomQuote = quotesArray[randomIndex];
+
+    setQuotes(quotesArray);
+    setRandomQuote(randomQuote);
+  };
 
   useEffect(() => {
     let sourceFile = "";
-
-    switch (language) {
+    switch (selectedLanguage) {
       case "Newari":
         sourceFile = "/quotes/newari.csv";
         break;
-      case "Tajpuria":
+      case "Tajpuriya":
         sourceFile = "/quotes/tajpuriya.csv";
         break;
       case "Maithili":
@@ -39,37 +72,13 @@ const useQuotes = ({ language }: useQuotesProps): QuotesResponse => {
       fetch(sourceFile)
         .then((r) => r.text())
         .then((text) => {
-          setQuotesText(text);
+          loadQuotes(text);
         })
         .catch((error) => {
           console.error("Error fetching quotes:", error);
         });
     }
-  }, [language]);
-
-  useEffect(() => {
-    if (quotesText) {
-      const loadQuotes = () => {
-        const quotesArray = quotesText.split("\n").map((line: string) => {
-          const [quote, englishTranslation] = line.split(",");
-          return {
-            text: quote ? quote.trim().replace(/(^"|"$)/g, "") : "",
-            translation: englishTranslation
-              ? englishTranslation.trim().replace(/(^"|"$)/g, "")
-              : "",
-          };
-        });
-
-        const randomIndex = Math.floor(Math.random() * quotesArray.length);
-        const randomQuote = quotesArray[randomIndex];
-
-        setQuotes(quotesArray);
-        setRandomQuote(randomQuote);
-      };
-
-      loadQuotes();
-    }
-  }, [quotesText]);
+  }, [selectedLanguage]);
 
   return { quotes, randomQuote };
 };

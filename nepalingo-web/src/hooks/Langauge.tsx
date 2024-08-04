@@ -13,7 +13,7 @@ export const Languages = {
 } as const;
 
 type LanguageContextProps = {
-  selectedLanguage: string;
+  selectedLanguage: LanguageKey | "";
   switchLanguage: (value: LanguageKey) => void;
 };
 const LanguageContext = createContext<LanguageContextProps>({

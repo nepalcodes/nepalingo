@@ -33,7 +33,7 @@ const UserProfile: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         type="button"
         className="inline-flex justify-center items-center w-9 h-9 rounded-full border border-gray-300 shadow-sm bg-gray-700 text-sm font-medium hover:bg-gray-600 focus:outline-none"
@@ -44,10 +44,7 @@ const UserProfile: React.FC = () => {
         </div>
       </button>
       {isOpen && (
-        <div
-          ref={dropdownRef}
-          className="absolute right-0 z-10 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4"
-        >
+        <div className="absolute right-0 z-10 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4">
           <div className="flex flex-col items-center">
             <div className="w-16 h-16">
               <UserAvatar />
