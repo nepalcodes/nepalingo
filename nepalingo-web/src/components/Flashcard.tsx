@@ -12,15 +12,6 @@ import { useLanguage } from "@/hooks/Langauge";
 import { getNextWord } from "@/lib/getNextWord";
 
 const Flashcard: React.FC = () => {
-  ReactGA.event({
-    category: "flash cards",
-    label:"",
-    action: "Click",
-    value: 99,
-    nonInteraction: true,
-    transport: "xhr",
-  });
-
   const [viewType, setViewType] = useState(0);
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("Today");
