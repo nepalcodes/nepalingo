@@ -26,7 +26,7 @@ const GreetingCard: React.FC<GreetingCardProps> = ({ name }) => {
   return (
     <div className=" bg-black font-secondary">
       <h1 className="text-3xl max-md:text-2xl max-sm:text-xl font-bold leading-7 text-white">
-        {`${getCurrentGreeting()} ${name},`} 
+        {`${getCurrentGreeting()} ${name},`}
       </h1>
       <p className=" text-md max-md:text-sm  font-light leading-6 mt-2 max-md:mt-1 text-white text-left">
         Lets learn some new words today!
