@@ -27,7 +27,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-black/80" />
-      <div className="relative flex flex-row flex-wrap justify-between items-end ">
+      <div className="relative flex flex-row gap-2 flex-wrap justify-between items-end ">
         <div className="flex min-w-24  flex-col ">
           <p className="text-base sm:text-lg font-bold mb-1">
             {quizYourselfText}
