@@ -65,7 +65,6 @@ const Home: React.FC = () => {
             />
           </div>
 
-
           <div className="mb-5">
             <ActivityCard
               backgroundImageUrl="/CardOverlayBlur.png"
