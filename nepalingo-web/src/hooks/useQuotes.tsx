@@ -10,10 +10,6 @@ export interface QuotesResponse {
     randomQuote: Quote | null;
 }
 
-interface useQuotesProps {
-    language: string;
-}
-
 const useQuotes = (): QuotesResponse => {
     const [quotes, setQuotes] = useState<Quote[]>([]);
     const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
@@ -22,9 +18,9 @@ const useQuotes = (): QuotesResponse => {
 
 
     function parse(row: string) {
-        var insideQuote = false,
-            entries = [],
+        let insideQuote = false,
             entry: Array<string> = [];
+        const entries = [];
         row.split('').forEach(function(character) {
             if (character === '"') {
                 insideQuote = !insideQuote;
