@@ -65,15 +65,9 @@ const Home: React.FC = () => {
           </div>
 
           <div className="mb-5 pt-5">
-            <ActivityCard
-              backgroundImageUrl="/CardOverlayBlur.png"
-              quizYourselfText="Random Quote!"
-              descriptionText={`Here's a random quote!`}
-            >
-              <div className="flex justify-center">
-                <RandomQuoteComponent />
-              </div>
-            </ActivityCard>
+            <div className="flex justify-center">
+              <RandomQuoteComponent />
+            </div>
           </div>
         </div>
       </div>

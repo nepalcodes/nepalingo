@@ -1,17 +1,8 @@
 import React from "react";
-import { useLanguage } from "@/hooks/Langauge";
 import useQuotes from "@/hooks/useQuotes";
 
 const RandomQuoteComponent: React.FC = () => {
-  const { selectedLanguage } = useLanguage();
-
-  if (!selectedLanguage) {
-    return <div>Please select a language.</div>;
-  }
-
-  const { randomQuote } = useQuotes({
-    language: selectedLanguage,
-  });
+  const { randomQuote } = useQuotes();
 
   if (!randomQuote) {
     return <div>Loading...</div>;
