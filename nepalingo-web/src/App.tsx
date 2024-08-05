@@ -6,18 +6,17 @@ import DictionaryPage from "@/pages/DictionaryPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
-import { LanguageProvider } from "./contexts/LanguageContext"
+import { LanguageProvider } from "./contexts/LanguageContext";
 import RandomQuoteComponent from "./components/randomQuotes";
 import FeedbackForm from "@/components/FeedbackForm";
 
 const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
   ReactGA.initialize(TrackingID);
-    
-    const handleFeedbackFormClose = () => {
-      console.log('Feedback form closed');
-     
-    };
+
+  const handleFeedbackFormClose = () => {
+    console.log("Feedback form closed");
+  };
 
   return (
     <>
@@ -26,9 +25,10 @@ const App: React.FC = () => {
       </LanguageProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} /> <Route 
-            path="/feedback" 
-            element={<FeedbackForm onClose={handleFeedbackFormClose} />} 
+          <Route path="/login" element={<Login />} />{" "}
+          <Route
+            path="/feedback"
+            element={<FeedbackForm onClose={handleFeedbackFormClose} />}
           />
           <Route element={<PrivateRoutes />}>
             <Route path="/" element={<Home />} />

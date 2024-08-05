@@ -69,13 +69,11 @@ const Home: React.FC = () => {
           </button>
         </div>
 
-
         {isFeedbackFormOpen && (
           <div className="fixed inset-0 bg-white-800 bg-opacity-50 flex justify-center items-center">
             <FeedbackForm onClose={handleCloseFeedbackForm} />
           </div>
         )}
-
       </div>
     </div>
   );

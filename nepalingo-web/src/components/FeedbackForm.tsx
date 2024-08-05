@@ -24,13 +24,11 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
 
     // Insert feedback into Supabase
     const { error: insertError } = await supabase
-      .from('feedback')
-      .insert([
-        { rating, emoji_rating: emojiRating, comments }
-      ]);
+      .from("feedback")
+      .insert([{ rating, emoji_rating: emojiRating, comments }]);
 
     if (insertError) {
-      console.error('Error inserting feedback:', insertError);
+      console.error("Error inserting feedback:", insertError);
       return;
     }
 
@@ -88,7 +86,9 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
                 <button
                   key={index}
                   className={`text-3xl px-2 transition-transform duration-200 transform ${
-                    emojiRating === index + 1 ? 'outline outline-2 outline-green-500 scale-125' : ''
+                    emojiRating === index + 1
+                      ? "outline outline-2 outline-green-500 scale-125"
+                      : ""
                   }`}
                   onClick={() => setEmojiRating(index + 1)}
                 >
