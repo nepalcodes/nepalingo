@@ -39,7 +39,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
         {children}
         {buttonText && onClick && (
           <Button
-            className="bg-red-600 block w-fit h-fit text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
+            className="bg-primary block w-fit h-fit text-white font-bold py-1 px-3 sm:py-2 sm:px-5 md:py-3 md:px-6 rounded text-xs sm:text-sm md:text-base"
             smallHeight={true}
             onClick={onClick}
           >
