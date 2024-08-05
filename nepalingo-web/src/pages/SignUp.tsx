@@ -33,12 +33,11 @@ const SignUp: React.FC = () => {
         setError(null);
         setSuccess(false);
         let formData = new FormData(e.currentTarget)
-        const { data, error } = await signUp({
+        const { error } = await signUp({
             options: { data: { username: (formData.get('username') as string) } },
             email: (formData.get('email') as string),
             password: (formData.get('password') as string),
         });
-        console.log(data)
         if (error) {
             setError(error.message);
         } else {
