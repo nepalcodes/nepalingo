@@ -10,7 +10,6 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   const [emojiRating, setEmojiRating] = useState<number | null>(null);
   const [comments, setComments] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [showFeedback, setShowFeedback] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   const handleClose = () => {
@@ -32,22 +31,18 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
 
     if (insertError) {
       console.error('Error inserting feedback:', insertError);
-      // Handle the error (e.g., show an error message)
       return;
     }
+
     setSubmitted(true);
-    setTimeout(() => {
-      setShowFeedback(false);
-      onClose();
-    }, 2000);
   };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md relative">
-      {submitted && showFeedback ? (
+      {submitted ? (
         <div className="text-center">
           <button
-            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-5xl p-2"
+            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl p-2"
             onClick={handleClose}
           >
             &times;

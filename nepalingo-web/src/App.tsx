@@ -6,9 +6,7 @@ import DictionaryPage from "@/pages/DictionaryPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
-import { LanguageProvider } from "./contexts/LanguageContext";
-import About from "@/components/FeedbackForm";
-import QuizComponent from "./components/QuizComponent";
+import { LanguageProvider } from "./contexts/LanguageContext"
 import RandomQuoteComponent from "./components/randomQuotes";
 import FeedbackForm from "@/components/FeedbackForm";
 
@@ -39,9 +37,6 @@ const App: React.FC = () => {
           </Route>
         </Routes>
       </Router>
-      <div className="min-h-screen flex justify-center items-center">
-        <QuizComponent />
-      </div>
     </>
   );
 };
