@@ -37,15 +37,17 @@ async function getFetcherByLanguage(
   if (!word) {
     word = "hello";
   }
-
+  let newariResult: DictionaryResponse;
+  let newariFallbackResult: string;
+  let maithiliResult: string;
   switch (language) {
     case "Newari":
-      const newariResult = await getNewariWord(word);
+      newariResult = await getNewariWord(word);
       if (newariResult.meanings.length > 0) {
         return newariResult;
       }
       // Fall back to Google Translate if no result is found
-      const newariFallbackResult = await getGTranslate("newari", word);
+      newariFallbackResult = await getGTranslate("newari", word);
       return {
         language,
         word,
@@ -59,7 +61,7 @@ async function getFetcherByLanguage(
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     case "Maithili":
-      const maithiliResult = await getGTranslate("maithili", word);
+      maithiliResult = await getGTranslate("maithili", word);
       return {
         language,
         word,

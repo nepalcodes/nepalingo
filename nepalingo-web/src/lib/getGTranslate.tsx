@@ -2,7 +2,7 @@ const GOOGLE_TRANSLATE_API_KEY = "AIzaSyCi239eredIAEEJkI8xzvGwW1GPS7B1vxQ";
 
 export const getGTranslate = async (
   targetLanguage: string,
-  text: string
+  text: string,
 ): Promise<string> => {
   const url = `https://translation.googleapis.com/language/translate/v2?key=${GOOGLE_TRANSLATE_API_KEY}&q=${text}&target=${targetLanguage}`;
 
