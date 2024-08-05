@@ -27,19 +27,20 @@ const CustomTextInput = ({
     <div className={`flex-1 h-full  ${containerStyle}`}>
       {label && (
         <label
-          htmlFor="input-group-1"
-          className="block mb-2 text-sm font-medium text-white"
+          htmlFor={`form-data-${name}`}
+          className="block mb-1 text-sm font-secondary  text-grayLight"
         >
           {label}
         </label>
       )}
       <div
-        className={`relative  w-full h-full  rounded-lg  bg-grayDark ${error && "border-1 border-primary"}`}
+        className={`relative flex flex-row items-center px-5  w-full h-full  rounded-lg  bg-grayDark ${error && "border-1 border-primary"}`}
       >
         {iconProps && <FontAwesomeIcon {...iconProps} />}
         <input
+          id={`form-data-${name}`}
           name={name}
-          className={`p-4 ${iconProps ? "ps-12" : ""} bg-transparent h-full rounded-lg text-white text-sm  block w-full ${className}`}
+          className={`p-4 ${iconProps ? "ps-4" : ""} bg-transparent  h-full rounded-lg text-white text-sm  block w-full ${className} focus:outline-none `}
           placeholder={placeholder}
           {...props}
         />
