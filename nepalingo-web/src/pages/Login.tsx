@@ -52,12 +52,12 @@ const Login: React.FC = () => {
 
     return (
         <div className="flex max-lg:flex-col max-md:items-center h-[100svh]  text-white">
-            <div className="relative w-1/2 max-md:w-full max-lg:mx-auto h-auto max-lg:flex-1  flex items-center justify-center overflow-hidden">
+            <div className="relative w-1/2 max-md:w-[80svw] h-auto max-lg:mx-auto max-lg:flex-1  flex items-center justify-center overflow-clip">
                 <div className="relative items-center justify-center">
                     <svg
                         viewBox="0 0 200 200"
                         xmlns="http://www.w3.org/2000/svg"
-                        className="absolute z-0 w-full h-auto"
+                        className="absolute z-0 w-full h-full "
                     >
                         <path
                             fill="#FFD6E8"
