@@ -1,20 +1,21 @@
+
 import React, { FormEvent, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/Auth";
 import CustomTextInput from "@/components/CustomTextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faUser,
     faEnvelope,
     faLock,
     faEye,
     faEyeSlash,
+    faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import BhasaAnimation from "@/components/AnimatedBhasaWithLottie";
 import ReactGA from "react-ga4";
 import Button from "@/components/Button";
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
     ReactGA.send({
         hitType: "pageview",
         page: window.location.pathname,
@@ -22,23 +23,26 @@ const Login: React.FC = () => {
     });
 
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<boolean>(false);
     const [showPassword, setShowPassword] = useState(false);
-    const { signIn, session } = useAuth();
-    const navigate = useNavigate();
+    const { signUp, session } = useAuth();
 
     // Function to handle form submission
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
+        setSuccess(false);
         let formData = new FormData(e.currentTarget)
-        const { error } = await signIn({
+        const { data, error } = await signUp({
+            options: { data: { username: (formData.get('username') as string) } },
             email: (formData.get('email') as string),
             password: (formData.get('password') as string),
         });
+        console.log(data)
         if (error) {
             setError(error.message);
         } else {
-            navigate("/");
+            setSuccess(true);
         }
     };
 
@@ -73,16 +77,30 @@ const Login: React.FC = () => {
                 <form onSubmit={handleSubmit} className="container flex-col w-96  max-lg:w-full  p-2">
                     {/* Header */}
                     <div className="flex flex-col mb-6">
-                        <div className="text-4xl font-bold text-primary uppercase">Login</div>
+                        <div className="text-4xl font-bold text-primary uppercase">Sign up</div>
                     </div>
 
                     {/* Input fields */}
                     <div className="flex flex-1  flex-col gap-3 mb-2">
+
+                        <CustomTextInput
+                            label="Username"
+                            name="username"
+                            required
+                            autoComplete="name"
+                            placeholder="eg: bird24"
+                            iconProps={{
+                                icon: faUser,
+                                className:
+                                    "text-white ",
+                            }}
+                        />
                         <CustomTextInput
                             label="Email"
                             name="email"
+                            autoComplete="username"
                             required
-                            placeholder="eg., bird24@bigbirds.com"
+                            placeholder="eg: bird24@bigbirds.com"
                             iconProps={{
                                 icon: faEnvelope,
                                 className:
@@ -93,8 +111,9 @@ const Login: React.FC = () => {
                             <CustomTextInput
                                 label="Password"
                                 name="password"
+                                autoComplete="current-password"
                                 required
-                                placeholder="eg., @ReallySecure07"
+                                placeholder="eg: @ReallySecure07"
                                 type={showPassword ? "text" : "password"}
                                 iconProps={{
                                     icon: faLock,
@@ -113,25 +132,22 @@ const Login: React.FC = () => {
 
                     {error && <p className="text-red-500 mt-2">{error}</p>}
 
-                    {/* Forgot Password link */}
-                    <p
-                        className="text-sm text-grayLight mb-3  text-right font-secondary cursor-pointer transition-colors hover:text-gray-300"
-                        onClick={() => navigate("/reset-password-email")}
-                    >
-                        Forgot Password?
-                    </p>
+                    {success && (
+                        <p className="text-green-500 mt-4">
+                            Sign up successful! Please check your email to confirm.
+                        </p>
+                    )}
 
                     {/* Action buttons */}
-                    <div className="flex flex-1 w-full">
+                    <div className="flex flex-1 w-full mt-5">
                         <Button
                             type="submit"
                             className="bg-primary block w-full text-white font-bold py-2 px-6 rounded  text-md"
-                        >Login</Button>
+                        >SignUp</Button>
                     </div>
-
                     <p className="text-sm text-grayLight mt-2 text-center font-secondary cursor-pointer transition-colors hover:text-gray-300">
-                        <Link to="/signup">
-                            Don't have an account? <span className="text-primary underline">Sign Up</span>
+                        <Link to="/login">
+                            Already have an account? <span className="text-primary underline">Login</span>
                         </Link>
                     </p>
                 </form>
@@ -140,4 +156,4 @@ const Login: React.FC = () => {
     );
 };
 
-export default Login;
+export default SignUp;
