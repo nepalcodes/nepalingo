@@ -38,43 +38,33 @@ async function getFetcherByLanguage(
     word = "hello";
   }
   let newariResult: DictionaryResponse;
-  let newariFallbackResult: string;
-  let maithiliResult: string;
+  // let newariFallbackResult: string;
+  // let maithiliResult: string;
   switch (language) {
     case "Newari":
       newariResult = await getNewariWord(word);
 
       if (newariResult.meanings.length === 0) {
-        newariFallbackResult = await getGTranslate("new", word);
-        return {
-          language,
-          word,
-          meanings: [
-            {
-              language,
-              meaningOriginal: newariFallbackResult,
-              meaningEn: word,
-            },
-          ],
-        };
+        return await getGTranslate("new", word);
+        // return {
+        //   language,
+        //   word,
+        //   meanings: [
+        //     {
+        //       language,
+        //       meaningOriginal: newariFallbackResult,
+        //       meaningEn: word,
+        //     },
+        //   ],
+        // };
       }
       return newariResult;
 
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     case "Maithili":
-      maithiliResult = await getGTranslate("mai", word);
-      return {
-        language,
-        word,
-        meanings: [
-          {
-            language,
-            meaningOriginal: maithiliResult,
-            meaningEn: word,
-          },
-        ],
-      };
+      return await getGTranslate("mai", word);
+
     default:
       throw new Error(`Language ${language} not supported`);
   }
