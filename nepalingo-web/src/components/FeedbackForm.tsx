@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { supabase } from "../supabaseClient";
+import { supabaseClient } from "@/config/supabase-client";
 
 interface FeedbackFormProps {
   onClose: () => void;
@@ -23,7 +23,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
     }
 
     // Insert feedback into Supabase
-    const { error: insertError } = await supabase
+    const { error: insertError } = await supabaseClient
       .from("feedback")
       .insert([{ rating, emoji_rating: emojiRating, comments }]);
 
