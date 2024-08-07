@@ -1,19 +1,28 @@
 const GOOGLE_TRANSLATE_API_KEY = "AIzaSyCi239eredIAEEJkI8xzvGwW1GPS7B1vxQ";
-let language: string;
+
+const languageCodes: { [key: string]: string } = {
+  maithili: "mai",
+  newari: "new",
+};
 
 export const getGTranslate = async (
-  targetLanguage: string,
+  language: string,
   word: string
 ): Promise<{
   language: string;
   word: string;
-  meanings: {
+  meanings: Array<{
     language: string;
     meaningOriginal: string;
     meaningEn: string;
-  }[];
+  }>;
 }> => {
-  const url = `https://translation.googleapis.com/targetLanguage/translate/v2?key=${GOOGLE_TRANSLATE_API_KEY}&q=${word}&target=${targetLanguage}`;
+  const targetLanguage = languageCodes[language];
+  if (!targetLanguage) {
+    throw new Error(`Language code for ${language} not found`);
+  }
+
+  const url = `https://translation.googleapis.com/language/translate/v2?key=${GOOGLE_TRANSLATE_API_KEY}&q=${word}&target=${targetLanguage}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -22,14 +31,6 @@ export const getGTranslate = async (
     throw new Error(data.error.message);
   }
 
-  if (targetLanguage === "new") {
-    language = "newari";
-  }
-  if (targetLanguage === "mai") {
-    language = "maithili";
-  }
-
-  //return data.data.translations[0].translatedText;
   return {
     language,
     word,

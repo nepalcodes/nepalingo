@@ -45,7 +45,8 @@ async function getFetcherByLanguage(
       newariResult = await getNewariWord(word);
 
       if (newariResult.meanings.length === 0) {
-        return await getGTranslate("new", word);
+        console.log("Used Google Translate for newari");
+        return await getGTranslate("newari", word);
         // return {
         //   language,
         //   word,
@@ -63,8 +64,18 @@ async function getFetcherByLanguage(
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     case "Maithili":
-      return await getGTranslate("mai", word);
-
+      return await getGTranslate("maithili", word);
+    // return {
+    //   language,
+    //   word,
+    //   meanings: [
+    //     {
+    //       language,
+    //       meaningOriginal: maithiliResult,
+    //       meaningEn: word,
+    //     },
+    //   ],
+    // };
     default:
       throw new Error(`Language ${language} not supported`);
   }
