@@ -14,6 +14,5 @@ export const getGTranslate = async (
     throw new Error(data.error.message);
   }
 
-  console.log(data.data.translations[0].translatedText);
   return data.data.translations[0].translatedText;
 };

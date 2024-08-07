@@ -43,21 +43,23 @@ async function getFetcherByLanguage(
   switch (language) {
     case "Newari":
       newariResult = await getNewariWord(word);
-      if (newariResult.meanings.length > 0) {
-        return newariResult;
+
+      if (newariResult.meanings.length === 0) {
+        newariFallbackResult = await getGTranslate("new", word);
+        return {
+          language,
+          word,
+          meanings: [
+            {
+              language,
+              meaningOriginal: newariFallbackResult,
+              meaningEn: word,
+            },
+          ],
+        };
       }
-      // Fall back to Google Translate if no result is found
-      newariFallbackResult = await getGTranslate("new", word);
-      return {
-        language,
-        word,
-        meanings: [
-          {
-            language,
-            meaningEn: newariFallbackResult,
-          },
-        ],
-      };
+      return newariResult;
+
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     case "Maithili":
@@ -68,7 +70,8 @@ async function getFetcherByLanguage(
         meanings: [
           {
             language,
-            meaningEn: maithiliResult,
+            meaningOriginal: maithiliResult,
+            meaningEn: word,
           },
         ],
       };
