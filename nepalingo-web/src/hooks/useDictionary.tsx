@@ -47,7 +47,7 @@ async function getFetcherByLanguage(
         return newariResult;
       }
       // Fall back to Google Translate if no result is found
-      newariFallbackResult = await getGTranslate("newari", word);
+      newariFallbackResult = await getGTranslate("new", word);
       return {
         language,
         word,
@@ -61,7 +61,7 @@ async function getFetcherByLanguage(
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     case "Maithili":
-      maithiliResult = await getGTranslate("maithili", word);
+      maithiliResult = await getGTranslate("mai", word);
       return {
         language,
         word,
