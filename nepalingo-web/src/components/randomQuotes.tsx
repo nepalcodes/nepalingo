@@ -1,22 +1,19 @@
 import React from "react";
-import { useLanguage } from "../hooks/useLanguage";
-import useQuotes from "../hooks/useQuotes";
+import useQuotes from "@/hooks/useQuotes";
 
 const RandomQuoteComponent: React.FC = () => {
-  const { language } = useLanguage();
-  const { randomQuote } = useQuotes({ language });
+  const { randomQuote } = useQuotes();
 
   if (!randomQuote) {
     return <div>Loading...</div>;
   }
-  const { text } = randomQuote;
-  const translatedText = [language];
+  const { text, translation } = randomQuote;
 
   return (
     <div>
       <p style={styles.quote}>{text}</p>
       <p style={styles.translation}>
-        <em>{translatedText}</em>
+        <em>{translation}</em>
       </p>
     </div>
   );
@@ -32,7 +29,7 @@ const styles = {
   },
   quote: {
     fontSize: "18px",
-    fontStyle: "italic",
+    fontStyle: "normal",
     marginBottom: "10px",
   },
   translation: {

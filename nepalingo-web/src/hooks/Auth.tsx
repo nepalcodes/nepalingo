@@ -9,8 +9,6 @@ import {
 import { useContext, useState, useEffect, createContext } from "react";
 import { supabaseClient } from "@/config/supabase-client";
 
-// create a context for authentication
-
 type AuthContextProps = {
   session: Session | null | undefined;
   user: User | null | undefined;
@@ -19,6 +17,8 @@ type AuthContextProps = {
   signIn: (
     data: SignUpWithPasswordCredentials,
   ) => Promise<AuthTokenResponsePassword>;
+  resetPasswordEmail: (email: string) => Promise<{ error: Error | null }>;
+  resetPassword: (password: string) => Promise<{ error: Error | null }>;
 };
 const AuthContext = createContext<AuthContextProps>({
   session: null,
@@ -26,6 +26,11 @@ const AuthContext = createContext<AuthContextProps>({
   signOut: () => {},
   signUp: (data) => supabaseClient.auth.signUp(data),
   signIn: (data) => supabaseClient.auth.signInWithPassword(data),
+  resetPasswordEmail: (email) =>
+    supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://www.nepalingo.com/reset-password",
+    }),
+  resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -66,9 +71,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signOut: () => supabaseClient.auth.signOut(),
     signUp: (data) => supabaseClient.auth.signUp(data),
     signIn: (data) => supabaseClient.auth.signInWithPassword(data),
+    resetPasswordEmail: (email) =>
+      supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: "https://www.nepalingo.com/reset-password",
+      }),
+    resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
   };
 
-  // use a provider to pass down the value
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}
@@ -76,7 +85,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// export the useAuth hook
 export const useAuth = () => {
   return useContext(AuthContext);
 };
