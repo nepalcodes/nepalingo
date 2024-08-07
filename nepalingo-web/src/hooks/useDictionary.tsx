@@ -32,14 +32,13 @@ export type DictionaryResponse = {
 
 async function getFetcherByLanguage(
   language: string,
-  word?: string
+  word?: string,
 ): Promise<DictionaryResponse> {
   if (!word) {
     word = "hello";
   }
   let newariResult: DictionaryResponse;
-  // let newariFallbackResult: string;
-  // let maithiliResult: string;
+
   switch (language) {
     case "Newari":
       newariResult = await getNewariWord(word);
@@ -47,17 +46,6 @@ async function getFetcherByLanguage(
       if (newariResult.meanings.length === 0) {
         console.log("Used Google Translate for newari");
         return await getGTranslate("newari", word);
-        // return {
-        //   language,
-        //   word,
-        //   meanings: [
-        //     {
-        //       language,
-        //       meaningOriginal: newariFallbackResult,
-        //       meaningEn: word,
-        //     },
-        //   ],
-        // };
       }
       return newariResult;
 
@@ -65,17 +53,7 @@ async function getFetcherByLanguage(
       return await getTajpuriyaWord(word);
     case "Maithili":
       return await getGTranslate("maithili", word);
-    // return {
-    //   language,
-    //   word,
-    //   meanings: [
-    //     {
-    //       language,
-    //       meaningOriginal: maithiliResult,
-    //       meaningEn: word,
-    //     },
-    //   ],
-    // };
+
     default:
       throw new Error(`Language ${language} not supported`);
   }
@@ -84,7 +62,7 @@ async function getFetcherByLanguage(
 const useDictionary = ({ language, word }: DictionaryProps) => {
   const cacheKey = word ? `/${language}/${word}` : null;
   const { data, error, isLoading } = useSWR(cacheKey, () =>
-    getFetcherByLanguage(language, word)
+    getFetcherByLanguage(language, word),
   );
   return { data, error, isLoading };
 };

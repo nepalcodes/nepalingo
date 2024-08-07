@@ -7,7 +7,7 @@ const languageCodes: { [key: string]: string } = {
 
 export const getGTranslate = async (
   language: string,
-  word: string
+  word: string,
 ): Promise<{
   language: string;
   word: string;
