@@ -3,6 +3,7 @@ import { useLanguage } from "@/hooks/Langauge";
 
 interface Quote {
   text: string;
+
   translation: string;
 }
 export interface QuotesResponse {

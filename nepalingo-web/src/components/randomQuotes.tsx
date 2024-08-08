@@ -7,7 +7,6 @@ const RandomQuoteComponent: React.FC = () => {
   if (!randomQuote) {
     return <div>Loading...</div>;
   }
-
   const { text, translation } = randomQuote;
 
   return (
