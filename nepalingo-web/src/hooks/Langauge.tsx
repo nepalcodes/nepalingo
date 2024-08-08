@@ -9,7 +9,7 @@ export type LanguageKey = keyof typeof Languages;
 export const Languages = {
   Newari: "newari",
   Tajpuriya: "tajpuriya",
-  Maithili: "coming soon",
+  Maithili: "maithili",
 } as const;
 
 type LanguageContextProps = {

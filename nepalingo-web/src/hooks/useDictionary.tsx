@@ -1,7 +1,7 @@
 import useSWR from "swr";
-
 import { getNewariWord } from "@/lib/getNewariWord";
 import { getTajpuriyaWord } from "@/lib/getTajpuriyaWord";
+import { getGTranslate } from "@/lib/getGTranslate";
 
 export type DictionaryProps = {
   language: string;
@@ -37,12 +37,23 @@ async function getFetcherByLanguage(
   if (!word) {
     word = "hello";
   }
+  let newariResult: DictionaryResponse;
 
   switch (language) {
     case "Newari":
-      return await getNewariWord(word);
+      newariResult = await getNewariWord(word);
+
+      if (newariResult.meanings.length === 0) {
+        console.log("Used Google Translate for newari");
+        return await getGTranslate("newari", word);
+      }
+      return newariResult;
+
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
+    case "Maithili":
+      return await getGTranslate("maithili", word);
+
     default:
       throw new Error(`Language ${language} not supported`);
   }
