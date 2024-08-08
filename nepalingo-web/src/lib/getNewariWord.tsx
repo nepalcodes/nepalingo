@@ -38,7 +38,8 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
                 uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.audio.directory}/${meaning.audio.file}`,
               },
               image: meaning?.image && {
-                uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.image.directory}/w800h800b1sh1/${meaning.image.file}`,
+                // TODO: Revert this back to 400x400, Currently set to 400x401 to avoid API error
+                uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.image.directory}/w400h401b1sh1/${meaning.image.file}`,
               },
               meaningOriginal: meaning?.meaning_nb,
               meaningNp: meaning?.meaning_np,
