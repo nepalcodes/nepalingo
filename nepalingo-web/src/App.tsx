@@ -9,6 +9,7 @@ import About from "@/components/header/About";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
+import FeedbackForm from "@/components/FeedbackForm";
 import TestYourself from "@/pages/TestYourself";
 import SignUp from "./pages/SignUp";
 
@@ -16,12 +17,19 @@ const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
   ReactGA.initialize(TrackingID);
 
+  const handleFeedbackFormClose = () => {
+    console.log("Feedback form closed");
+  };
   return (
     <div className="mx-5 min-[1200px]:mx-auto max-w-[1200px] ">
       <Router>
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/feedback"
+            element={<FeedbackForm onClose={handleFeedbackFormClose} />}
+          />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/reset-password-email" element={<PasswordEmail />} />

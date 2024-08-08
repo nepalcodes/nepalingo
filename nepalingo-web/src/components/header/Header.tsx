@@ -13,6 +13,10 @@ const Header: React.FC = () => {
         </Link>
       </div>
       <div className="flex flex-row justify-between items-center gap-4">
+        {/* TODO: Move TO THE LEFT */}
+        <a href="/feedback" className="text-white hover:underline">
+          FeedbackForm
+        </a>
         <a href="/about" className="text-white hover:underline">
           About
         </a>
