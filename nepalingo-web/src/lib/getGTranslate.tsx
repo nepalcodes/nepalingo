@@ -1,4 +1,4 @@
-const GOOGLE_TRANSLATE_API_KEY = process.env.VITE_GOOGLE_TRANSLATE_API_KEY;
+const GOOGLE_TRANSLATE_API_KEY = import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY;
 
 const languageCodes: { [key: string]: string } = {
   maithili: "mai",
