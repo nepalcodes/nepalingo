@@ -14,7 +14,7 @@ type AuthContextProps = {
   signOut: () => void;
   signUp: (data: SignUpWithPasswordCredentials) => Promise<AuthResponse>;
   signIn: (
-    data: SignUpWithPasswordCredentials
+    data: SignUpWithPasswordCredentials,
   ) => Promise<AuthTokenResponsePassword>;
   resetPasswordEmail: (email: string) => Promise<{ error: Error | null }>;
 };
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setSession(session);
         setUser(session?.user || null);
         setLoading(false);
-      }
+      },
     );
 
     setData();
