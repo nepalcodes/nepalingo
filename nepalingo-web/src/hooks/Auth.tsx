@@ -28,7 +28,6 @@ const AuthContext = createContext<AuthContextProps>({
   resetPasswordEmail: (email) =>
     supabaseClient.auth.resetPasswordForEmail(email, {
       redirectTo: "https://www.nepalingo.com/reset-password",
-      //redirectTo: "http://localhost:5173/reset-password",
     }),
 });
 
@@ -73,7 +72,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     resetPasswordEmail: (email) =>
       supabaseClient.auth.resetPasswordForEmail(email, {
         redirectTo: "https://www.nepalingo.com/reset-password",
-        //redirectTo: "http://localhost:5173/reset-password",
       }),
   };
 
