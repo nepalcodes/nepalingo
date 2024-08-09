@@ -11,7 +11,8 @@ const ResetPassword: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { resetPassword } = useAuth();
   const navigate = useNavigate();
 
@@ -39,12 +40,12 @@ const ResetPassword: React.FC = () => {
       <div className="bg-black p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-4xl text-primary mb-6">Reset Password</h2>
         <form onSubmit={handlePasswordReset} className="space-y-4">
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <CustomTextInput
               label="New Password"
               name="NewPassword"
-              placeholder="eg., @ReallySecure07"
-              type={showPassword ? "text" : "password"}
+              placeholder="e.g., @ReallySecure07"
+              type={showNewPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               iconProps={{
@@ -55,16 +56,17 @@ const ResetPassword: React.FC = () => {
               containerStyle="h-12"
             />
             <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
+              icon={showNewPassword ? faEyeSlash : faEye}
               className="text-white absolute right-3 bottom-4 cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowNewPassword(!showNewPassword)}
             />
           </div>
-          <div className="flex flex-col">
+
+          <div className="flex flex-col relative">
             <CustomTextInput
               label="Confirm New Password"
               name="confirm password"
-              type={showPassword ? "text" : "password"}
+              type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               iconProps={{
@@ -75,11 +77,12 @@ const ResetPassword: React.FC = () => {
               containerStyle="h-12"
             />
             <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
+              icon={showNewPassword ? faEyeSlash : faEye}
               className="text-white absolute right-3 bottom-4 cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             />
           </div>
+
           <Button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded"
