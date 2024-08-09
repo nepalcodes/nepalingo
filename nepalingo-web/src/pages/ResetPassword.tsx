@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import { useAuth } from "@/hooks/Auth";
 import { useNavigate } from "react-router-dom";
 import CustomTextInput from "@/components/CustomTextInput";
 import Button from "@/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { supabaseClient } from "@/config/supabase-client";
 
 const ResetPassword: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const { resetPassword } = useAuth();
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handlePasswordReset = (event: React.FormEvent) => {
+  const handlePasswordReset = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -23,15 +22,21 @@ const ResetPassword: React.FC = () => {
       return;
     }
 
-    resetPassword(password).then(({ error }) => {
-      if (error) {
-        setError(error.message);
-        setMessage("");
-      } else {
-        setMessage("Password reset successful! Go to ");
-        setError("");
-      }
+    // Update the password using the Supabase client
+    const { error: updateError } = await supabaseClient.auth.updateUser({
+      password,
     });
+
+    if (updateError) {
+      setError(updateError.message);
+    } else {
+      navigate("/login", {
+        state: {
+          message:
+            "Password reset successful! Please log in with your new password.",
+        },
+      });
+    }
   };
 
   return (
@@ -39,12 +44,12 @@ const ResetPassword: React.FC = () => {
       <div className="bg-black p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-4xl text-primary mb-6">Reset Password</h2>
         <form onSubmit={handlePasswordReset} className="space-y-4">
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <CustomTextInput
               label="New Password"
               name="NewPassword"
-              placeholder="eg., @ReallySecure07"
-              type={showPassword ? "text" : "password"}
+              placeholder="e.g., @ReallySecure07"
+              type={showNewPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               iconProps={{
@@ -55,16 +60,17 @@ const ResetPassword: React.FC = () => {
               containerStyle="h-12"
             />
             <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
+              icon={showNewPassword ? faEyeSlash : faEye}
               className="text-white absolute right-3 bottom-4 cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowNewPassword(!showNewPassword)}
             />
           </div>
-          <div className="flex flex-col">
+
+          <div className="flex flex-col relative">
             <CustomTextInput
               label="Confirm New Password"
               name="confirm password"
-              type={showPassword ? "text" : "password"}
+              type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               iconProps={{
@@ -75,11 +81,12 @@ const ResetPassword: React.FC = () => {
               containerStyle="h-12"
             />
             <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
+              icon={showConfirmPassword ? faEyeSlash : faEye}
               className="text-white absolute right-3 bottom-4 cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             />
           </div>
+
           <Button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded"
@@ -87,17 +94,6 @@ const ResetPassword: React.FC = () => {
             Reset Password
           </Button>
         </form>
-        {message && (
-          <div className="mt-4 text-green-500">
-            {message}{" "}
-            <button
-              onClick={() => navigate("/login")}
-              className="underline text-white"
-            >
-              Login
-            </button>
-          </div>
-        )}
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
     </div>

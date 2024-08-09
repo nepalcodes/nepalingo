@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect, createContext } from "react";
 import {
   AuthResponse,
   AuthTokenResponsePassword,
@@ -6,7 +6,6 @@ import {
   SignUpWithPasswordCredentials,
   User,
 } from "@supabase/supabase-js";
-import { useContext, useState, useEffect, createContext } from "react";
 import { supabaseClient } from "@/config/supabase-client";
 
 type AuthContextProps = {
@@ -18,8 +17,8 @@ type AuthContextProps = {
     data: SignUpWithPasswordCredentials,
   ) => Promise<AuthTokenResponsePassword>;
   resetPasswordEmail: (email: string) => Promise<{ error: Error | null }>;
-  resetPassword: (password: string) => Promise<{ error: Error | null }>;
 };
+
 const AuthContext = createContext<AuthContextProps>({
   session: null,
   user: null,
@@ -30,12 +29,11 @@ const AuthContext = createContext<AuthContextProps>({
     supabaseClient.auth.resetPasswordForEmail(email, {
       redirectTo: "https://www.nepalingo.com/reset-password",
     }),
-  resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User>();
-  const [session, setSession] = useState<Session | null>();
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,14 +44,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       } = await supabaseClient.auth.getSession();
       if (error) throw error;
       setSession(session);
-      setUser(session?.user);
+      setUser(session?.user || null);
       setLoading(false);
     };
 
     const { data: listener } = supabaseClient.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session);
-        setUser(session?.user);
+        setUser(session?.user || null);
         setLoading(false);
       },
     );
@@ -75,7 +73,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       supabaseClient.auth.resetPasswordForEmail(email, {
         redirectTo: "https://www.nepalingo.com/reset-password",
       }),
-    resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
   };
 
   return (
