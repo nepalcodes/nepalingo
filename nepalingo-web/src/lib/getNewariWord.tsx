@@ -15,9 +15,8 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
   const response: DictionaryResponse = {
     language: "newari",
     word: word,
-    //Mapping the meanings from the api to create a custom response based on DictionaryResponse
     meanings:
-      data?.meanings.length == 0
+      data?.meanings.length === 0
         ? []
         : data?.meanings?.map(
             (meaning: {
@@ -33,26 +32,33 @@ export async function getNewariWord(word: string): Promise<DictionaryResponse> {
                 latn: string;
                 newa: string;
               };
-            }) => ({
-              audio: meaning?.audio && {
-                uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.audio.directory}/${meaning.audio.file}`,
-              },
-              image: meaning?.image && {
-                // TODO: Revert this back to 400x400, Currently set to 400x401 to avoid API error
-                uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.image.directory}/w400h401b1sh1/${meaning.image.file}`,
-              },
-              meaningOriginal: meaning?.meaning_nb,
-              meaningNp: meaning?.meaning_np,
-              meaningEn: meaning?.meaning_en,
-              dialect: meaning.dialect,
-              partsOfSpeech: meaning.pos,
-              transliterations: {
-                latn: meaning.transliterations?.latn,
-                deva: meaning.transliterations?.deva,
-                original: meaning.transliterations?.newa,
-              },
-            }),
-          ),
+            }) => {
+              // Skip the 'dolakha' dialect
+              if (meaning.dialect === 'dolakha') {
+                return null;
+              }
+              
+              return {
+                audio: meaning?.audio && {
+                  uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.audio.directory}/${meaning.audio.file}`,
+                },
+                image: meaning?.image && {
+                  // TODO: Revert this back to 400x400, Currently set to 400x401 to avoid API error
+                  uri: `${import.meta.env.VITE_NEPALBHASA_API_URL}/dict/${meaning.image.directory}/w400h401b1sh1/${meaning.image.file}`,
+                },
+                meaningOriginal: meaning?.meaning_nb,
+                meaningNp: meaning?.meaning_np,
+                meaningEn: meaning?.meaning_en,
+                dialect: meaning.dialect,
+                partsOfSpeech: meaning.pos,
+                transliterations: {
+                  latn: meaning.transliterations?.latn,
+                  deva: meaning.transliterations?.deva,
+                  original: meaning.transliterations?.newa,
+                },
+              };
+            },
+          ).filter(Boolean) as DictionaryResponse['meanings'], // Filter out any null entries
   };
   return response;
 }
