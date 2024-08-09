@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { useAuth } from "@/hooks/Auth";
 import { useNavigate } from "react-router-dom";
 import CustomTextInput from "@/components/CustomTextInput";
 import Button from "@/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { supabaseClient } from "@/config/supabase-client";
 
 const ResetPassword: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { resetPassword } = useAuth();
   const navigate = useNavigate();
 
-  const handlePasswordReset = (event: React.FormEvent) => {
+  const handlePasswordReset = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -24,15 +22,21 @@ const ResetPassword: React.FC = () => {
       return;
     }
 
-    resetPassword(password).then(({ error }) => {
-      if (error) {
-        setError(error.message);
-        setMessage("");
-      } else {
-        setMessage("Password reset successful! Go to ");
-        setError("");
-      }
+    // Update the password using the Supabase client
+    const { error: updateError } = await supabaseClient.auth.updateUser({
+      password,
     });
+
+    if (updateError) {
+      setError(updateError.message);
+    } else {
+      navigate("/login", {
+        state: {
+          message:
+            "Password reset successful! Please log in with your new password.",
+        },
+      });
+    }
   };
 
   return (
@@ -77,7 +81,7 @@ const ResetPassword: React.FC = () => {
               containerStyle="h-12"
             />
             <FontAwesomeIcon
-              icon={showNewPassword ? faEyeSlash : faEye}
+              icon={showConfirmPassword ? faEyeSlash : faEye}
               className="text-white absolute right-3 bottom-4 cursor-pointer"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             />
@@ -90,17 +94,6 @@ const ResetPassword: React.FC = () => {
             Reset Password
           </Button>
         </form>
-        {message && (
-          <div className="mt-4 text-green-500">
-            {message}{" "}
-            <button
-              onClick={() => navigate("/login")}
-              className="underline text-white"
-            >
-              Login
-            </button>
-          </div>
-        )}
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
     </div>

@@ -17,7 +17,6 @@ type AuthContextProps = {
     data: SignUpWithPasswordCredentials
   ) => Promise<AuthTokenResponsePassword>;
   resetPasswordEmail: (email: string) => Promise<{ error: Error | null }>;
-  resetPassword: (password: string) => Promise<{ error: Error | null }>;
 };
 
 const AuthContext = createContext<AuthContextProps>({
@@ -31,7 +30,6 @@ const AuthContext = createContext<AuthContextProps>({
       redirectTo: "https://www.nepalingo.com/reset-password",
       //redirectTo: "http://localhost:5173/reset-password",
     }),
-  resetPassword: (password) => supabaseClient.auth.updateUser({ password }),
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -77,26 +75,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         redirectTo: "https://www.nepalingo.com/reset-password",
         //redirectTo: "http://localhost:5173/reset-password",
       }),
-    resetPassword: async (password: string) => {
-      // Attempt to restore the session using the access token in the URL
-      const accessToken = new URLSearchParams(window.location.search).get(
-        "access_token"
-      );
-      if (accessToken) {
-        const { error: sessionError } = await supabaseClient.auth.setSession({
-          access_token: accessToken,
-          refresh_token: "",
-        });
-
-        if (sessionError) {
-          return { error: sessionError };
-        }
-      }
-
-      // Proceed to update the password
-      const { error } = await supabaseClient.auth.updateUser({ password });
-      return { error };
-    },
   };
 
   return (
