@@ -1,7 +1,13 @@
 import { Meaning } from "@/hooks/useDictionary";
 import React from "react";
 
-const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
+const SearchResponseCard = ({
+  meaning,
+  sentence,
+}: {
+  meaning: Meaning;
+  sentence: string;
+}) => {
   return (
     <div
       key={meaning.meaningOriginal}
@@ -43,9 +49,33 @@ const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
           )}
         </div>
         {meaning.meaningEn && (
-          <p className="my-4 text-sm text-white font-secondary">
-            {meaning.meaningEn}
-          </p>
+          <>
+            <p className="my-4 text-sm text-white font-secondary">
+              {meaning.meaningEn}
+            </p>
+            <p
+              style={{
+                fontWeight: "bold",
+              }}
+              className="text-primary"
+            >
+              Examples
+            </p>
+            <p className="my-4 text-sm text-white font-secondary">
+              {sentence.includes("-")
+                ? sentence.split("-")[0]
+                : sentence.includes("|")
+                  ? sentence.split("—")[0]
+                  : sentence}
+              <p>
+                {sentence.includes("-")
+                  ? sentence.split("-")[1]
+                  : sentence.includes("|")
+                    ? sentence.split("—")[1]
+                    : sentence}
+              </p>
+            </p>
+          </>
         )}
       </div>
       {meaning.image && (
