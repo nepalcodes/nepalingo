@@ -1,8 +1,8 @@
 [package]
-name = "app"
+name = "nepalingo"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "Nepalingo App - Learn the different languages of Nepal!"
+authors = ["Nepalingo"]
 license = ""
 repository = ""
 edition = "2021"
