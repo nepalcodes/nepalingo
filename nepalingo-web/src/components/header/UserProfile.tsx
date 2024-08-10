@@ -28,7 +28,7 @@ const UserProfile: React.FC = () => {
   };
 
   const handleAvatarClick = () => {
-    navigate("/edit-profile");
+    navigate("/profile-edit");
   };
 
   useEffect(() => {

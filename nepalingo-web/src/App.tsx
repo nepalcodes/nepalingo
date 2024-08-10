@@ -39,7 +39,7 @@ const App: React.FC = () => {
             <Route path="/flashcard" element={<FlashcardPage />} />
             <Route path="/dictionary" element={<DictionaryPage />} />
             <Route path="/test-yourself" element={<TestYourself />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile-edit" element={<ProfilePage />} />
           </Route>
         </Routes>
       </Router>
