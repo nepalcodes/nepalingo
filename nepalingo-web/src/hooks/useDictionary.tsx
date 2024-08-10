@@ -53,6 +53,10 @@ async function getFetcherByLanguage(
       return await getTajpuriyaWord(word);
     case "Maithili":
       return await getGTranslate("maithili", word);
+    case "Sanskrit":
+      return await getGTranslate("sanskrit", word);
+    case "Nepali":
+      return await getGTranslate("nepali", word);
 
     default:
       throw new Error(`Language ${language} not supported`);
