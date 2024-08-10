@@ -12,6 +12,7 @@ import { PrivateRoutes } from "@/components/PrivateRoutes";
 import FeedbackForm from "@/components/FeedbackForm";
 import TestYourself from "@/pages/TestYourself";
 import SignUp from "./pages/SignUp";
+import ProfilePage from "@/pages/ProfilePage";
 
 const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/flashcard" element={<FlashcardPage />} />
             <Route path="/dictionary" element={<DictionaryPage />} />
             <Route path="/test-yourself" element={<TestYourself />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </Router>

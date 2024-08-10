@@ -5,7 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { supabaseClient } from "@/config/supabase-client";
+  import { supabaseClient } from "@/config/supabase-client";
 import { useAuth } from "@/hooks/Auth";
 
 interface StreakContextProps {
