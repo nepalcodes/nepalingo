@@ -79,11 +79,7 @@ const ProfileEditForm: React.FC = () => {
       },
     });
 
-    if (dbError) {
-      console.error("Error updating user in database:", dbError.message);
-      return;
-    }
-
+  
     // Refetch user data to update UI
     await refetchUser();
 
