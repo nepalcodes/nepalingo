@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabaseClient } from "@/config/supabase-client";
 import { useAuth } from "@/hooks/Auth";
@@ -16,12 +16,31 @@ const ProfileEditForm: React.FC = () => {
   const [status, setStatus] = useState(user?.user_metadata.status || "");
   const [isDragging, setIsDragging] = useState(false);
 
+  useEffect(() => {
+    const fetchCurrentStatus = async () => {
+      if (user) {
+        const { data, error } = await supabaseClient
+          .from("updateUser")
+          .select("status")
+          .eq("username", user.user_metadata.username)
+          .single();
+
+        if (error) {
+          console.error("Error fetching current status:", error.message);
+        } else {
+          setStatus(data?.status || ""); // Update status with the current value from the database
+        }
+      }
+    };
+
+    fetchCurrentStatus();
+  }, [user]);
+
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       const uploadedAvatarUrl = URL.createObjectURL(file);
       setAvatarUrl(uploadedAvatarUrl);
-      // Implement file upload logic here if needed
     }
   };
 
@@ -32,7 +51,6 @@ const ProfileEditForm: React.FC = () => {
       const file = e.dataTransfer.files[0];
       const uploadedAvatarUrl = URL.createObjectURL(file);
       setAvatarUrl(uploadedAvatarUrl);
-      // Implement file upload logic here if needed
     }
   };
 
@@ -46,17 +64,15 @@ const ProfileEditForm: React.FC = () => {
   const handleSaveChanges = async () => {
     if (!user) return;
 
-    // Update user metadata in Supabase
-    const { error } = await supabaseClient.auth.updateUser({
-      data: {
-        username, // Update username directly in Supabase
-        avatar_url: avatarUrl,
-        status,
-      },
+    // Update status, username, and bio in the UpdateUser table
+    const { error: dbError } = await supabaseClient.from("updateUser").upsert({
+      id: user.id,
+      username,
+      status,
     });
 
-    if (error) {
-      console.error("Error updating profile:", error.message);
+    if (dbError) {
+      console.error("Error updating user in database:", dbError.message);
       return;
     }
 
