@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "@/pages/Login";
 import Home from "@/pages/Home";
+import Landing from "@/pages/Landing";
 import FlashcardPage from "@/pages/FlashcardPage";
 import DictionaryPage from "@/pages/DictionaryPage";
 import ResetPassword from "@/pages/ResetPassword";
@@ -24,7 +25,8 @@ const App: React.FC = () => {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/reset-password-email" element={<PasswordEmail />} />
           <Route element={<PrivateRoutes />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/flashcard" element={<FlashcardPage />} />
             <Route path="/dictionary" element={<DictionaryPage />} />
             <Route path="/test-yourself" element={<TestYourself />} />

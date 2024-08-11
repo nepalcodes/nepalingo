@@ -89,7 +89,7 @@ const Flashcard: React.FC = () => {
                 category: "flash cards",
                 label: "thumbs down",
                 action: "Click",
-                value: 99,
+                value: 0,
                 nonInteraction: true,
                 transport: "xhr",
               });
@@ -107,7 +107,7 @@ const Flashcard: React.FC = () => {
                 category: "flash cards",
                 label: "eye",
                 action: "Click",
-                value: 99,
+                value: 2,
                 nonInteraction: true,
                 transport: "xhr",
               });
@@ -125,7 +125,7 @@ const Flashcard: React.FC = () => {
                 category: "flash cards",
                 label: "thumbs up",
                 action: "Click",
-                value: 99,
+                value: 1,
                 nonInteraction: true,
                 transport: "xhr",
               });

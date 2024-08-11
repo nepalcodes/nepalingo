@@ -5,8 +5,17 @@ import Button from "@/components/Button";
 import useDictionary from "@/hooks/useDictionary";
 import SearchResponseCard from "@/components/SearchResponseCard";
 import { useLanguage } from "@/hooks/Langauge";
+import ReactGA from "react-ga4";
+
 
 const DictionaryPage: React.FC = () => {
+
+  ReactGA.send({
+    hitType: "pageview",
+    page: window.location.pathname,
+    title: "Dictionary Page",
+  });
+
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { selectedLanguage } = useLanguage();
   const { data, isLoading, error } = useDictionary({
