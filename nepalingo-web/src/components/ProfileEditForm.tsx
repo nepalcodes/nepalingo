@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabaseClient } from "@/config/supabase-client";
-import { useAuth } from "@/hooks/Auth";
+import { useAuth} from "@/hooks/Auth";
 import CustomTextInput from "./CustomTextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen, faCamera } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileEditForm: React.FC = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, refetchUser } = useAuth();
   const [avatarUrl, setAvatarUrl] = useState(
     user?.user_metadata.avatar_url || ""
   );
@@ -16,23 +16,49 @@ const ProfileEditForm: React.FC = () => {
   const [status, setStatus] = useState(user?.user_metadata.status || "");
   const [isDragging, setIsDragging] = useState(false);
 
+
+
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const uploadedAvatarUrl = URL.createObjectURL(file);
+      const filePath = `public/${file.name}`;
+
+      // Upload file to Supabase Storage
+      const { data, error: uploadError } = await supabaseClient.storage
+        .from('Avatars') 
+        .upload(filePath, file);
+
+      if (uploadError) {
+        console.error('Error uploading file:', uploadError.message);
+        return;
+      }
+
+      // Construct the URL of the uploaded file
+      const uploadedAvatarUrl = `https://your-supabase-instance.supabase.co/storage/v1/object/public/avatars/${file.name}`;
       setAvatarUrl(uploadedAvatarUrl);
-      // Implement file upload logic here if needed
     }
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      const uploadedAvatarUrl = URL.createObjectURL(file);
+      const filePath = `public/${file.name}`;
+
+      // Upload file to Supabase Storage
+      const { data, error: uploadError } = await supabaseClient.storage
+        .from('Avatars') 
+        .upload(filePath, file);
+
+      if (uploadError) {
+        console.error('Error uploading file:', uploadError.message);
+        return;
+      }
+
+      // Construct the URL of the uploaded file
+      const uploadedAvatarUrl = `https://your-supabase-instance.supabase.co/storage/v1/object/public/avatars/${file.name}`;
       setAvatarUrl(uploadedAvatarUrl);
-      // Implement file upload logic here if needed
     }
   };
 
@@ -46,19 +72,23 @@ const ProfileEditForm: React.FC = () => {
   const handleSaveChanges = async () => {
     if (!user) return;
 
-    // Update user metadata in Supabase
-    const { error } = await supabaseClient.auth.updateUser({
-      data: {
-        username, // Update username directly in Supabase
+    // Update user profile in Supabase
+    const { error } = await supabaseClient
+      .from('updateUser') 
+      .upsert({
+        id: user.id,
+        username,
         avatar_url: avatarUrl,
         status,
-      },
-    });
+      });
 
     if (error) {
       console.error("Error updating profile:", error.message);
       return;
     }
+
+    // Refetch user data to update UI
+    await refetchUser();
 
     // Navigate to the home page
     navigate("/");
@@ -127,5 +157,4 @@ const ProfileEditForm: React.FC = () => {
     </div>
   );
 };
-
 export default ProfileEditForm;

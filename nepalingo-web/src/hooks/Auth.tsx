@@ -17,6 +17,7 @@ type AuthContextProps = {
     data: SignUpWithPasswordCredentials,
   ) => Promise<AuthTokenResponsePassword>;
   resetPasswordEmail: (email: string) => Promise<{ error: Error | null }>;
+  refetchUser: () => Promise<void>; // Added refetchUser
 };
 
 const AuthContext = createContext<AuthContextProps>({
@@ -29,6 +30,7 @@ const AuthContext = createContext<AuthContextProps>({
     supabaseClient.auth.resetPasswordForEmail(email, {
       redirectTo: "https://www.nepalingo.com/reset-password",
     }),
+  refetchUser: async () => {}, // Added refetchUser
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -63,6 +65,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  const refetchUser = async () => {
+    const {
+      data: { session },
+      error,
+    } = await supabaseClient.auth.getSession();
+    if (error) {
+      console.error("Error fetching user:", error.message);
+      return;
+    }
+    setSession(session);
+    setUser(session?.user || null);
+  };
+
   const value: AuthContextProps = {
     session,
     user,
@@ -73,6 +88,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       supabaseClient.auth.resetPasswordForEmail(email, {
         redirectTo: "https://www.nepalingo.com/reset-password",
       }),
+    refetchUser, // Include refetchUser in the context
   };
 
   return (
