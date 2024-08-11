@@ -1,27 +1,58 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabaseClient } from "@/config/supabase-client";
 import { useAuth } from "@/hooks/Auth";
+import CustomTextInput from "./CustomTextInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faPen, faCamera } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileEditForm: React.FC = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
-  const [avatarUrl, setAvatarUrl] = useState(user?.user_metadata.avatar_url || "");
+  const [avatarUrl, setAvatarUrl] = useState(
+    user?.user_metadata.avatar_url || ""
+  );
   const [username, setUsername] = useState(user?.user_metadata.username || "");
-  const [bio, setBio] = useState(user?.user_metadata.bio || "");
   const [status, setStatus] = useState(user?.user_metadata.status || "");
-  const [password, setPassword] = useState("");
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const uploadedAvatarUrl = URL.createObjectURL(file);
+      setAvatarUrl(uploadedAvatarUrl);
+      // Implement file upload logic here if needed
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      const uploadedAvatarUrl = URL.createObjectURL(file);
+      setAvatarUrl(uploadedAvatarUrl);
+      // Implement file upload logic here if needed
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => setIsDragging(false);
+
+  const handleSaveChanges = async () => {
     if (!user) return;
 
-    // Update user metadata
-    const { data, error } = await supabaseClient.auth.updateUser({
+    // Update user metadata in Supabase
+    const { error } = await supabaseClient.auth.updateUser({
       data: {
+        username, // Update username directly in Supabase
         avatar_url: avatarUrl,
-        username,
-        bio,
         status,
       },
-      password: password || undefined, // Optional password update
     });
 
     if (error) {
@@ -29,58 +60,70 @@ const ProfileEditForm: React.FC = () => {
       return;
     }
 
-    console.log("Profile updated successfully");
+    // Navigate to the home page
+    navigate("/");
   };
 
   return (
-    <div className="p-4 bg-white shadow-md rounded-lg">
-      <div>
-        <label>Avatar URL</label>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+      <div
+        className={`relative w-40 h-40 rounded-full overflow-hidden group cursor-pointer ${isDragging ? "border-4 border-dashed border-white" : "border-2 border-gray-600"}`}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onDragLeave={handleDragLeave}
+      >
+        <img
+          src={avatarUrl || "/default-avatar.png"}
+          alt="User Avatar"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <FontAwesomeIcon icon={faCamera} className="text-white text-xl" />
+        </div>
         <input
-          type="text"
-          value={avatarUrl}
-          onChange={(e) => setAvatarUrl(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
+          type="file"
+          accept="image/*"
+          onChange={handleAvatarChange}
+          className="absolute inset-0 opacity-0 cursor-pointer"
         />
       </div>
-      <div>
-        <label>Username</label>
-        <input
-          type="text"
+
+      <div className="mt-8 w-3/4 max-w-xl">
+        <CustomTextInput
+          label="Username"
+          name="username"
+          required
+          autoComplete="name"
+          placeholder="eg: bird24"
+          iconProps={{
+            icon: faUser,
+            className: "text-white",
+          }}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
         />
-      </div>
-      <div>
-        <label>Bio</label>
-        <textarea
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-      <div>
-        <label>Status</label>
-        <input
-          type="text"
+
+        <CustomTextInput
+          label="Status"
+          name="status"
+          required
+          autoComplete="status"
+          placeholder="Enter your status"
+          iconProps={{
+            icon: faPen,
+            className: "text-white",
+          }}
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
         />
+
+        <button
+          onClick={handleSaveChanges}
+          className="w-full mt-6 bg-primary text-white p-3 rounded-lg hover:bg-secondary transition duration-200"
+        >
+          Save Changes
+        </button>
       </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-      <button onClick={handleSubmit} className="mt-4 bg-blue-500 text-white p-2 rounded">
-        Save Changes
-      </button>
     </div>
   );
 };
