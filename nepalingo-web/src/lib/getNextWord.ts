@@ -1,5 +1,4 @@
 export const newariWords = [
-  "hello",
   "call",
   "can",
   "do",
@@ -31,6 +30,33 @@ export const newariWords = [
   "salt",
 ];
 
+export const WordSentences = [
+  "my",
+  "name",
+  "is",
+  "my name is Ram",
+  "I",
+  "years",
+  "old",
+  "I am five years old",
+  "from",
+  " I am from kathmandu",
+  "don't",
+  "speak",
+  "your",
+  "language",
+  "well",
+  "I don’t speak your language well",
+  "how",
+  "are",
+  "you",
+  "how are you",
+  "where",
+  "from",
+  "I am",
+  "where are you from?",
+];
+
 export async function getTajpuriyaWords(): Promise<string[]> {
   const wordText = await fetch("./dictionaries/TajpuriyaDictionary.csv")
     .then((r) => r.text())
@@ -59,8 +85,10 @@ export function* wordGenerator(words: string[]) {
 
 export async function getNextWord(language: string) {
   let words: string[] = [];
-  if (language === "Newari" || language === "Maithili") {
+  if (language === "Newari") {
     words = newariWords;
+  } else if (language === "Maithili") {
+    words = WordSentences;
   } else if (language === "Tajpuriya") {
     words = await getTajpuriyaWords();
   }

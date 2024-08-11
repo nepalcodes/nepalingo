@@ -10,7 +10,7 @@ const ProfileEditForm: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [avatarUrl, setAvatarUrl] = useState(
-    user?.user_metadata.avatar_url || ""
+    user?.user_metadata.avatar_url || "",
   );
   const [username, setUsername] = useState(user?.user_metadata.username || "");
   const [status, setStatus] = useState(user?.user_metadata.status || "");
