@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabaseClient } from "@/config/supabase-client";
 import { useAuth} from "@/hooks/Auth";
@@ -15,8 +15,6 @@ const ProfileEditForm: React.FC = () => {
   const [username, setUsername] = useState(user?.user_metadata.username || "");
   const [status, setStatus] = useState(user?.user_metadata.status || "");
   const [isDragging, setIsDragging] = useState(false);
-
-
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -72,18 +70,17 @@ const ProfileEditForm: React.FC = () => {
   const handleSaveChanges = async () => {
     if (!user) return;
 
-    // Update user profile in Supabase
-    const { error } = await supabaseClient
-      .from('updateUser') 
-      .upsert({
-        id: user.id,
-        username,
+    // Update user metadata in Supabase
+    const { error } = await supabaseClient.auth.updateUser({
+      data: {
+        username, // Update username directly in Supabase
         avatar_url: avatarUrl,
         status,
-      });
+      },
+    });
 
-    if (error) {
-      console.error("Error updating profile:", error.message);
+    if (dbError) {
+      console.error("Error updating user in database:", dbError.message);
       return;
     }
 
