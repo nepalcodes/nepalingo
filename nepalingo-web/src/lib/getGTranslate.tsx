@@ -4,7 +4,6 @@ const languageCodes: { [key: string]: string } = {
   maithili: "mai",
   sanskrit: "sa",
   nepali: "ne",
-
 };
 
 export const getGTranslate = async (
