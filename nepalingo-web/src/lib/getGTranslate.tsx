@@ -10,7 +10,7 @@ const languageCodes: { [key: string]: string } = {
 
 export const getGTranslate = async (
   language: string,
-  word: string
+  word: string,
 ): Promise<{
   language: string;
   word: string;
@@ -37,7 +37,6 @@ export const getGTranslate = async (
     console.error("Error fetching from cache:", error);
   } else if (cachedResult) {
     const translatedWord = cachedResult.translated_word;
-    console.log("used table");
     return {
       language,
       word,
@@ -52,7 +51,6 @@ export const getGTranslate = async (
   }
 
   const url = `https://translation.googleapis.com/language/translate/v2?key=${GOOGLE_TRANSLATE_API_KEY}&q=${word}&target=${targetLanguage}`;
-  console.log("used api");
   const response = await fetch(url);
   const data = await response.json();
 
