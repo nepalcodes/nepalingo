@@ -4,12 +4,15 @@ import {
   faThumbsUp,
   faEye,
   faThumbsDown,
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "@/components/Card";
 import useDictionary from "@/hooks/useDictionary";
 import ReactGA from "react-ga4";
 import { useLanguage } from "@/hooks/Langauge";
 import { getNextWord } from "@/lib/getNextWord";
+import { useNavigate } from "react-router-dom";
+import ExitConfirmationModal from "@/components/header/ExitConfirmationModal";
 
 const Flashcard: React.FC = () => {
   const [viewType, setViewType] = useState(0);
@@ -20,6 +23,8 @@ const Flashcard: React.FC = () => {
     void,
     unknown
   > | null>(null);
+  const [showExitModal, setShowExitModal] = useState(false);
+  const navigate = useNavigate();
 
   const { data, isLoading, error } = useDictionary({
     language: selectedLanguage || "",
@@ -55,6 +60,18 @@ const Flashcard: React.FC = () => {
     }
   };
 
+  const handleExit = () => {
+    setShowExitModal(true);
+  };
+
+  const confirmExit = (confirm: boolean) => {
+    if (confirm) {
+      navigate("/");
+    } else {
+      setShowExitModal(false);
+    }
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error?.response?.length) handleNextWord();
 
@@ -78,6 +95,7 @@ const Flashcard: React.FC = () => {
         ) : (
           <div>No data available</div>
         )}
+
 
         <div className="flex justify-center mt-4 space-x-2">
           <button
@@ -134,8 +152,20 @@ const Flashcard: React.FC = () => {
           >
             <FontAwesomeIcon icon={faThumbsUp} size="lg" />
           </button>
+
+          <button
+            className="bg-white text-red-500 p-4 rounded-[16px] shadow-md hover:bg-red-500 hover:text-white flex items-center justify-center"
+            onClick={handleExit}
+            style={{ width: "50px", height: "50px" }}
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+          </button>
         </div>
       </div>
+      <ExitConfirmationModal
+        show={showExitModal}
+        onConfirm={confirmExit}
+      />
     </div>
   );
 };
