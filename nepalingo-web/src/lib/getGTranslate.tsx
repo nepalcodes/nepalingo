@@ -2,7 +2,6 @@ const GOOGLE_TRANSLATE_API_KEY = import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY;
 
 const languageCodes: { [key: string]: string } = {
   maithili: "mai",
-  newari: "new",
 };
 
 export const getGTranslate = async (
