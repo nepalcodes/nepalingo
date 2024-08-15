@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomTextInput from "@/components/CustomTextInput";
 import Button from "@/components/Button";
@@ -24,7 +24,7 @@ const ResetPassword: React.FC = () => {
 
     // Update the password using the Supabase client
     const { error: updateError } = await supabaseClient.auth.updateUser({
-      password,
+      password: password,
     });
 
     if (updateError) {
@@ -32,12 +32,34 @@ const ResetPassword: React.FC = () => {
     } else {
       navigate("/login", {
         state: {
-          message:
-            "Password reset successful! Please log in with your new password.",
+          message: "Password reset successful!",
         },
       });
     }
   };
+
+  useEffect(() => {
+    const handleSessionFromURL = async () => {
+      // Extract session-related parameters from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const accessToken = urlParams.get("access_token");
+      const refreshToken = urlParams.get("refresh_token");
+
+      if (accessToken && refreshToken) {
+        // Set the session in Supabase
+        const { error } = await supabaseClient.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+
+        if (error) {
+          setError("Failed to restore session. Please try again.");
+        }
+      }
+    };
+
+    handleSessionFromURL();
+  }, []);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black">

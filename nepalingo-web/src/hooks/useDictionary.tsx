@@ -37,18 +37,10 @@ async function getFetcherByLanguage(
   if (!word) {
     word = "hello";
   }
-  let newariResult: DictionaryResponse;
 
   switch (language) {
     case "Newari":
-      newariResult = await getNewariWord(word);
-
-      if (newariResult.meanings.length === 0) {
-        console.log("Used Google Translate for newari");
-        return await getGTranslate("newari", word);
-      }
-      return newariResult;
-
+      return await getNewariWord(word);
     case "Tajpuriya":
       return await getTajpuriyaWord(word);
     case "Maithili":

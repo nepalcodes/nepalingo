@@ -1,7 +1,6 @@
 export const newariWords = [
   "hello",
   "call",
-  "can",
   "do",
   "how",
   "I",
