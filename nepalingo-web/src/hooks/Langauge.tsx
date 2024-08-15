@@ -10,6 +10,8 @@ export const Languages = {
   Newari: "newari",
   Tajpuriya: "tajpuriya",
   Maithili: "maithili",
+  Sanskrit: "sanskrit",
+  Nepali: "nepali",
 } as const;
 
 type LanguageContextProps = {
