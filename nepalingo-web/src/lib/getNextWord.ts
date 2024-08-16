@@ -1,7 +1,6 @@
 export const newariWords = [
   "hello",
   "call",
-  "can",
   "do",
   "how",
   "I",
@@ -59,7 +58,12 @@ export function* wordGenerator(words: string[]) {
 
 export async function getNextWord(language: string) {
   let words: string[] = [];
-  if (language === "Newari" || language === "Maithili") {
+  if (
+    language === "Newari" ||
+    language === "Maithili" ||
+    language === "Sanskrit" ||
+    language === "Nepali"
+  ) {
     words = newariWords;
   } else if (language === "Tajpuriya") {
     words = await getTajpuriyaWords();
