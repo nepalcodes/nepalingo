@@ -4,6 +4,7 @@ import { StreakContext } from "@/hooks/StreakContext";
 import { getPhrase } from "@/components/header/StreakPhrase";
 import { useAuth } from "@/hooks/Auth";
 import fire from "@/assets/fire.svg";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,7 @@ const UserProfile: React.FC = () => {
   const { currentStreak, longestStreak } = useContext(StreakContext);
   const phrase = getPhrase(currentStreak);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -23,6 +25,10 @@ const UserProfile: React.FC = () => {
     ) {
       setIsOpen(false);
     }
+  };
+
+  const handleAvatarClick = () => {
+    navigate("/profile-edit");
   };
 
   useEffect(() => {
@@ -47,7 +53,7 @@ const UserProfile: React.FC = () => {
         <div className="absolute right-0 z-10 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4">
           <div className="flex flex-col items-center">
             <div className="w-16 h-16">
-              <UserAvatar />
+              <UserAvatar onClick={handleAvatarClick} showPenOnHover />
             </div>
             <span className="mt-1 text-white font-primary font-black">
               {user?.user_metadata?.username}

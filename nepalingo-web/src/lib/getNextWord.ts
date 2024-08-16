@@ -1,6 +1,5 @@
 export const newariWords = [
   "call",
-  "can",
   "do",
   "how",
   "I",
@@ -46,7 +45,7 @@ export const WordSentences = [
   "your",
   "language",
   "well",
-  "I don’t speak your language well",
+  "I don't speak your language well",
   "how",
   "are",
   "you",
