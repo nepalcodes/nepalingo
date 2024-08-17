@@ -1,3 +1,5 @@
+import { supabaseClient } from "@/config/supabase-client";
+
 const GOOGLE_TRANSLATE_API_KEY = import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY;
 
 const languageCodes: { [key: string]: string } = {
@@ -23,13 +25,48 @@ export const getGTranslate = async (
     throw new Error(`Language code for ${language} not found`);
   }
 
-  const url = `https://translation.googleapis.com/language/translate/v2?key=${GOOGLE_TRANSLATE_API_KEY}&q=${word}&target=${targetLanguage}`;
+  // Check if the translation is already cached in Supabase
+  const { data: cachedResult, error } = await supabaseClient
+    .from("translations_cache")
+    .select("translated_word")
+    .eq("language", language)
+    .eq("word", word)
+    .single();
 
+  if (error) {
+    console.error("Error fetching from cache:", error);
+  } else if (cachedResult) {
+    const translatedWord = cachedResult.translated_word;
+    return {
+      language,
+      word,
+      meanings: [
+        {
+          language,
+          meaningOriginal: translatedWord,
+          meaningEn: word,
+        },
+      ],
+    };
+  }
+
+  const url = `https://translation.googleapis.com/language/translate/v2?key=${GOOGLE_TRANSLATE_API_KEY}&q=${word}&target=${targetLanguage}`;
   const response = await fetch(url);
   const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.error.message);
+  }
+
+  const translatedWord = data.data.translations[0].translatedText;
+
+  // Store the result in the Supabase cache
+  const { error: insertError } = await supabaseClient
+    .from("translations_cache")
+    .insert([{ language, word, translated_word: translatedWord }]);
+
+  if (insertError) {
+    console.error("Error inserting into cache:", insertError);
   }
 
   return {
@@ -38,7 +75,7 @@ export const getGTranslate = async (
     meanings: [
       {
         language,
-        meaningOriginal: data.data.translations[0].translatedText,
+        meaningOriginal: translatedWord,
         meaningEn: word,
       },
     ],
