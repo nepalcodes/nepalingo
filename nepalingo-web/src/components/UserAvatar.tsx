@@ -1,10 +1,10 @@
 import React from "react";
-import { useAuth } from "./userAuth/AuthContext"; // Adjust the import path based on your project structure
+import { useAuth } from "@/hooks/Auth";
 
 const UserAvatar: React.FC = () => {
   const { user } = useAuth();
   const username = user?.user_metadata?.username;
-  const avatarUrl = `https://robohash.org/${username}.png`;
+  const avatarUrl = `https://robohash.org/${username}.png?set=set4`;
 
   return (
     <img

@@ -1,32 +1,47 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import User_auth from "./components/userAuth/UserAuth";
-import Home from "./pages/Home/Home";
-import FlashcardPage from "./pages/FlashcardPage"
-import { useAuth } from "./components/userAuth/AuthContext";
+import React from "react";
+import Login from "@/pages/Login";
+import Home from "@/pages/Home";
+import FlashcardPage from "@/pages/FlashcardPage";
+import DictionaryPage from "@/pages/DictionaryPage";
+import ResetPassword from "@/pages/ResetPassword";
+import PasswordEmail from "@/pages/PasswordEmail";
+import About from "@/components/header/About";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
+import { PrivateRoutes } from "@/components/PrivateRoutes";
+import FeedbackForm from "@/components/FeedbackForm";
+import TestYourself from "@/pages/TestYourself";
+import SignUp from "./pages/SignUp";
 
 const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
   ReactGA.initialize(TrackingID);
-  const { user } = useAuth();
 
+  const handleFeedbackFormClose = () => {
+    console.log("Feedback form closed");
+  };
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<User_auth />} />
-        <Route path="/learn" element={<FlashcardPage />} />
-        {/* Protect the / route, redirect to /login if not authenticated */}
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-        {/* Default route redirects to /login */}
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
+    <div className="mx-5 min-[1200px]:mx-auto max-w-[1200px] ">
+      <Router>
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/feedback"
+            element={<FeedbackForm onClose={handleFeedbackFormClose} />}
+          />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password-email" element={<PasswordEmail />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/flashcard" element={<FlashcardPage />} />
+            <Route path="/dictionary" element={<DictionaryPage />} />
+            <Route path="/test-yourself" element={<TestYourself />} />
+          </Route>
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

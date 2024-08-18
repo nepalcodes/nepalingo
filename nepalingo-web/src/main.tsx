@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import { AuthProvider } from "./components/userAuth/AuthContext";
+import App from "@/App";
+import "@/index.css";
+import { AuthProvider } from "@/hooks/Auth";
+import { StreakProvider } from "@/hooks/StreakContext";
+import { LanguageProvider } from "@/hooks/Langauge";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <LanguageProvider>
+        <StreakProvider>
+          <App />
+        </StreakProvider>
+      </LanguageProvider>
     </AuthProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

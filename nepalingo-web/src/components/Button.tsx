@@ -1,13 +1,14 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  
+  smallHeight?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, smallHeight = false, children, ...rest } = props;
 
-  const buttonClasses = `bg-blue-500 hover:md:bg-opacity-80 text-white font-bold py-2 px-4 rounded ${className}`;
+  const heightClass = smallHeight ? "h-auto" : "h-full";
+  const buttonClasses = `${heightClass} bg-primary text-white font-primary font-bold m-0 py-2 px-4 rounded-lg ${className}`;
 
   return (
     <button ref={ref} className={buttonClasses} {...rest}>
@@ -16,6 +17,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   );
 });
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 export default Button;

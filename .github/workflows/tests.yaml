@@ -3,7 +3,7 @@ name: Tests
 on:
   push:
     branches:
-      - '*'
+      - "**"
 
 jobs:
   test_build:
@@ -16,17 +16,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'  # Use Node.js 20.x 
+          node-version: "20" # Use Node.js 20.x
 
       - uses: pnpm/action-setup@v4
         with:
           version: 8
-        
+
       - name: Install dependencies
         run: pnpm -C nepalingo-web install
 
       - name: Lint code
-        run: pnpm -C nepalingo-web run lint 
+        run: pnpm -C nepalingo-web run lint
+
+      - name: Check Prettier
+        run: pnpm -C nepalingo-web run format-check
 
       - name: Test Build
-        run: pnpm -C nepalingo-web run build 
+        run: pnpm -C nepalingo-web run build
