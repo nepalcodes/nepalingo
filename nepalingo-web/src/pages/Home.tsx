@@ -53,7 +53,7 @@ const Home: React.FC = () => {
               descriptionText={`Try some multiple choice questions to test your ${selectedLanguage} vocabulary`}
               buttonText="Test Yourself"
               onClick={() => {
-                navigate("/test-yourself");
+                navigate("/quiz");
               }}
             />
           </div>

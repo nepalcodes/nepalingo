@@ -11,7 +11,7 @@ import { PrivateRoutes } from "@/components/PrivateRoutes";
 import FeedbackForm from "@/components/FeedbackForm";
 import About from "@/pages/About";
 import Credits from "@/pages/Credits";
-import TestYourself from "@/pages/TestYourself";
+import Quiz from "@/pages/Quiz";
 import SignUp from "./pages/SignUp";
 
 const App: React.FC = () => {
@@ -39,7 +39,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/flashcard" element={<FlashcardPage />} />
             <Route path="/dictionary" element={<DictionaryPage />} />
-            <Route path="/test-yourself" element={<TestYourself />} />
+            <Route path="/quiz" element={<Quiz />} />
           </Route>
         </Routes>
       </Router>
