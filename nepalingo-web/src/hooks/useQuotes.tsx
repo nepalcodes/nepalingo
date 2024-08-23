@@ -46,7 +46,9 @@ const useQuotes = (): QuotesResponse => {
       };
     });
 
-    const randomIndex = Math.floor(Math.random() * quotesArray.length);
+    // We do quotesArray.length - 1 because the last element of the array is always empty
+    // due to the way the csv is being parsed above.
+    const randomIndex = Math.floor(Math.random() * (quotesArray.length - 1));
     const randomQuote = quotesArray[randomIndex];
 
     setQuotes(quotesArray);
