@@ -40,7 +40,7 @@ const Credits: React.FC = () => {
         <p className="mb-8 text-lg leading-relaxed text-center">
           Puja Tajpuriya has been a major contributer to all the Tajpuriya
           translations. <br />
-          We are looking for linguists! If you'd like to contribute to this
+          We are looking for linguists! If you&apos;d like to contribute to this
           project, please reach us via email: support at nepalingo dot com
         </p>
       </div>
