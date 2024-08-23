@@ -4,13 +4,17 @@ import { StreakContext } from "@/hooks/StreakContext";
 import { getPhrase } from "@/components/header/StreakPhrase";
 import { useAuth } from "@/hooks/Auth";
 import fire from "@/assets/fire.svg";
+import { useNavigate } from "react-router-dom";
+import { supabaseClient } from "@/config/supabase-client"; // Import Supabase client
 
 const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState<string | null>(null);
   const { user, signOut } = useAuth();
   const { currentStreak, longestStreak } = useContext(StreakContext);
   const phrase = getPhrase(currentStreak);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,12 +29,37 @@ const UserProfile: React.FC = () => {
     }
   };
 
+  const handleAvatarClick = () => {
+    navigate("/profile-edit");
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // Fetch the status from the UpdateUser table
+  useEffect(() => {
+    const fetchStatus = async () => {
+      if (user) {
+        const { data, error } = await supabaseClient
+          .from("updateUser")
+          .select("status")
+          .eq("username", user.user_metadata.username)
+          .single();
+
+        if (error) {
+          console.error("Error fetching status:", error.message);
+        } else {
+          setStatus(data?.status || ""); // Set status or empty string
+        }
+      }
+    };
+
+    fetchStatus();
+  }, [user]);
 
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
@@ -46,8 +75,12 @@ const UserProfile: React.FC = () => {
       {isOpen && (
         <div className="absolute right-0 z-10 mt-2 w-64 rounded-lg shadow-lg bg-[#2B2B2B] p-4">
           <div className="flex flex-col items-center">
-            <div className="w-16 h-16">
-              <UserAvatar />
+            <p className="text-sm text-gray-400">
+              My moto: <span className="text-sm text-white">{status}</span>
+            </p>
+
+            <div className="w-16 h-16 mt-1">
+              <UserAvatar onClick={handleAvatarClick} showPenOnHover />
             </div>
             <span className="mt-1 text-white font-primary font-black">
               {user?.user_metadata?.username}
