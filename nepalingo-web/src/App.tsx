@@ -8,7 +8,6 @@ import PasswordEmail from "@/pages/PasswordEmail";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
-import FeedbackForm from "@/components/FeedbackForm";
 import About from "@/pages/About";
 import Credits from "@/pages/Credits";
 import Quiz from "@/pages/Quiz";
@@ -18,9 +17,6 @@ const App: React.FC = () => {
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
   ReactGA.initialize(TrackingID);
 
-  const handleFeedbackFormClose = () => {
-    console.log("Feedback form closed");
-  };
   return (
     <div className="mx-5 min-[1200px]:mx-auto max-w-[1200px] ">
       <Router>
@@ -28,10 +24,6 @@ const App: React.FC = () => {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/credits" element={<Credits />} />
-          <Route
-            path="/feedback"
-            element={<FeedbackForm onClose={handleFeedbackFormClose} />}
-          />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/reset-password-email" element={<PasswordEmail />} />

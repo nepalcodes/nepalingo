@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import ReactGA from "react-ga4";
 import { useAuth } from "@/hooks/Auth";
@@ -7,7 +7,6 @@ import GreetingCard from "@/components/GreetingCard";
 import ActivityCard from "@/components/ActivityCard";
 import { useLanguage } from "@/hooks/Langauge";
 import StreakDisplay from "@/components/header/StreakDisplay";
-import FeedbackForm from "@/components/FeedbackForm";
 import RandomQuoteComponent from "@/components/randomQuotes";
 
 const Home: React.FC = () => {
@@ -19,16 +18,6 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { selectedLanguage } = useLanguage();
-  const [isFeedbackFormOpen, setIsFeedbackFormOpen] = useState(false);
-
-  const handleOpenFeedbackForm = () => {
-    setIsFeedbackFormOpen(true);
-  };
-
-  const handleCloseFeedbackForm = () => {
-    setIsFeedbackFormOpen(false);
-  };
-
   return (
     <>
       <div className="flex flex-col w-full min-h-screen bg-black text-white font-primary">
@@ -84,21 +73,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <div className="flex h-16 max-h-12 items-center justify-between py-4 px-5 bg-white-sidebar border-black">
-          <button
-            onClick={handleOpenFeedbackForm}
-            className="bg-white-500 text-black px-2 py-1 rounded-md hover:bg-red-600"
-          >
-            Give Feedback
-          </button>
-        </div>
-
-        {isFeedbackFormOpen && (
-          <div className="fixed inset-0 bg-white-800 bg-opacity-50 flex justify-center items-center">
-            <FeedbackForm onClose={handleCloseFeedbackForm} />
-          </div>
-        )}
       </div>
     </>
   );
