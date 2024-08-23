@@ -38,6 +38,14 @@ const Home: React.FC = () => {
             <GreetingCard name={user?.user_metadata?.username} />
             <StreakDisplay />
           </div>
+
+          <div className="mb-5 py-5">
+            <div className="flex flex-col items-center">
+              <div className="text-xl pb-1">Random Quote</div>
+              <RandomQuoteComponent />
+            </div>
+          </div>
+
           <div className="flex flex-row gap-4 w-full mb-4 ">
             <div className="flex-1">
               <ActivityCard
@@ -73,24 +81,6 @@ const Home: React.FC = () => {
                 navigate("/test-yourself");
               }}
             />
-          </div>
-
-          <div className="mb-5">
-            <ActivityCard
-              backgroundImageUrl="/CardOverlayBlur.png"
-              quizYourselfText="Random Quote!"
-              descriptionText={`Here's a random quote!`}
-            >
-              <div className="flex justify-center">
-                <RandomQuoteComponent />
-              </div>
-            </ActivityCard>
-          </div>
-
-          <div className="mb-5 pt-5">
-            <div className="flex justify-center">
-              <RandomQuoteComponent />
-            </div>
           </div>
         </div>
 
