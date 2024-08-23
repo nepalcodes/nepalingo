@@ -6,23 +6,21 @@ import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
-    <nav className=" border-gray-200  py-1 bg-black text-white flex justify-between items-center w-full h-16">
-      <div className="flex-1">
+    <nav className=" border-gray-200  py-1 bg-black text-white flex gap-4 justify-between items-center w-full h-16">
+      <div>
         <Link to={"/"}>
           <img src={logo} alt="Nepalingo Logo" className="h-12" />
         </Link>
       </div>
-      <div className="flex flex-row justify-between items-center gap-4">
-        {/* TODO: Move TO THE LEFT */}
-        <a href="/feedback" className="text-white hover:underline">
-          FeedbackForm
-        </a>
-        <a href="/about" className="text-white hover:underline">
-          About
-        </a>
-        <ChangeLanguage />
-        <UserProfile />
-      </div>
+      <a href="/feedback" className="text-white hover:underline">
+        Give us Feedback!
+      </a>
+      <a href="/about" className="text-white hover:underline">
+        About
+      </a>
+      <div className="flex-1"></div>
+      <ChangeLanguage />
+      <UserProfile />
     </nav>
   );
 };
