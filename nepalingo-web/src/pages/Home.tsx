@@ -46,13 +46,25 @@ const Home: React.FC = () => {
             </div>
           </div>
 
+          <div className="mb-5 ">
+            <ActivityCard
+              backgroundImageUrl="/CardOverlay.jpg"
+              quizYourselfText="Take a quiz!"
+              descriptionText={`Try some multiple choice questions to test your ${selectedLanguage} vocabulary`}
+              buttonText="Test Yourself"
+              onClick={() => {
+                navigate("/test-yourself");
+              }}
+            />
+          </div>
+
           <div className="flex flex-row gap-4 w-full mb-4 ">
             <div className="flex-1">
               <ActivityCard
                 backgroundImageUrl="/CardOverlay.jpg"
-                quizYourselfText="View Flash Cards"
+                quizYourselfText="Learn Words"
                 descriptionText="Test yourself using our flashcards."
-                buttonText="Start Quiz"
+                buttonText="Start Flashcards"
                 onClick={() => {
                   navigate("/flashcard");
                 }}
@@ -70,17 +82,6 @@ const Home: React.FC = () => {
                 }}
               />
             </div>
-          </div>
-          <div className="mb-5 ">
-            <ActivityCard
-              backgroundImageUrl="/CardOverlay.jpg"
-              quizYourselfText="Test yourself"
-              descriptionText={`Try some multiple choice questions to test your ${selectedLanguage} vocabulary`}
-              buttonText="Test Yourself"
-              onClick={() => {
-                navigate("/test-yourself");
-              }}
-            />
           </div>
         </div>
 
