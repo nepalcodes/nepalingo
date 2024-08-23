@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 
           <div className="mb-5 ">
             <ActivityCard
-              backgroundImageUrl="/CardOverlay.jpg"
+              backgroundImageUrl="/Quiz.png"
               quizYourselfText="Take a quiz!"
               descriptionText={`Try some multiple choice questions to test your ${selectedLanguage} vocabulary`}
               buttonText="Test Yourself"
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
           <div className="flex flex-row gap-4 w-full mb-4 ">
             <div className="flex-1">
               <ActivityCard
-                backgroundImageUrl="/CardOverlay.jpg"
+                backgroundImageUrl="/Learning.webp"
                 quizYourselfText="Learn Words"
                 descriptionText="Test yourself using our flashcards."
                 buttonText="Start Flashcards"
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
 
             <div className="flex-1">
               <ActivityCard
-                backgroundImageUrl="/CardOverlay.jpg"
+                backgroundImageUrl="/Dictionary.png"
                 quizYourselfText="View Dictionary"
                 descriptionText={`Search for word meanings in our english to ${selectedLanguage} dicitonary!`}
                 buttonText="Go to Dictionary"
