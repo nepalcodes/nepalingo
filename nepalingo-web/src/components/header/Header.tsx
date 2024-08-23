@@ -18,6 +18,9 @@ const Header: React.FC = () => {
       <a href="/about" className="text-white hover:underline">
         About
       </a>
+      <a href="/credits" className="text-white hover:underline">
+        Credits
+      </a>
       <div className="flex-1"></div>
       <ChangeLanguage />
       <UserProfile />

@@ -10,6 +10,7 @@ import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
 import FeedbackForm from "@/components/FeedbackForm";
 import About from "@/pages/About";
+import Credits from "@/pages/Credits";
 import TestYourself from "@/pages/TestYourself";
 import SignUp from "./pages/SignUp";
 
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/credits" element={<Credits />} />
           <Route
             path="/feedback"
             element={<FeedbackForm onClose={handleFeedbackFormClose} />}
