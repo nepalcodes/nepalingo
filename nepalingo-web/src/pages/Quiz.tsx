@@ -7,7 +7,7 @@ import { useStreak } from "@/hooks/StreakContext";
 import { useLanguage } from "@/hooks/Langauge";
 import { getNextWord } from "@/lib/getNextWord";
 
-const TestYourself: React.FC = () => {
+const Quiz: React.FC = () => {
   const { updateStreak } = useStreak();
   const { selectedLanguage } = useLanguage();
   const [word, setWord] = useState("hello");
@@ -160,4 +160,4 @@ const TestYourself: React.FC = () => {
   );
 };
 
-export default TestYourself;
+export default Quiz;
