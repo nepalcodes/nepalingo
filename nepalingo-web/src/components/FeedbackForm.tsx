@@ -36,16 +36,16 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md relative">
+    <div className="bg-white p-8 rounded-lg shadow-md relative">
       {submitted ? (
         <div className="text-center">
           <button
-            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl p-2"
+            className="absolute top-0 right-1 text-gray-500 hover:text-gray-700 text-3xl p-2"
             onClick={handleClose}
           >
             &times;
           </button>
-          <p className="text-lg font-semibold mb-4 text-green-600">
+          <p className="text-lg font-semibold mb-1 mt-2 text-green-600">
             Thank you for your feedback! 🎉
           </p>
         </div>
@@ -101,7 +101,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ onClose }) => {
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
           <textarea
-            className="w-full p-2 border border-gray-300 rounded mb-4"
+            className="w-full p-2 border border-gray-300 rounded mb-4 text-black"
             placeholder="Tell us more about your experience..."
             value={comments}
             onChange={(e) => setComments(e.target.value)}
