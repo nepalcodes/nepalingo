@@ -1,5 +1,13 @@
+// Words from First Word and Making Introduction Chapters
+// Some words commented out because they only appear for the Dolkha dialect
 export const newariWords = [
   "hello",
+  "goodbye",
+  "yes",
+  "no",
+  "please",
+  "sorry",
+  "thanks",
   "call",
   "do",
   "how",
@@ -10,12 +18,11 @@ export const newariWords = [
   "do",
   "not",
   "for",
-  "from",
+  // "from",
   "fun",
   "have",
   "help",
   "language",
-  "me",
   "name",
   "need",
   "please",
@@ -24,7 +31,7 @@ export const newariWords = [
   "speak",
   "understand",
   "well",
-  "you",
+  // "you",
   "your",
   "salt",
 ];
