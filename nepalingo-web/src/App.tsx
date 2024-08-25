@@ -10,6 +10,7 @@ import ReactGA from "react-ga4";
 import { PrivateRoutes } from "@/components/PrivateRoutes";
 import About from "@/pages/About";
 import Credits from "@/pages/Credits";
+import Chapters from "@/pages/Chapters";
 import Quiz from "@/pages/Quiz";
 import SignUp from "./pages/SignUp";
 
@@ -31,7 +32,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/flashcard" element={<FlashcardPage />} />
             <Route path="/dictionary" element={<DictionaryPage />} />
-            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/quiz/:chapter" element={<Quiz />} />
+            <Route path="/chapters" element={<Chapters />} />
           </Route>
         </Routes>
       </Router>

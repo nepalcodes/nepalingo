@@ -47,10 +47,10 @@ const ChangeLanguage: React.FC = () => {
     value: Languages[key as LanguageKey],
   }));
   return (
-    <div ref={dropdownRef} className="relative text-left h-full">
+    <div ref={dropdownRef} className="relative text-left">
       <button
         type="button"
-        className="w-48 bg-grayDark px-4 h-10 rounded-lg text-sm font-medium text-gray-900 focus:outline-none flex justify-between items-center"
+        className="w-32 bg-grayDark px-4 h-10 rounded-lg text-sm font-medium text-gray-900 focus:outline-none flex justify-between items-center"
         onClick={toggleMenu}
       >
         <span className="text-white font-primary font-black">

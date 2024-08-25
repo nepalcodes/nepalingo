@@ -29,7 +29,10 @@ const Flashcard: React.FC = () => {
   useEffect(() => {
     // Initialize the word generator when the language changes
     const initWordGenerator = async () => {
-      const generator = await getNextWord(selectedLanguage || "Newari");
+      const generator = await getNextWord(
+        selectedLanguage || "Newari",
+        undefined,
+      );
       setWordGenerator(generator);
       handleNextWord(generator);
     };
