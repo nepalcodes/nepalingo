@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import useDictionary from "@/hooks/useDictionary";
 import { generate } from "random-words";
 import Header from "@/components/header/Header";
 import Button from "@/components/Button";
 import { useStreak } from "@/hooks/StreakContext";
 import { useLanguage } from "@/hooks/Langauge";
-import { getAllWords, getNextWord } from "@/lib/getNextWord";
+import { getAllWords } from "@/lib/getNextWord";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -22,11 +22,11 @@ const Quiz: React.FC = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [allWords, setAllWords] = useState<string[]>([]);
   const { data, isLoading } = useDictionary({
     language: selectedLanguage || "newari",
     word,
   });
-  const wordGeneratorRef = useRef<ReturnType<typeof getNextWord> | null>(null);
   const sentences = [
     "My name is John.",
     "I am learning a new language.",
@@ -42,26 +42,18 @@ const Quiz: React.FC = () => {
 
   useEffect(() => {
     updateStreak(); // Trigger streak update on flashcard page load
-    wordGeneratorRef.current = getNextWord(
-      selectedLanguage || "newari",
-      chapter,
-    );
     const initializeQuestion = async () => {
       const allWords = await getAllWords(selectedLanguage, chapter);
+      setAllWords(allWords);
       setQuestionCount(allWords.length);
       const firstWord = allWords[0];
       setWord(firstWord);
       getOptions(firstWord);
     };
     if (!word && selectedLanguage && chapter) {
-      console.log("Intialize Question Called", word, selectedLanguage, chapter);
-      console.log("word", word);
       initializeQuestion();
     }
-    handleNextQuestion();
-
-    console.log("Called");
-  }, [selectedLanguage, chapter, word]);
+  }, [selectedLanguage, chapter, word, allWords]);
 
   const getOptions = (word: string) => {
     let randomWords;
@@ -87,17 +79,12 @@ const Quiz: React.FC = () => {
     if (!isCorrect) {
       nextWord = word;
     } else {
-      const generator = await wordGeneratorRef.current;
-      if (generator) {
-        const allWords = await getAllWords(selectedLanguage, chapter);
-        const newIndex = wordIndex + 1;
-        // nextWord = generator?.next()?.value;
-        // We do -1 here because wordIndex starts at 1 for the UI
-        nextWord = allWords[newIndex - 1];
-        setWordIndex(newIndex);
-        if (newIndex > questionCount) {
-          setCompleted(true);
-        }
+      const newIndex = wordIndex + 1;
+      // We do -1 here because wordIndex starts at 1 for the UI
+      nextWord = allWords[newIndex - 1];
+      setWordIndex(newIndex);
+      if (newIndex > questionCount) {
+        setCompleted(true);
       }
     }
 
@@ -107,7 +94,7 @@ const Quiz: React.FC = () => {
       setIsCorrect(null);
       getOptions(nextWord);
     } else {
-      console.error("Generated word is not a string.");
+      console.error("Next word is not a string.");
     }
   };
 
@@ -131,7 +118,7 @@ const Quiz: React.FC = () => {
     return (
       <>
         <Header />
-        <div className="flex flex-col gap-4 items-center justify-center min-h-screen bg-black text-2xl text-primary font-primary">
+        <div className="flex flex-col gap-4 items-center justify-center text-center min-h-screen bg-black text-2xl text-primary font-primary">
           <h1>Congratulations! You have completed this section.</h1>
           <Button onClick={() => navigate(-1)}>Back</Button>
         </div>
