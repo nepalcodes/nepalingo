@@ -5,19 +5,21 @@ import Header from "@/components/header/Header";
 import Button from "@/components/Button";
 import { useStreak } from "@/hooks/StreakContext";
 import { useLanguage } from "@/hooks/Langauge";
-import { getNextWord } from "@/lib/getNextWord";
+import { getAllWords, getNextWord } from "@/lib/getNextWord";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Quiz: React.FC = () => {
+  const navigate = useNavigate();
+  const { chapter } = useParams<{ chapter: string }>();
   const { updateStreak } = useStreak();
   const { selectedLanguage } = useLanguage();
-  const [word, setWord] = useState("hello");
+  const [word, setWord] = useState("");
+  const [completed, setCompleted] = useState(false);
+  // Starts at 1 for the UI
   const [wordIndex, setWordIndex] = useState(1);
-  const [options, setOptions] = useState<string[]>([
-    "hello",
-    "bye",
-    "no",
-    "today",
-  ]);
+  const [questionCount, setQuestionCount] = useState(0);
+  const [options, setOptions] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const { data, isLoading } = useDictionary({
@@ -40,8 +42,26 @@ const Quiz: React.FC = () => {
 
   useEffect(() => {
     updateStreak(); // Trigger streak update on flashcard page load
-    wordGeneratorRef.current = getNextWord(selectedLanguage || "newari");
-  }, [selectedLanguage]);
+    wordGeneratorRef.current = getNextWord(
+      selectedLanguage || "newari",
+      chapter,
+    );
+    const initializeQuestion = async () => {
+      const allWords = await getAllWords(selectedLanguage, chapter);
+      setQuestionCount(allWords.length);
+      const firstWord = allWords[0];
+      setWord(firstWord);
+      getOptions(firstWord);
+    };
+    if (!word && selectedLanguage && chapter) {
+      console.log("Intialize Question Called", word, selectedLanguage, chapter);
+      console.log("word", word);
+      initializeQuestion();
+    }
+    handleNextQuestion();
+
+    console.log("Called");
+  }, [selectedLanguage, chapter, word]);
 
   const getOptions = (word: string) => {
     let randomWords;
@@ -69,8 +89,15 @@ const Quiz: React.FC = () => {
     } else {
       const generator = await wordGeneratorRef.current;
       if (generator) {
-        nextWord = generator?.next()?.value;
-        setWordIndex(wordIndex + 1);
+        const allWords = await getAllWords(selectedLanguage, chapter);
+        const newIndex = wordIndex + 1;
+        // nextWord = generator?.next()?.value;
+        // We do -1 here because wordIndex starts at 1 for the UI
+        nextWord = allWords[newIndex - 1];
+        setWordIndex(newIndex);
+        if (newIndex > questionCount) {
+          setCompleted(true);
+        }
       }
     }
 
@@ -100,20 +127,35 @@ const Quiz: React.FC = () => {
   const meaning = data && data.meanings[0];
   const displayedWord = meaning?.meaningOriginal || "";
 
+  if (completed) {
+    return (
+      <>
+        <Header />
+        <div className="flex flex-col gap-4 items-center justify-center min-h-screen bg-black text-2xl text-primary font-primary">
+          <h1>Congratulations! You have completed this section.</h1>
+          <Button onClick={() => navigate(-1)}>Back</Button>
+        </div>
+      </>
+    );
+  }
+
+  // Get rid of always hello in the beginning
+  // Make sure questions actually change
+  // Disable the language dropdown when on flashcards.
   return (
     <div>
       <Header />
       <div className="flex flex-col items-center justify-center w-full mt-4">
         <h2 className="text-3xl font-semibold text-primary">
-          Section - <span className="text-white">Introductions</span>
+          Section - <span className="text-white">{chapter}</span>
         </h2>
         <p className="text-2xl text-green-500 mt-3">
           Progress: <span className="text-white">{wordIndex}</span> out of{" "}
-          <span className="text-white">{24}</span>
+          <span className="text-white">{questionCount}</span>
         </p>
       </div>
       <div className="flex justify-center bg-black text-white font-primary">
-        <div className="p-2 max-w-xl w-full text-center mt-20">
+        <div className="p-2 max-w-xl w-full text-center mt-4">
           <h2 className="text-4xl font-primary font-bold mb-6">
             What is this word in English?
           </h2>
