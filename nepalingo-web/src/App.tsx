@@ -13,8 +13,10 @@ import Credits from "@/pages/Credits";
 import Chapters from "@/pages/Chapters";
 import Quiz from "@/pages/Quiz";
 import SignUp from "./pages/SignUp";
+import LogRocket from 'logrocket';
 
 const App: React.FC = () => {
+  LogRocket.init('7jrajn/nepalingo');
   const TrackingID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID;
   ReactGA.initialize(TrackingID);
 
