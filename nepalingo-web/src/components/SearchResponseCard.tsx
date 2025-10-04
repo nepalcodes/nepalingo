@@ -1,7 +1,42 @@
 import { Meaning } from "@/hooks/useDictionary";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
 const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    };
+  }, [audio]);
+
+  const handlePronunciation = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    if (!meaning.audio?.uri) {
+      return;
+    }
+
+    if (audio) {
+      if (!audio.paused) {
+        audio.pause();
+        audio.currentTime = 0;
+      } else {
+        audio.currentTime = 0;
+        void audio.play();
+      }
+    } else {
+      const newAudio = new Audio(meaning.audio.uri);
+      setAudio(newAudio);
+      void newAudio.play();
+    }
+  };
+
   return (
     <div
       key={meaning.meaningOriginal}
@@ -19,12 +54,15 @@ const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
               </p>
             )}
           </div>
-          {meaning.audio && (
-            <audio
-              controls
-              src={meaning.audio.uri}
-              className="max-w-28 "
-            ></audio>
+          {meaning.audio?.uri && (
+            <button
+              type="button"
+              onClick={handlePronunciation}
+              className="self-start text-white text-2xl transition-colors hover:text-primary focus-visible:outline-none"
+              aria-label={`Play pronunciation for ${meaning.meaningOriginal}`}
+            >
+              <FontAwesomeIcon icon={faVolumeHigh} />
+            </button>
           )}
         </div>
         <div className="flex flex-row flex-wrap gap-2 mt-2">
