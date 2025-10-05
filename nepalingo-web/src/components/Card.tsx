@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 import { useLanguage } from "@/hooks/Langauge";
+import useAudioPlayer from "@/hooks/useAudioPlayer";
 
 interface CardProps {
   Word: string;
@@ -22,25 +23,12 @@ const Card: React.FC<CardProps> = ({
   PronounciationUrl,
   viewType,
 }) => {
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const { selectedLanguage } = useLanguage();
+  const { togglePlayback } = useAudioPlayer(PronounciationUrl);
 
-  const handlePronunciation = (event: React.MouseEvent) => {
+  const handlePronunciation = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    if (PronounciationUrl) {
-      if (audio) {
-        if (!audio.paused) {
-          audio.pause();
-          audio.currentTime = 0;
-        } else {
-          audio.play();
-        }
-      } else {
-        const newAudio = new Audio(PronounciationUrl);
-        setAudio(newAudio);
-        newAudio.play();
-      }
-    }
+    togglePlayback();
   };
 
   return (

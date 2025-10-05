@@ -1,40 +1,16 @@
 import { Meaning } from "@/hooks/useDictionary";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import useAudioPlayer from "@/hooks/useAudioPlayer";
 
 const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    };
-  }, [audio]);
+  const { togglePlayback } = useAudioPlayer(meaning.audio?.uri);
 
   const handlePronunciation = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
-    if (!meaning.audio?.uri) {
-      return;
-    }
-
-    if (audio) {
-      if (!audio.paused) {
-        audio.pause();
-        audio.currentTime = 0;
-      } else {
-        audio.currentTime = 0;
-        void audio.play();
-      }
-    } else {
-      const newAudio = new Audio(meaning.audio.uri);
-      setAudio(newAudio);
-      void newAudio.play();
-    }
+    togglePlayback();
   };
 
   return (
