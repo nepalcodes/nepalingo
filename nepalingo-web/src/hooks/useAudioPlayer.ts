@@ -11,7 +11,6 @@ const resetAudio = (audio: HTMLAudioElement | null) => {
 
 const useAudioPlayer = (audioUrl?: string) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const [lastUrl, setLastUrl] = useState<string | undefined>(audioUrl);
 
   const clearAudio = useCallback(() => {
     setAudio((currentAudio) => {
@@ -30,22 +29,8 @@ const useAudioPlayer = (audioUrl?: string) => {
   }, [audio]);
 
   useEffect(() => {
-    if (!audioUrl) {
-      clearAudio();
-      if (lastUrl !== undefined) {
-        setLastUrl(undefined);
-      }
-      return;
-    }
-
-    if (lastUrl && lastUrl !== audioUrl) {
-      clearAudio();
-    }
-
-    if (lastUrl !== audioUrl) {
-      setLastUrl(audioUrl);
-    }
-  }, [audioUrl, lastUrl, clearAudio]);
+    clearAudio();
+  }, [audioUrl, clearAudio]);
 
   const togglePlayback = useCallback(() => {
     if (!audioUrl) {

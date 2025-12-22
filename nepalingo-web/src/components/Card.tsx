@@ -31,6 +31,22 @@ const Card: React.FC<CardProps> = ({
     togglePlayback();
   };
 
+  const PronunciationButton = () => {
+    if (!PronounciationUrl) {
+      return null;
+    }
+
+    return (
+      <button
+        type="button"
+        onClick={handlePronunciation}
+        className="absolute right-4 bottom-4 z-10 text-white"
+      >
+        <FontAwesomeIcon icon={faVolumeHigh} />
+      </button>
+    );
+  };
+
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[300px] h-[400px] sm:w-[300px] sm:h-[400px] md:w-[350px] md:h-[450px] lg:w-[519px] lg:h-[600px]">
       {/* Front View */}
@@ -60,14 +76,7 @@ const Card: React.FC<CardProps> = ({
             <p className="text-lg text-white sm:text-lg md:text-xl lg:text-2xl">
               {Pronunciation}
             </p>
-            {PronounciationUrl && (
-              <button
-                onClick={handlePronunciation}
-                className="absolute right-4 bottom-4 z-10 text-white"
-              >
-                <FontAwesomeIcon icon={faVolumeHigh} />
-              </button>
-            )}
+            <PronunciationButton />
           </div>
           <div className="relative w-full h-[30%] rounded-b-2xl overflow-hidden flex items-center justify-center">
             {ImageUrl && (
@@ -113,14 +122,7 @@ const Card: React.FC<CardProps> = ({
             <p className="text-lg sm:text-lg md:text-xl lg:text-2xl">
               {Pronunciation}
             </p>
-            {PronounciationUrl && (
-              <button
-                onClick={handlePronunciation}
-                className="absolute right-4 bottom-4 z-10 text-white"
-              >
-                <FontAwesomeIcon icon={faVolumeHigh} />
-              </button>
-            )}
+            <PronunciationButton />
           </div>
           <div className="relative h-[70%] w-full rounded-b-2xl overflow-hidden flex items-center justify-center">
             {ImageUrl && (
