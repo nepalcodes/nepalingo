@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const resetAudio = (audio: HTMLAudioElement | null) => {
   if (!audio) {
@@ -10,55 +10,72 @@ const resetAudio = (audio: HTMLAudioElement | null) => {
 };
 
 const useAudioPlayer = (audioUrl?: string) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const lastUrlRef = useRef<string | undefined>(audioUrl);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [lastUrl, setLastUrl] = useState<string | undefined>(audioUrl);
 
-  useEffect(() => {
-    return () => {
-      resetAudio(audioRef.current);
-      audioRef.current = null;
-    };
+  const clearAudio = useCallback(() => {
+    setAudio((currentAudio) => {
+      if (currentAudio) {
+        resetAudio(currentAudio);
+      }
+
+      return null;
+    });
   }, []);
 
   useEffect(() => {
+    return () => {
+      resetAudio(audio);
+    };
+  }, [audio]);
+
+  useEffect(() => {
     if (!audioUrl) {
-      resetAudio(audioRef.current);
-      audioRef.current = null;
-    } else if (lastUrlRef.current && lastUrlRef.current !== audioUrl) {
-      resetAudio(audioRef.current);
-      audioRef.current = null;
+      clearAudio();
+      if (lastUrl !== undefined) {
+        setLastUrl(undefined);
+      }
+      return;
     }
 
-    lastUrlRef.current = audioUrl;
-  }, [audioUrl]);
+    if (lastUrl && lastUrl !== audioUrl) {
+      clearAudio();
+    }
+
+    if (lastUrl !== audioUrl) {
+      setLastUrl(audioUrl);
+    }
+  }, [audioUrl, lastUrl, clearAudio]);
 
   const togglePlayback = useCallback(() => {
     if (!audioUrl) {
       return;
     }
 
-    const existingAudio = audioRef.current;
+    setAudio((currentAudio) => {
+      if (currentAudio) {
+        if (!currentAudio.paused) {
+          resetAudio(currentAudio);
+          return null;
+        }
 
-    if (existingAudio) {
-      if (!existingAudio.paused) {
-        resetAudio(existingAudio);
-      } else {
-        existingAudio.currentTime = 0;
-        const playPromise = existingAudio.play();
+        currentAudio.currentTime = 0;
+        const playPromise = currentAudio.play();
         if (playPromise) {
           void playPromise.catch(() => undefined);
         }
+
+        return currentAudio;
       }
 
-      return;
-    }
+      const newAudio = new Audio(audioUrl);
+      const playPromise = newAudio.play();
+      if (playPromise) {
+        void playPromise.catch(() => undefined);
+      }
 
-    const newAudio = new Audio(audioUrl);
-    audioRef.current = newAudio;
-    const playPromise = newAudio.play();
-    if (playPromise) {
-      void playPromise.catch(() => undefined);
-    }
+      return newAudio;
+    });
   }, [audioUrl]);
 
   return { togglePlayback };
