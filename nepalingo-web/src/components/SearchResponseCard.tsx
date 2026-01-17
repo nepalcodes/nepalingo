@@ -1,7 +1,18 @@
 import { Meaning } from "@/hooks/useDictionary";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import useAudioPlayer from "@/hooks/useAudioPlayer";
 
 const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
+  const { togglePlayback } = useAudioPlayer(meaning.audio?.uri);
+
+  const handlePronunciation = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    togglePlayback();
+  };
+
   return (
     <div
       key={meaning.meaningOriginal}
@@ -19,12 +30,15 @@ const SearchResponseCard = ({ meaning }: { meaning: Meaning }) => {
               </p>
             )}
           </div>
-          {meaning.audio && (
-            <audio
-              controls
-              src={meaning.audio.uri}
-              className="max-w-28 "
-            ></audio>
+          {meaning.audio?.uri && (
+            <button
+              type="button"
+              onClick={handlePronunciation}
+              className="self-start text-white text-2xl transition-colors hover:text-primary focus-visible:outline-none"
+              aria-label={`Play pronunciation for ${meaning.meaningOriginal}`}
+            >
+              <FontAwesomeIcon icon={faVolumeHigh} />
+            </button>
           )}
         </div>
         <div className="flex flex-row flex-wrap gap-2 mt-2">
