@@ -12,8 +12,20 @@ const config: Config = {
         grayLight: "#C8C8C8",
       },
       fontFamily: {
-        primary: ["Nunito", "sans serif"],
-        secondary: "Roboto",
+        primary: [
+          "Nunito",
+          "Noto Sans Devanagari",
+          "Noto Sans Newa",
+          "system-ui",
+          "sans-serif",
+        ],
+        secondary: [
+          "Roboto",
+          "Noto Sans Devanagari",
+          "Noto Sans Newa",
+          "system-ui",
+          "sans-serif",
+        ],
       },
     },
   },
