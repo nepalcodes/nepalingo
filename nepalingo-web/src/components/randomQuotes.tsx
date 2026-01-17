@@ -10,9 +10,9 @@ const RandomQuoteComponent: React.FC = () => {
   const { text, translation } = randomQuote;
 
   return (
-    <div>
+    <div className="font-primary">
       <p style={styles.quote}>{text}</p>
-      <p style={styles.translation}>
+      <p style={styles.translation} className="font-secondary">
         <em>{translation}</em>
       </p>
     </div>
